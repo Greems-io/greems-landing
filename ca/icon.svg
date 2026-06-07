@@ -1,0 +1,25 @@
+<svg width="120" height="120" viewBox="0 0 120 120" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Greems GTA icon</title>
+<desc>Greems GTA signal charging mark: teal ring, green core, white lightning bolt, pulsing rings.</desc>
+<style>
+@keyframes ggi-pulse {
+  0%   { r: 34px; opacity: 0.5; }
+  70%  { opacity: 0; }
+  100% { r: 58px; opacity: 0; }
+}
+@keyframes ggi-bolt { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+.ggi-ring { fill: none; stroke: #1D9E75; stroke-width: 2.5; opacity: 0; }
+.ggi-ring1 { animation: ggi-pulse 2.6s ease-out infinite 0.4s; }
+.ggi-ring2 { animation: ggi-pulse 2.6s ease-out infinite 1.7s; }
+.ggi-bolt  { animation: ggi-bolt 2.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .ggi-ring1,.ggi-ring2 { animation: none; opacity: 0.4; }
+  .ggi-bolt { animation: none; opacity: 1; }
+}
+</style>
+<circle class="ggi-ring ggi-ring1" cx="60" cy="60" r="34"/>
+<circle class="ggi-ring ggi-ring2" cx="60" cy="60" r="34"/>
+<circle cx="60" cy="60" r="46" fill="none" stroke="#9FE1CB" stroke-width="5"/>
+<circle cx="60" cy="60" r="33" fill="#1D9E75"/>
+<path class="ggi-bolt" d="M66 38 L48 62 H60 L54 82 L74 54 H61 Z" fill="#FFFFFF"/>
+</svg>
