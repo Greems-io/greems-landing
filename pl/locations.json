@@ -1,0 +1,10 @@
+{
+  "count": 5,
+  "locations": [
+    {"id": "aba381b2-af83-4b8e-b82f-9dac33061e09", "name": "Adgar Renaissance Tower", "address": "ul. Skierniewicka 10a", "city": "Warszawa", "lat": 52.2298081, "lng": 20.9708929},
+    {"id": "82108812-199f-4885-9936-8a43e9c58113", "name": "Adgar Park West", "address": "al. Jerozolimskie 181", "city": "Warszawa", "lat": 52.2104894, "lng": 20.9503134},
+    {"id": "f3013e24-be5f-4173-bcbe-919d48455990", "name": "Adgar Wave Public", "address": "Wincentego Rzymowskiego 53", "city": "Warszawa", "lat": 52.1768587, "lng": 21.0012517},
+    {"id": "702c41d9-a8ed-4335-b613-543ec0e0bcce", "name": "Adgar Plaza Public", "address": "Postępu 17A", "city": "Warszawa", "lat": 52.1810444, "lng": 20.9961382},
+    {"id": "d9185422-19fd-4642-b45c-adf9aadafe86", "name": "Adgar Plaza High Speed", "address": "Postępu 17A", "city": "Warszawa", "lat": 52.1808745, "lng": 20.995578}
+  ]
+}
