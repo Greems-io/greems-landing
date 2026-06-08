@@ -62,7 +62,13 @@
   main{max-width:1100px;margin:0 auto;padding:0 20px 60px}
   .map-wrap{margin:22px 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(15,23,42,.06)}
   #map{height:460px;width:100%}
-  .map-note{font-size:.85rem;color:var(--muted);text-align:center;margin:-6px 0 18px}
+  .map-note{font-size:.85rem;color:var(--muted);text-align:center;margin:-6px 0 6px}
+  .legend{display:flex;gap:20px;justify-content:center;align-items:center;font-size:.85rem;color:var(--muted);margin:0 0 18px}
+  .legend .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:2px solid #fff;box-shadow:0 0 0 1px rgba(15,23,42,.18)}
+  .legend .std{background:#1D9E75}
+  .legend .hs{background:#f59e0b}
+  .gpin span{display:block;width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+    border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
   h2{font-size:1.4rem;color:var(--ink);margin:30px 0 12px}
   ul.locs{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
   ul.locs li{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
@@ -125,6 +131,7 @@
       <div id="map" role="application" aria-label="Mapa stacji ładowania Greems w Warszawie"></div>
     </div>
     <p class="map-note">Dotknij pinezki na mapie lub wybierz lokalizację poniżej, aby otworzyć nawigację w aplikacji map.</p>
+    <p class="legend"><span><span class="dot std"></span>Standardowe</span><span><span class="dot hs"></span>High Speed</span></p>
 
     <h2 id="list-h">Wszystkie lokalizacje</h2>
     <ul class="locs" id="loc-list" aria-labelledby="list-h" aria-live="polite">
@@ -179,6 +186,11 @@
   function esc(s){ return String(s||'').replace(/[&<>"']/g, function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
   }); }
+  function pin(color){ return L.divIcon({className:'gpin',
+    html:'<span style="background:'+color+'"></span>',
+    iconSize:[22,22], iconAnchor:[6,20], popupAnchor:[5,-18]}); }
+  var COLOR_STD = '#1D9E75', COLOR_HS = '#f59e0b';
+  function isHighSpeed(name){ return /high\s*speed/i.test(name||''); }
 
   var list = document.getElementById('loc-list');
   var loading = document.getElementById('loc-loading');
@@ -193,13 +205,24 @@
       list.appendChild(li);
       return;
     }
+    // Fan out markers that sit on (almost) the same spot — e.g. two pools in
+    // one building — so they don't stack into a single pin. Display position is
+    // nudged; the popup + Navigate link keep the real coordinates.
+    var groups = {}, gidx = {};
+    var keyOf = function(l){ return l.lat.toFixed(3) + ',' + l.lng.toFixed(3); };
+    locs.forEach(function(l){ var k = keyOf(l); (groups[k] = groups[k] || []).push(l); });
+
     var bounds = [];
     locs.forEach(function(loc){
       var addr = [loc.address, loc.city].filter(Boolean).join(', ');
-      var m = L.marker([loc.lat, loc.lng]).addTo(map);
+      var k = keyOf(loc), n = groups[k].length, i = (gidx[k] = (gidx[k] || 0), gidx[k]++);
+      var mlat = loc.lat, mlng = loc.lng;
+      if (n > 1){ var a = 2 * Math.PI * i / n, r = 0.0007; mlat += r * Math.cos(a); mlng += r * Math.sin(a); }
+      var hs = isHighSpeed(loc.name);
+      var m = L.marker([mlat, mlng], {icon: pin(hs ? COLOR_HS : COLOR_STD)}).addTo(map);
       m.bindPopup('<strong>' + esc(loc.name) + '</strong><br>' + esc(addr) +
         '<br><a href="' + navUrl(loc.lat, loc.lng) + '" target="_blank" rel="noopener">Nawiguj &rarr;</a>');
-      bounds.push([loc.lat, loc.lng]);
+      bounds.push([mlat, mlng]);
       var li = document.createElement('li');
       var h = document.createElement('h3'); h.textContent = loc.name; li.appendChild(h);
       if (addr){ var p = document.createElement('p'); p.className='addr'; p.textContent = addr; li.appendChild(p); }
