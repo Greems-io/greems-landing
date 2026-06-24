@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>השלמת רכישה — Greems</title>
+<link rel="icon" type="image/svg+xml" href="../icon.svg">
+<style>
+  :root{--green:#1D9E75;--green-dark:#0d5c43;--teal:#9FE1CB;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--bg:#f8fafc}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);
+    background:#eef9f3;line-height:1.55}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:radial-gradient(55% 45% at 50% 0%, #d8f4e8 0%, rgba(216,244,232,0) 60%),#eef9f3}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:radial-gradient(rgba(29,158,117,.13) 1.2px,transparent 1.2px);background-size:24px 24px;opacity:.5}
+  a{color:var(--green-dark)}
+  :focus-visible{outline:3px solid var(--green-dark);outline-offset:2px;border-radius:6px}
+  header.site{display:flex;align-items:center;gap:9px;max-width:760px;margin:0 auto;padding:16px 24px}
+  header.site .mark{width:30px;height:30px;border-radius:50%;background:var(--teal);display:grid;place-items:center;
+    box-shadow:0 0 0 4px rgba(159,225,203,.35)}
+  header.site .mark::before{content:"";width:13px;height:13px;border-radius:50%;background:var(--green)}
+  header.site b{font-weight:800;letter-spacing:1.5px;color:var(--green-dark);font-size:1.05rem}
+  main{max-width:760px;margin:0 auto;padding:8px 20px 60px;display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:760px){main{grid-template-columns:1.3fr .9fr;align-items:start}}
+  .back{display:inline-block;margin:0 4px 8px;font-weight:600;text-decoration:none}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;
+    box-shadow:0 6px 24px rgba(15,23,42,.06)}
+  h1{font-size:1.4rem;margin:0 0 4px}
+  .sub{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.92rem;margin:14px 0 6px}
+  label .req{color:#c0392b}
+  input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;
+    font-family:inherit;background:var(--bg)}
+  input:focus{outline:none;border-color:var(--green);background:#fff}
+  .err{color:#c0392b;font-size:.82rem;margin-top:4px;min-height:1em}
+  .hint{color:var(--muted);font-size:.82rem;margin-top:4px}
+  button.pay{margin-top:22px;width:100%;border:0;border-radius:12px;padding:15px;font-size:1.05rem;font-weight:800;
+    color:#fff;background:var(--green-dark);cursor:pointer;min-height:52px}
+  button.pay:hover{background:#0a4734}
+  button.pay:disabled{opacity:.6;cursor:default}
+  .summary{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;
+    box-shadow:0 6px 24px rgba(15,23,42,.06);position:sticky;top:16px}
+  .summary .kwh{font-size:2rem;font-weight:800;color:var(--green-dark);line-height:1}
+  .summary .kwh small{font-size:.95rem;color:var(--muted);font-weight:700;margin-inline-start:4px}
+  .summary .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;
+    padding-top:14px;border-top:1px dashed var(--line)}
+  .summary .row.total{font-size:1.3rem;font-weight:800}
+  .summary .save{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:700;color:var(--green-dark);
+    background:rgba(159,225,203,.45);padding:3px 10px;border-radius:999px}
+  .summary .perkwh{color:var(--muted);font-size:.86rem;margin-top:6px}
+  .secure{margin-top:16px;color:var(--muted);font-size:.82rem;text-align:center}
+  .formnote{margin-top:14px;color:#c0392b;font-size:.9rem;text-align:center;min-height:1em}
+</style>
+</head>
+<body>
+<header class="site">
+  <span class="mark" aria-hidden="true"></span><b>GREEMS</b>
+</header>
+<main>
+  <div>
+    <a class="back" href="./">→ חזרה לחבילות</a>
+    <div class="panel">
+      <h1>השלמת רכישה</h1>
+      <p class="sub">נשלח את קוד ההטענה לאימייל מיד לאחר התשלום.</p>
+      <form id="form" novalidate>
+        <label for="name">שם מלא <span class="req">*</span></label>
+        <input id="name" name="name" autocomplete="name" required>
+        <div class="err" id="err-name"></div>
+
+        <label for="email">אימייל <span class="req">*</span></label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
+        <div class="err" id="err-email"></div>
+
+        <label for="phone">טלפון <span class="req">*</span></label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-0000000" required>
+        <div class="err" id="err-phone"></div>
+
+        <label for="plate">מספר רכב</label>
+        <input id="plate" name="plate" inputmode="numeric" placeholder="12-345-67">
+        <div class="hint">לא חובה — עוזר לנו לשייך את ההטענות לרכב שלך.</div>
+
+        <button class="pay" id="pay" type="submit">המשך לתשלום מאובטח ←</button>
+        <div class="formnote" id="formnote"></div>
+      </form>
+    </div>
+  </div>
+
+  <aside class="summary" id="summary"><div style="color:var(--muted)">טוען…</div></aside>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var API = "https://voltai-30142674525.me-west1.run.app";
+  var fmt = function(n){ return Number(n).toLocaleString('he-IL'); };
+  var params = new URLSearchParams(location.search);
+  var pkgId = params.get('pkg') || '';
+  var PKG = null;
+
+  var form = document.getElementById('form');
+  var btn = document.getElementById('pay');
+  var note = document.getElementById('formnote');
+
+  function renderSummary(){
+    document.getElementById('summary').innerHTML =
+      '<div class="kwh">'+fmt(PKG.kwh)+'<small>קוט"ש</small></div>' +
+      (PKG.save_pct ? '<span class="save">חיסכון '+PKG.save_pct+'%</span>' : '') +
+      '<div class="perkwh">₪'+PKG.per_kwh+' לקוט"ש</div>' +
+      (PKG.compare_ils ? '<div class="row"><span>מחיר רגיל</span><span style="text-decoration:line-through;color:var(--muted)">₪'+fmt(PKG.compare_ils)+'</span></div>' : '') +
+      '<div class="row total"><span>לתשלום</span><span>₪'+fmt(PKG.price_ils)+'</span></div>' +
+      '<div class="secure">🔒 תשלום מאובטח באמצעות Grow</div>';
+  }
+
+  fetch(API + '/energy/packages.json', {cache:'no-cache'})
+    .then(function(r){ return r.json(); })
+    .then(function(list){
+      PKG = list.filter(function(p){ return p.id === pkgId; })[0];
+      if(!PKG){ location.href = './'; return; }
+      renderSummary();
+    })
+    .catch(function(){ location.href = './'; });
+
+  function setErr(id,msg){ document.getElementById('err-'+id).textContent = msg||''; }
+  function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function phoneOk(v){ return v.replace(/[^0-9]/g,'').length >= 9; }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    note.textContent = '';
+    if(!PKG){ return; }
+    var name = form.name.value.trim(), email = form.email.value.trim(),
+        phone = form.phone.value.trim(), plate = form.plate.value.trim();
+    var ok = true;
+    setErr('name', name ? '' : (ok=false,'נא להזין שם'));
+    setErr('email', emailOk(email) ? '' : (ok=false,'נא להזין אימייל תקין'));
+    setErr('phone', phoneOk(phone) ? '' : (ok=false,'נא להזין טלפון תקין'));
+    if(!ok) return;
+
+    btn.disabled = true; btn.textContent = 'מעבירים לתשלום…';
+    fetch(API + '/energy/order', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({pkg:PKG.id, name:name, email:email, phone:phone, plate:plate})
+    }).then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
+    .then(function(res){
+      if(res.ok && res.j.redirect){ window.location.href = res.j.redirect; return; }
+      note.textContent = res.j.message || 'אירעה שגיאה. נסו שוב בעוד רגע.';
+      btn.disabled = false; btn.textContent = 'המשך לתשלום מאובטח ←';
+    }).catch(function(){
+      note.textContent = 'אירעה שגיאת רשת. נסו שוב.';
+      btn.disabled = false; btn.textContent = 'המשך לתשלום מאובטח ←';
+    });
+  });
+})();
+</script>
+</body>
+</html>
