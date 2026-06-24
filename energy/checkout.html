@@ -42,14 +42,14 @@
   button.pay:disabled{opacity:.6;cursor:default}
   .summary{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;
     box-shadow:0 6px 24px rgba(15,23,42,.06);position:sticky;top:16px}
-  .summary .kwh{font-size:2rem;font-weight:800;color:var(--green-dark);line-height:1}
-  .summary .kwh small{font-size:.95rem;color:var(--muted);font-weight:700;margin-inline-start:4px}
+  .summary .bonus{display:inline-block;font-size:.95rem;font-weight:800;color:var(--green-dark);
+    background:rgba(159,225,203,.5);padding:4px 12px;border-radius:999px;margin-bottom:12px}
+  .summary .credit{font-size:2rem;font-weight:800;color:var(--green-dark);line-height:1}
+  .summary .credit .cur{font-size:1rem;color:var(--muted);font-weight:700;margin-inline-start:2px}
+  .summary .creditlbl{color:var(--muted);font-size:.88rem;margin-top:4px}
   .summary .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;
     padding-top:14px;border-top:1px dashed var(--line)}
   .summary .row.total{font-size:1.3rem;font-weight:800}
-  .summary .save{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:700;color:var(--green-dark);
-    background:rgba(159,225,203,.45);padding:3px 10px;border-radius:999px}
-  .summary .perkwh{color:var(--muted);font-size:.86rem;margin-top:6px}
   .secure{margin-top:16px;color:var(--muted);font-size:.82rem;text-align:center}
   .formnote{margin-top:14px;color:#c0392b;font-size:.9rem;text-align:center;min-height:1em}
 </style>
@@ -63,7 +63,7 @@
     <a class="back" href="./">→ חזרה לחבילות</a>
     <div class="panel">
       <h1>השלמת רכישה</h1>
-      <p class="sub">נשלח את קוד ההטענה לאימייל מיד לאחר התשלום.</p>
+      <p class="sub">קוד הקרדיט יישלח לאימייל מיד לאחר התשלום.</p>
       <form id="form" novalidate>
         <label for="name">שם מלא <span class="req">*</span></label>
         <input id="name" name="name" autocomplete="name" required>
@@ -95,6 +95,7 @@
   "use strict";
   var API = "https://voltai-30142674525.me-west1.run.app";
   var fmt = function(n){ return Number(n).toLocaleString('he-IL'); };
+  var pct = function(n){ return (Number(n) % 1 === 0) ? n : Number(n).toFixed(1); };
   var params = new URLSearchParams(location.search);
   var pkgId = params.get('pkg') || '';
   var PKG = null;
@@ -105,12 +106,11 @@
 
   function renderSummary(){
     document.getElementById('summary').innerHTML =
-      '<div class="kwh">'+fmt(PKG.kwh)+'<small>קוט"ש</small></div>' +
-      (PKG.save_pct ? '<span class="save">חיסכון '+PKG.save_pct+'%</span>' : '') +
-      '<div class="perkwh">₪'+PKG.per_kwh+' לקוט"ש</div>' +
-      (PKG.compare_ils ? '<div class="row"><span>מחיר רגיל</span><span style="text-decoration:line-through;color:var(--muted)">₪'+fmt(PKG.compare_ils)+'</span></div>' : '') +
-      '<div class="row total"><span>לתשלום</span><span>₪'+fmt(PKG.price_ils)+'</span></div>' +
-      '<div class="secure">🔒 תשלום מאובטח באמצעות Grow</div>';
+      '<span class="bonus">+'+pct(PKG.bonus_pct)+'% בונוס</span>' +
+      '<div class="credit">₪'+fmt(PKG.credit_ils)+'<span class="cur">קרדיט</span></div>' +
+      '<div class="creditlbl">כולל ₪'+fmt(PKG.bonus_ils)+' בונוס מתנה</div>' +
+      '<div class="row total"><span>לתשלום</span><span>₪'+fmt(PKG.pay_ils)+'</span></div>' +
+      '<div class="secure">🔒 תשלום מאובטח באמצעות Grow · כולל מע״מ</div>';
   }
 
   fetch(API + '/energy/packages.json', {cache:'no-cache'})

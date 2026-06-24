@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>חבילות אנרגיה — Greems</title>
-<meta name="description" content="חבילות טעינה חכמות לרכב החשמלי. קונים קילוואט־שעה מראש במחיר משתלם וטוענים באפליקציית Greems.">
-<meta property="og:title" content="חבילות אנרגיה — Greems">
-<meta property="og:description" content="קונים קילוואט־שעה מראש במחיר משתלם וטוענים באפליקציית Greems.">
+<title>קרדיט טעינה + בונוס — Greems</title>
+<meta name="description" content="טוענים את ארנק הטעינה מראש ומקבלים בונוס קרדיט מתנה. לשימוש בכל עמדות הטעינה של Greems.">
+<meta property="og:title" content="קרדיט טעינה + בונוס — Greems">
+<meta property="og:description" content="טוענים מראש, מקבלים בונוס קרדיט. לשימוש בכל עמדות Greems.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lp.greems.io/energy/">
 <link rel="icon" type="image/svg+xml" href="../icon.svg">
@@ -51,28 +51,29 @@
   main{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:18px}
   .card{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;
-    padding:26px 22px 22px;box-shadow:0 6px 24px rgba(15,23,42,.06);display:flex;flex-direction:column;
+    padding:28px 22px 22px;box-shadow:0 6px 24px rgba(15,23,42,.06);display:flex;flex-direction:column;
     transition:transform .14s,border-color .14s,box-shadow .14s}
   .card:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 12px 30px rgba(15,23,42,.10)}
   .card.popular{border-color:var(--green);box-shadow:0 12px 34px rgba(29,158,117,.18)}
   .card .tag{position:absolute;top:-12px;inset-inline-start:22px;background:var(--green);color:#fff;
     font-size:.74rem;font-weight:700;padding:4px 12px;border-radius:999px;letter-spacing:.5px}
-  .card .kwh{font-size:2.4rem;font-weight:800;color:var(--green-dark);line-height:1}
-  .card .kwh small{font-size:1rem;font-weight:700;color:var(--muted);margin-inline-start:4px}
-  .card .save{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:700;color:var(--green-dark);
-    background:rgba(159,225,203,.45);padding:3px 10px;border-radius:999px}
-  .card .price{margin:16px 0 2px;font-size:1.9rem;font-weight:800;color:var(--ink)}
-  .card .price .cur{font-size:1.1rem;font-weight:700;color:var(--muted)}
-  .card .compare{color:var(--muted);font-size:.95rem}
-  .card .compare s{opacity:.75}
-  .card .perkwh{color:var(--muted);font-size:.86rem;margin-top:4px}
-  .card .cta{margin-top:18px;display:block;text-align:center;text-decoration:none;font-weight:700;
+  .card .bonus{display:inline-block;font-size:1.05rem;font-weight:800;color:var(--green-dark);
+    background:rgba(159,225,203,.5);padding:5px 14px;border-radius:999px;align-self:flex-start}
+  .card .credit{margin:16px 0 0;font-size:2.4rem;font-weight:800;color:var(--green-dark);line-height:1}
+  .card .credit .cur{font-size:1.2rem;font-weight:700;color:var(--muted)}
+  .card .creditlbl{color:var(--muted);font-size:.9rem;margin-top:4px}
+  .card .pay{margin-top:14px;font-size:1.05rem;color:var(--ink)}
+  .card .pay b{font-weight:800}
+  .card .extra{color:var(--green-dark);font-size:.9rem;font-weight:700;margin-top:4px}
+  .card .cta{margin-top:auto;padding-top:18px}
+  .card .cta a{display:block;text-align:center;text-decoration:none;font-weight:700;
     color:#fff;background:var(--green-dark);padding:13px 16px;border-radius:12px;min-height:48px}
-  .card .cta:hover{background:#0a4734}
-  .card.popular .cta{background:var(--green)}
-  .card.popular .cta:hover{background:var(--green-dark)}
+  .card .cta a:hover{background:#0a4734}
+  .card.popular .cta a{background:var(--green)}
+  .card.popular .cta a:hover{background:var(--green-dark)}
   .loading,.error{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px;
     border:1px dashed var(--line);border-radius:14px;background:rgba(255,255,255,.5)}
+  .note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:16px}
 
   .how{margin-top:48px;text-align:center}
   .how h2{font-size:1.4rem;color:var(--ink);margin:0 0 22px}
@@ -101,23 +102,24 @@
 </header>
 
 <section class="hero">
-  <span class="eyebrow">⚡ חבילות אנרגיה</span>
-  <h1>טוענים יותר, <span class="hl">משלמים פחות</span></h1>
-  <p>קונים קילוואט־שעה מראש במחיר משתלם, מקבלים קוד הטענה לאפליקציית Greems — וטוענים מתי שנוח לכם.</p>
+  <span class="eyebrow">⚡ קרדיט טעינה + בונוס</span>
+  <h1>טוענים מראש, <span class="hl">מקבלים בונוס</span></h1>
+  <p>טוענים את ארנק הטעינה מראש ומקבלים בונוס קרדיט מתנה — לשימוש בכל עמדות הטעינה של Greems. ככל שטוענים יותר, הבונוס גדל.</p>
 </section>
 
 <main>
-  <section id="packages" aria-label="חבילות אנרגיה">
+  <section id="packages" aria-label="חבילות קרדיט">
     <div class="cards" id="cards"><div class="loading">טוען חבילות…</div></div>
+    <p class="note">המחירים כוללים מע״מ. הקרדיט אינו פג תוקף וניתן לשימוש בכל עמדות Greems.</p>
   </section>
 
   <section id="how" class="how">
     <h2>איך זה עובד?</h2>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>בוחרים חבילה</h3><p>4 גדלים — מ־100 ועד 1,000 קוט"ש.</p></div>
+      <div class="step"><div class="n">1</div><h3>בוחרים סכום</h3><p>ככל שטוענים יותר — הבונוס גדל.</p></div>
       <div class="step"><div class="n">2</div><h3>ממלאים פרטים</h3><p>שם, אימייל, טלפון ומספר רכב.</p></div>
       <div class="step"><div class="n">3</div><h3>משלמים בבטחה</h3><p>תשלום מאובטח באמצעות Grow.</p></div>
-      <div class="step"><div class="n">4</div><h3>מקבלים קוד</h3><p>קוד ההטענה נשלח למייל — מזינים באפליקציה וטוענים.</p></div>
+      <div class="step"><div class="n">4</div><h3>מקבלים קוד</h3><p>קוד הקרדיט נשלח למייל — מזינים באפליקציה וטוענים.</p></div>
     </div>
   </section>
 </main>
@@ -133,6 +135,7 @@
   // voltai backend (payment / coupon / email). Swap to charge.greems.io if mapped.
   var API = "https://voltai-30142674525.me-west1.run.app";
   var fmt = function(n){ return Number(n).toLocaleString('he-IL'); };
+  var pct = function(n){ return (Number(n) % 1 === 0) ? n : Number(n).toFixed(1); };
   var wrap = document.getElementById('cards');
 
   function render(PACKAGES){
@@ -140,16 +143,14 @@
     PACKAGES.forEach(function(p){
       var el = document.createElement('div');
       el.className = 'card' + (p.popular ? ' popular' : '');
-      var save = p.save_pct ? '<span class="save">חיסכון '+p.save_pct+'%</span>' : '';
-      var compare = p.compare_ils ? '<div class="compare">במקום <s>₪'+fmt(p.compare_ils)+'</s></div>' : '';
       el.innerHTML =
         (p.popular ? '<span class="tag">הכי משתלם</span>' : '') +
-        '<div class="kwh">'+fmt(p.kwh)+'<small>קוט"ש</small></div>' +
-        save +
-        '<div class="price"><span class="cur">₪</span>'+fmt(p.price_ils)+'</div>' +
-        compare +
-        '<div class="perkwh">₪'+p.per_kwh+' לקוט"ש</div>' +
-        '<a class="cta" href="checkout.html?pkg='+encodeURIComponent(p.id)+'">בחירת חבילה</a>';
+        '<span class="bonus">+'+pct(p.bonus_pct)+'% בונוס</span>' +
+        '<div class="credit"><span class="cur">₪</span>'+fmt(p.credit_ils)+'</div>' +
+        '<div class="creditlbl">קרדיט לטעינה</div>' +
+        '<div class="pay">בתשלום <b>₪'+fmt(p.pay_ils)+'</b></div>' +
+        '<div class="extra">כולל ₪'+fmt(p.bonus_ils)+' בונוס מתנה</div>' +
+        '<div class="cta"><a href="checkout.html?pkg='+encodeURIComponent(p.id)+'">רכישה</a></div>';
       wrap.appendChild(el);
     });
   }
