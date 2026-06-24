@@ -14,20 +14,23 @@
   :root{
     --green:#1D9E75; --green-dark:#0d5c43; --teal:#9FE1CB;
     --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --bg:#f8fafc;
+    --sun:#FFC83D; --sun-deep:#FF9E2C; --coral:#FF7E5F; --sun-ink:#8a4a00;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     color:var(--ink); background:#eef9f3; line-height:1.55;}
+  /* Summer-sale wash: golden sun glow up top fading into the mint brand bg */
   body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
     background:
-      radial-gradient(55% 45% at 50% 0%, #d8f4e8 0%, rgba(216,244,232,0) 60%),
-      radial-gradient(46% 34% at 16% 6%, #c2ead7 0%, rgba(194,234,215,0) 52%),
-      radial-gradient(42% 34% at 90% 14%, #d2f0e3 0%, rgba(210,240,227,0) 52%),
+      radial-gradient(62% 52% at 50% -6%, #FFE6A6 0%, rgba(255,230,166,0) 56%),
+      radial-gradient(40% 32% at 86% 2%, #FFD3A1 0%, rgba(255,211,161,0) 52%),
+      radial-gradient(38% 30% at 10% 8%, #FFE0B0 0%, rgba(255,224,176,0) 50%),
+      radial-gradient(48% 40% at 14% 30%, #d2f0e3 0%, rgba(210,240,227,0) 54%),
       #eef9f3;}
   body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background-image:radial-gradient(rgba(29,158,117,.13) 1.2px,transparent 1.2px);
-    background-size:24px 24px;opacity:.55}
+    background-image:radial-gradient(rgba(255,158,44,.14) 1.2px,transparent 1.2px);
+    background-size:24px 24px;opacity:.5}
   a{color:var(--green-dark)}
   :focus-visible{outline:3px solid var(--green-dark);outline-offset:2px;border-radius:6px}
 
@@ -42,8 +45,9 @@
   .nav a:hover{color:var(--ink)}
 
   .hero{position:relative;text-align:center;padding:14px 20px 8px;max-width:760px;margin:0 auto}
-  .hero .eyebrow{display:inline-block;font-weight:700;letter-spacing:1px;font-size:.8rem;
-    color:var(--green-dark);background:rgba(159,225,203,.4);padding:5px 14px;border-radius:999px;margin-bottom:14px}
+  .hero .eyebrow{display:inline-block;font-weight:800;letter-spacing:.5px;font-size:.82rem;
+    color:var(--sun-ink);background:linear-gradient(90deg,var(--sun),var(--sun-deep));
+    padding:6px 16px;border-radius:999px;margin-bottom:14px;box-shadow:0 4px 14px rgba(255,158,44,.35)}
   .hero h1{font-size:2.1rem;line-height:1.15;margin:0 auto .5rem;color:var(--ink);max-width:16ch}
   .hero h1 .hl{color:var(--green-dark)}
   .hero p{font-size:1.12rem;color:var(--muted);max-width:540px;margin:.4rem auto 0}
@@ -54,11 +58,14 @@
     padding:28px 22px 22px;box-shadow:0 6px 24px rgba(15,23,42,.06);display:flex;flex-direction:column;
     transition:transform .14s,border-color .14s,box-shadow .14s}
   .card:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 12px 30px rgba(15,23,42,.10)}
-  .card.popular{border-color:var(--green);box-shadow:0 12px 34px rgba(29,158,117,.18)}
-  .card .tag{position:absolute;top:-12px;inset-inline-start:22px;background:var(--green);color:#fff;
-    font-size:.74rem;font-weight:700;padding:4px 12px;border-radius:999px;letter-spacing:.5px}
-  .card .bonus{display:inline-block;font-size:1.05rem;font-weight:800;color:var(--green-dark);
-    background:rgba(159,225,203,.5);padding:5px 14px;border-radius:999px;align-self:flex-start}
+  .card.popular{border-color:var(--sun-deep);box-shadow:0 12px 34px rgba(255,158,44,.28)}
+  .card .tag{position:absolute;top:-12px;inset-inline-start:22px;
+    background:linear-gradient(90deg,var(--coral),var(--sun-deep));color:#fff;
+    font-size:.74rem;font-weight:800;padding:4px 13px;border-radius:999px;letter-spacing:.3px;
+    box-shadow:0 4px 12px rgba(255,126,95,.4)}
+  .card .bonus{display:inline-block;font-size:1.05rem;font-weight:800;color:var(--sun-ink);
+    background:linear-gradient(90deg,var(--sun),var(--sun-deep));padding:5px 14px;border-radius:999px;
+    align-self:flex-start;box-shadow:0 3px 10px rgba(255,158,44,.3)}
   .card .credit{margin:16px 0 0;font-size:2.4rem;font-weight:800;color:var(--green-dark);line-height:1}
   .card .credit .cur{font-size:1.2rem;font-weight:700;color:var(--muted)}
   .card .creditlbl{color:var(--muted);font-size:.9rem;margin-top:4px}
@@ -102,7 +109,7 @@
 </header>
 
 <section class="hero">
-  <span class="eyebrow">⚡ קרדיט טעינה + בונוס</span>
+  <span class="eyebrow">☀️ מבצע קיץ · בונוס טעינה</span>
   <h1>טוענים מראש, <span class="hl">מקבלים בונוס</span></h1>
   <p>טוענים את ארנק הטעינה מראש ומקבלים בונוס טעינה.<br>ככל שטוענים יותר - הבונוס גדל</p>
 </section>
@@ -144,7 +151,7 @@
       var el = document.createElement('div');
       el.className = 'card' + (p.popular ? ' popular' : '');
       el.innerHTML =
-        (p.popular ? '<span class="tag">הכי משתלם</span>' : '') +
+        (p.popular ? '<span class="tag">☀️ הכי משתלם</span>' : '') +
         '<span class="bonus">+'+pct(p.bonus_pct)+'% בונוס</span>' +
         '<div class="credit"><span class="cur">₪</span>'+fmt(p.credit_ils)+'</div>' +
         '<div class="creditlbl">קרדיט לטעינה</div>' +
