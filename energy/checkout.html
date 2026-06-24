@@ -7,24 +7,29 @@
 <link rel="icon" type="image/svg+xml" href="../icon.svg">
 <style>
   :root{--green:#1D9E75;--green-dark:#0d5c43;--teal:#9FE1CB;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--bg:#f8fafc;
-    --sun:#FFC83D;--sun-deep:#FF9E2C;--coral:#FF7E5F;--sun-ink:#8a4a00}
+    --sun:#FFE08A;--sun-deep:#F2B33C;--sun-ink:#6f5012}
   *{box-sizing:border-box}
   html,body{margin:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);
-    background:#eef9f3;line-height:1.55}
-  body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
-    background:radial-gradient(60% 48% at 50% -6%, #FFE6A6 0%, rgba(255,230,166,0) 56%),
-      radial-gradient(40% 32% at 86% 2%, #FFD3A1 0%, rgba(255,211,161,0) 50%),
-      radial-gradient(46% 38% at 12% 28%, #d2f0e3 0%, rgba(210,240,227,0) 54%),#eef9f3}
-  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background-image:radial-gradient(rgba(255,158,44,.13) 1.2px,transparent 1.2px);background-size:24px 24px;opacity:.5}
+    background:#e6f6ec;line-height:1.55}
+  body::before{content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+    background:radial-gradient(32% 24% at 26% -4%, rgba(255,250,214,.95) 0%, rgba(255,250,214,0) 62%),
+      radial-gradient(58% 55% at 88% 14%, #bfe9d2 0%, rgba(191,233,210,0) 56%),
+      radial-gradient(58% 62% at 6% 70%, #a7ddc2 0%, rgba(167,221,194,0) 58%),
+      linear-gradient(180deg, #ecf8f0 0%, #def2e7 100%)}
+  body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.8;
+    background:linear-gradient(118deg, rgba(255,250,220,0) 32%, rgba(255,249,214,.24) 41%, rgba(255,250,220,0) 50%),
+      radial-gradient(circle 90px at 82% 20%, rgba(255,249,210,.4), rgba(255,249,210,0) 72%),
+      radial-gradient(circle 70px at 18% 60%, rgba(210,245,222,.45), rgba(210,245,222,0) 72%)}
   a{color:var(--green-dark)}
   :focus-visible{outline:3px solid var(--green-dark);outline-offset:2px;border-radius:6px}
-  header.site{display:flex;align-items:center;gap:9px;max-width:760px;margin:0 auto;padding:16px 24px}
-  header.site .mark{width:30px;height:30px;border-radius:50%;background:var(--teal);display:grid;place-items:center;
-    box-shadow:0 0 0 4px rgba(159,225,203,.35)}
-  header.site .mark::before{content:"";width:13px;height:13px;border-radius:50%;background:var(--green)}
-  header.site b{font-weight:800;letter-spacing:1.5px;color:var(--green-dark);font-size:1.05rem}
+  header.site{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    max-width:760px;margin:0 auto;padding:16px 24px}
+  header.site .brand img{height:38px;width:auto;display:block}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+  .lang button{border:0;background:transparent;padding:6px 12px;font-weight:700;font-size:.85rem;cursor:pointer;
+    color:var(--muted);min-height:34px}
+  .lang button.on{background:var(--green-dark);color:#fff}
   main{max-width:760px;margin:0 auto;padding:8px 20px 60px;display:grid;grid-template-columns:1fr;gap:20px}
   @media(min-width:760px){main{grid-template-columns:1.3fr .9fr;align-items:start}}
   .back{display:inline-block;margin:0 4px 8px;font-weight:600;text-decoration:none}
@@ -47,7 +52,7 @@
     box-shadow:0 6px 24px rgba(15,23,42,.06);position:sticky;top:16px}
   .summary .bonus{display:inline-block;font-size:.95rem;font-weight:800;color:var(--sun-ink);
     background:linear-gradient(90deg,var(--sun),var(--sun-deep));padding:4px 13px;border-radius:999px;
-    margin-bottom:12px;box-shadow:0 3px 10px rgba(255,158,44,.3)}
+    margin-bottom:12px;box-shadow:0 3px 10px rgba(242,179,60,.3)}
   .summary .credit{font-size:2rem;font-weight:800;color:var(--green-dark);line-height:1}
   .summary .credit .cur{font-size:1rem;color:var(--muted);font-weight:700;margin-inline-start:2px}
   .summary .creditlbl{color:var(--muted);font-size:.88rem;margin-top:4px}
@@ -56,104 +61,165 @@
   .summary .row.total{font-size:1.3rem;font-weight:800}
   .secure{margin-top:16px;color:var(--muted);font-size:.82rem;text-align:center}
   .formnote{margin-top:14px;color:#c0392b;font-size:.9rem;text-align:center;min-height:1em}
+  .wa-fab{position:fixed;inset-block-end:18px;inset-inline-end:18px;z-index:50;width:56px;height:56px;
+    border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.22)}
+  .wa-fab:hover{background:#1da851}
+  .wa-fab svg{width:30px;height:30px;fill:#fff}
 </style>
 </head>
 <body>
 <header class="site">
-  <span class="mark" aria-hidden="true"></span><b>GREEMS</b>
+  <a class="brand" href="./" aria-label="Greems">
+    <img alt="Greems" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAk1BMVEX///8qW4Wtu8nq7fFTdZcgVoGTp7r6+/wAS3oKTnzY3uWPorZJbpHT2+IYUn/f5Opkgp8APHIANm+drr/0+fIASHlDaI0AQ3bw8/XCzNeo1p26xtJ/lq6u2aNsh6PL09zH5MC+4LXh8N3q9eeZ0Iuh05PS6c1svlJ2j6m23KyQzH9be5oAKWk2YooAHmOEx3FRtSzqXj90AAAGrklEQVR4nO2ZC5OjqBaAeQSJL9AmKrZGk3TSk6yT7f3/v24PqHlMzezeW9epmdt1vupKBxTkUziAIQRBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEOS3xvS/ugULkrBf3YIFWaHMb8rnlZGOW+IfSsnvn/Cc81DVY71LsnnbPCbvMlabLkmGtuY+WceBxzTa+gxughtxCi1s7+mgJkSboLUPKk0c996AN+0qWXUmtYsLHV7fviujs7wIlVJhfq1dm+J8PVJVmQ/f6bVaz7xAKfnnLbkuYkL6a5Fn94qjongxrvUNzUMVhmHxsooW9Ng4jbe9/5wfzyxTqzUVayXCkIoqdjIhpaFrqKJh0bjWJYLCYY+XeaFzer0OQBaOF/XtYl1I106myYVQ17IUoaJ6QZm3I3hsDvDtcJwfzyRTU0FVEhtmWqHCQHqZMDbGBBk4VNzLiCEwniDyMmIwE/0oI5K5o9U5pQXIyFCIa9zUNYvLbkEXQvY7sttutzuy389ZowwfFFXn1PUKW5c+C2Ryfyf1Ge544GXC9qHXg0wYP1TuZKgIpoNwc7xMWlExlpL9kr0MeNu+vh/eT9t7DBhlGBX3m5qSWWa8el3Cwe/LPKZHmXIqXdFRpi6oeFRekN3JaWz+eH+WkeeQVt8s0u4yeiUEnWQeTvAyD2nfzajyfho6l/BjRucUuln6E1zk8eD/Hz6eZXimaP7NuXeZ/vZkKC09tBll5nRpRhnVrYU/lkGJQfgAUEJEEdeyY3xJk8vHkXyZvv9FTh/7u4welFDzeQ0zbJLx17edmscMdCNPzmaZMS0mmYJ1YZhxiMZCpJMMobmCpFLrYUEdN1vOY2VD3g6bJxlazecNVVWOMqqN43YoXLAmU2hWnpvMmA7VTUauKXwkKoxtokYZUg8wf0GvC4tFtxub1+2r/9vesryMhTHzMo9/6CIrcp9nlLv9/Sijzpo7/JoAZOY0t7MMMYVaZVcREr6aZeDUOl658bRaUua03R0v75fj+/b1SYbEiq7nmPMg43Bt8CH6u9HsofJRBhwEPObmScZRu4C5YHDefXnfnfZO5v3LHM9GGRjjNKzHS3c3mTVMmkGiVGf/cxlYSkBVA7nJRPO0D+OyXC6qHT72l+Mfl+3l43S5zEuAaQUAj0ZQ02uu6+Qm4ydNJqhf3ozdLNIjXE7dbE7fZGwLYTm6y0AcS7mUNr1CvYuFAD+77FwMu+wIeT89BAC4dAeTW5h03eD61RQAfGiGxtF5bSbKbGQIrF/O3NNyliFp+dVJOBmXW6lwdW7j1j37YCkX8no8wOS/PxwOe/fteNk8yBAe56ELoNDjK+pD83qaZyIYBcI+RTNVdPYhmrm0l6l8lIsa1y15IpxMXRUu3oWhUPnjDuF/Y3M6vb6+jh9H97F9kiG2P6u8qvJiZbQbGSD3dRyvTKzzwW0BinCmcjJfw3s6k+74i7lfj5dFHsNZkUkqV2+1qhdzAZtvIU8yoMOjvk75tIWyEHHHb9IF3+nfjL/3z2k5Zd9spqSEemtX73IqP+LzvgP4fwdlfle65le3YEHSRbcZCPKJsP0PpmCdRj+enKUbUv/9a9XoZ7zBuMOGgLo2yfHt9r35tjRGTxlyOj4edSdGsGpnsEC0csog94AxfbuXhG/a73DaIG7GXMhi9VjSJZZ52axjtzeRf7Y2yDpur+2ZGEr9Un2AhVd/zXJisyGWRjAZdqV7qeFepOnC2O4sWZekPEtgnzKcE9KvhkpLVwcTZelLZrEMrquBxP7ljJu80kyavu1iQjNdZ0lN6KpcJYssnHWgScfllfQdG6KgZR1njY25ezIBs70hbaSvrE1NT5ghDeMmbqR7nd5kxljO2oAbKCJrNnA4odOsY/DBtCsZQck+6EkO+yJ3NcmugTVwP2LIZD0xrWmlILqTbJH+B31p4HJFtKlT2bc6JazRsMUidtAaZGSr7TnVBK7Os/7MCLu6bhSBXmpk1jPjZeyVdzyNm0RHZ6ijARkoybuxpAJ5d+trHXWwFa9hPAq4N7YxPScUKrNskbcAsoFuLJl7RsySJu5hc27d7yeSBUHEUwK7jQhye+iOLI57G7DxzbMLHZIbltrUwn6+MY21LOg0qeFsHdlU1pykce2mXwa1uW7Wx7G0MNTgoimxJpINdAxGeC3/Idb8JALGZBT8+PcHbUz9r0NZf6of5REEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAE+XT8DZOpeIfIWkvWAAAAAElFTkSuQmCC">
+  </a>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="he">ע</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
 </header>
 <main>
   <div>
-    <a class="back" href="./">→ חזרה לחבילות</a>
+    <a class="back" id="back" href="./">→ חזרה לחבילות</a>
     <div class="panel">
-      <h1>השלמת רכישה</h1>
-      <p class="sub">קוד הקרדיט יישלח לאימייל מיד לאחר התשלום.</p>
+      <h1 data-i18n="title">השלמת רכישה</h1>
+      <p class="sub" data-i18n="sub">קוד הקרדיט יישלח לאימייל מיד לאחר התשלום.</p>
       <form id="form" novalidate>
-        <label for="name">שם מלא <span class="req">*</span></label>
+        <label for="name"><span data-i18n="l_name">שם מלא</span> <span class="req">*</span></label>
         <input id="name" name="name" autocomplete="name" required>
         <div class="err" id="err-name"></div>
 
-        <label for="email">אימייל <span class="req">*</span></label>
+        <label for="email"><span data-i18n="l_email">אימייל</span> <span class="req">*</span></label>
         <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
         <div class="err" id="err-email"></div>
 
-        <label for="phone">טלפון <span class="req">*</span></label>
+        <label for="phone"><span data-i18n="l_phone">טלפון</span> <span class="req">*</span></label>
         <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-0000000" required>
         <div class="err" id="err-phone"></div>
 
-        <label for="plate">מספר רכב</label>
+        <label for="plate" data-i18n="l_plate">מספר רכב</label>
         <input id="plate" name="plate" inputmode="numeric" placeholder="12-345-67">
-        <div class="hint">לא חובה — עוזר לנו לשייך את ההטענות לרכב שלך.</div>
+        <div class="hint" data-i18n="plate_hint">לא חובה — עוזר לנו לשייך את ההטענות לרכב שלך.</div>
 
-        <button class="pay" id="pay" type="submit">המשך לתשלום מאובטח ←</button>
+        <button class="pay" id="pay" type="submit" data-i18n="pay_btn">המשך לתשלום מאובטח ←</button>
         <div class="formnote" id="formnote"></div>
       </form>
     </div>
   </div>
 
-  <aside class="summary" id="summary"><div style="color:var(--muted)">טוען…</div></aside>
+  <aside class="summary" id="summary"><div style="color:var(--muted)">…</div></aside>
 </main>
+
+<a class="wa-fab" href="https://wa.me/972779897660" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.9a8 8 0 0 1-11.9 7L4 20l1.2-4A8 8 0 1 1 20 11.9zM12 5.6A6.3 6.3 0 0 0 6.6 15l-.4 1.4 1.5-.4A6.3 6.3 0 1 0 12 5.6zm3.6 7.9c-.2-.1-1.2-.6-1.3-.6-.2-.1-.3-.1-.4.1l-.6.7c-.1.1-.2.1-.4 0a5.2 5.2 0 0 1-2.5-2.2c-.2-.3.2-.3.5-.9.1-.1 0-.2 0-.3l-.6-1.4c-.1-.4-.3-.3-.4-.3h-.4a.7.7 0 0 0-.5.3c-.2.2-.7.7-.7 1.6s.7 1.9.8 2c.1.1 1.4 2.2 3.4 3 .5.2.9.4 1.2.5.5.1 1 .1 1.3.1.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1z"/></svg>
+</a>
 
 <script>
 (function(){
   "use strict";
   var API = "https://voltai-30142674525.me-west1.run.app";
-  var fmt = function(n){ return Number(n).toLocaleString('he-IL'); };
-  var pct = function(n){ return (Number(n) % 1 === 0) ? n : Number(n).toFixed(1); };
-  var params = new URLSearchParams(location.search);
-  var pkgId = params.get('pkg') || '';
-  var PKG = null;
+  var I18N = {
+    he:{ dir:"rtl", locale:"he-IL", back:"→ חזרה לחבילות", title:"השלמת רכישה",
+      sub:"קוד הקרדיט יישלח לאימייל מיד לאחר התשלום.",
+      l_name:"שם מלא", l_email:"אימייל", l_phone:"טלפון", l_plate:"מספר רכב",
+      plate_hint:"לא חובה — עוזר לנו לשייך את ההטענות לרכב שלך.",
+      pay_btn:"המשך לתשלום מאובטח ←", pay_loading:"מעבירים לתשלום…",
+      e_name:"נא להזין שם", e_email:"נא להזין אימייל תקין", e_phone:"נא להזין טלפון תקין",
+      e_generic:"אירעה שגיאה. נסו שוב בעוד רגע.", e_net:"אירעה שגיאת רשת. נסו שוב.",
+      s_bonus:"בונוס", s_credit:"קרדיט", s_extra_a:"כולל ", s_extra_b:" בונוס מתנה",
+      s_total:"לתשלום", secure:"🔒 תשלום מאובטח באמצעות Grow · כולל מע״מ" },
+    en:{ dir:"ltr", locale:"en-US", back:"← Back to packages", title:"Checkout",
+      sub:"Your credit code is emailed to you right after payment.",
+      l_name:"Full name", l_email:"Email", l_phone:"Phone", l_plate:"License plate",
+      plate_hint:"Optional — helps us link charges to your car.",
+      pay_btn:"Continue to secure payment →", pay_loading:"Redirecting to payment…",
+      e_name:"Please enter your name", e_email:"Please enter a valid email", e_phone:"Please enter a valid phone",
+      e_generic:"Something went wrong. Try again in a moment.", e_net:"Network error. Please try again.",
+      s_bonus:"bonus", s_credit:"credit", s_extra_a:"Includes ", s_extra_b:" bonus",
+      s_total:"Total", secure:"🔒 Secure payment via Grow · incl VAT" }
+  };
 
-  var form = document.getElementById('form');
-  var btn = document.getElementById('pay');
-  var note = document.getElementById('formnote');
+  var params = new URLSearchParams(location.search);
+  var LANG = "he";
+  try { var st = localStorage.getItem("greems_lang"); if (st && I18N[st]) LANG = st; } catch(e){}
+  var qp = params.get("lang"); if (qp && I18N[qp]) LANG = qp;
+
+  var pkgId = params.get("pkg") || "";
+  var PKG = null;
+  var form = document.getElementById("form");
+  var btn = document.getElementById("pay");
+  var note = document.getElementById("formnote");
+  function dict(){ return I18N[LANG]; }
+  function fmt(n){ return Number(n).toLocaleString(dict().locale); }
+  function pct(n){ return (Number(n) % 1 === 0) ? n : Number(n).toFixed(1); }
 
   function renderSummary(){
-    document.getElementById('summary').innerHTML =
-      '<span class="bonus">+'+pct(PKG.bonus_pct)+'% בונוס</span>' +
-      '<div class="credit">₪'+fmt(PKG.credit_ils)+'<span class="cur">קרדיט</span></div>' +
-      '<div class="creditlbl">כולל ₪'+fmt(PKG.bonus_ils)+' בונוס מתנה</div>' +
-      '<div class="row total"><span>לתשלום</span><span>₪'+fmt(PKG.pay_ils)+'</span></div>' +
-      '<div class="secure">🔒 תשלום מאובטח באמצעות Grow · כולל מע״מ</div>';
+    if (!PKG) return;
+    var d = dict();
+    document.getElementById("summary").innerHTML =
+      '<span class="bonus">+'+pct(PKG.bonus_pct)+'% '+d.s_bonus+'</span>' +
+      '<div class="credit">₪'+fmt(PKG.credit_ils)+'<span class="cur">'+d.s_credit+'</span></div>' +
+      '<div class="creditlbl">'+d.s_extra_a+'₪'+fmt(PKG.bonus_ils)+d.s_extra_b+'</div>' +
+      '<div class="row total"><span>'+d.s_total+'</span><span>₪'+fmt(PKG.pay_ils)+'</span></div>' +
+      '<div class="secure">'+d.secure+'</div>';
   }
 
-  fetch(API + '/energy/packages.json', {cache:'no-cache'})
+  function applyLang(){
+    var d = dict();
+    document.documentElement.lang = LANG;
+    document.documentElement.dir = d.dir;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var k = el.getAttribute("data-i18n"); if (d[k] != null) el.textContent = d[k];
+    });
+    document.getElementById("back").href = "./?lang=" + LANG;
+    document.querySelectorAll(".lang button").forEach(function(b){
+      b.classList.toggle("on", b.getAttribute("data-lang") === LANG);
+    });
+    renderSummary();
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){
+    b.addEventListener("click", function(){
+      LANG = b.getAttribute("data-lang");
+      try { localStorage.setItem("greems_lang", LANG); } catch(e){}
+      applyLang();
+    });
+  });
+  applyLang();
+
+  fetch(API + "/energy/packages.json", {cache:"no-cache"})
     .then(function(r){ return r.json(); })
     .then(function(list){
       PKG = list.filter(function(p){ return p.id === pkgId; })[0];
-      if(!PKG){ location.href = './'; return; }
+      if (!PKG){ location.href = "./?lang=" + LANG; return; }
       renderSummary();
     })
-    .catch(function(){ location.href = './'; });
+    .catch(function(){ location.href = "./?lang=" + LANG; });
 
-  function setErr(id,msg){ document.getElementById('err-'+id).textContent = msg||''; }
+  function setErr(id,msg){ document.getElementById("err-"+id).textContent = msg||""; }
   function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function phoneOk(v){ return v.replace(/[^0-9]/g,'').length >= 9; }
+  function phoneOk(v){ return v.replace(/[^0-9]/g,"").length >= 9; }
 
-  form.addEventListener('submit', function(e){
+  form.addEventListener("submit", function(e){
     e.preventDefault();
-    note.textContent = '';
-    if(!PKG){ return; }
-    var name = form.name.value.trim(), email = form.email.value.trim(),
-        phone = form.phone.value.trim(), plate = form.plate.value.trim();
-    var ok = true;
-    setErr('name', name ? '' : (ok=false,'נא להזין שם'));
-    setErr('email', emailOk(email) ? '' : (ok=false,'נא להזין אימייל תקין'));
-    setErr('phone', phoneOk(phone) ? '' : (ok=false,'נא להזין טלפון תקין'));
+    note.textContent = ""; var d = dict();
+    if (!PKG) return;
+    var name=form.name.value.trim(), email=form.email.value.trim(),
+        phone=form.phone.value.trim(), plate=form.plate.value.trim();
+    var ok=true;
+    setErr("name", name ? "" : (ok=false,d.e_name));
+    setErr("email", emailOk(email) ? "" : (ok=false,d.e_email));
+    setErr("phone", phoneOk(phone) ? "" : (ok=false,d.e_phone));
     if(!ok) return;
-
-    btn.disabled = true; btn.textContent = 'מעבירים לתשלום…';
-    fetch(API + '/energy/order', {
-      method:'POST', headers:{'Content-Type':'application/json'},
+    btn.disabled=true; btn.textContent=d.pay_loading;
+    fetch(API + "/energy/order", {
+      method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({pkg:PKG.id, name:name, email:email, phone:phone, plate:plate})
     }).then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
     .then(function(res){
       if(res.ok && res.j.redirect){ window.location.href = res.j.redirect; return; }
-      note.textContent = res.j.message || 'אירעה שגיאה. נסו שוב בעוד רגע.';
-      btn.disabled = false; btn.textContent = 'המשך לתשלום מאובטח ←';
+      note.textContent = res.j.message || d.e_generic;
+      btn.disabled=false; btn.textContent=d.pay_btn;
     }).catch(function(){
-      note.textContent = 'אירעה שגיאת רשת. נסו שוב.';
-      btn.disabled = false; btn.textContent = 'המשך לתשלום מאובטח ←';
+      note.textContent = d.e_net; btn.disabled=false; btn.textContent=d.pay_btn;
     });
   });
 })();

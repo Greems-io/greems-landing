@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>קרדיט טעינה + בונוס — Greems</title>
-<meta name="description" content="טוענים את ארנק הטעינה מראש ומקבלים בונוס קרדיט מתנה. לשימוש בכל עמדות הטעינה של Greems.">
+<meta name="description" content="טוענים את ארנק הטעינה מראש ומקבלים בונוס טעינה. לשימוש בכל עמדות הטעינה של Greems.">
 <meta property="og:title" content="קרדיט טעינה + בונוס — Greems">
-<meta property="og:description" content="טוענים מראש, מקבלים בונוס קרדיט. לשימוש בכל עמדות Greems.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lp.greems.io/energy/">
 <link rel="icon" type="image/svg+xml" href="../icon.svg">
@@ -14,58 +13,62 @@
   :root{
     --green:#1D9E75; --green-dark:#0d5c43; --teal:#9FE1CB;
     --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --bg:#f8fafc;
-    --sun:#FFC83D; --sun-deep:#FF9E2C; --coral:#FF7E5F; --sun-ink:#8a4a00;
+    --sun:#FFE08A; --sun-deep:#F2B33C; --sun-ink:#6f5012;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    color:var(--ink); background:#eef9f3; line-height:1.55;}
-  /* Summer-sale wash: golden sun glow up top fading into the mint brand bg */
-  body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    color:var(--ink); background:#e6f6ec; line-height:1.55;}
+  body::before{content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
     background:
-      radial-gradient(62% 52% at 50% -6%, #FFE6A6 0%, rgba(255,230,166,0) 56%),
-      radial-gradient(40% 32% at 86% 2%, #FFD3A1 0%, rgba(255,211,161,0) 52%),
-      radial-gradient(38% 30% at 10% 8%, #FFE0B0 0%, rgba(255,224,176,0) 50%),
-      radial-gradient(48% 40% at 14% 30%, #d2f0e3 0%, rgba(210,240,227,0) 54%),
-      #eef9f3;}
-  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background-image:radial-gradient(rgba(255,158,44,.14) 1.2px,transparent 1.2px);
-    background-size:24px 24px;opacity:.5}
+      radial-gradient(34% 26% at 26% -4%, rgba(255,250,214,.95) 0%, rgba(255,250,214,0) 62%),
+      radial-gradient(24% 18% at 24% 0%, rgba(255,240,170,.7) 0%, rgba(255,240,170,0) 60%),
+      radial-gradient(60% 55% at 88% 12%, #bfe9d2 0%, rgba(191,233,210,0) 56%),
+      radial-gradient(58% 62% at 6% 64%, #a7ddc2 0%, rgba(167,221,194,0) 58%),
+      radial-gradient(80% 70% at 50% 116%, #7cc6a0 0%, rgba(124,198,160,0) 60%),
+      linear-gradient(180deg, #ecf8f0 0%, #def2e7 100%);}
+  body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.85;
+    background:
+      linear-gradient(118deg, rgba(255,250,220,0) 30%, rgba(255,249,214,.28) 40%, rgba(255,250,220,0) 49%),
+      linear-gradient(124deg, rgba(255,250,220,0) 44%, rgba(255,248,206,.18) 52%, rgba(255,250,220,0) 60%),
+      radial-gradient(circle 70px at 20% 26%, rgba(255,255,255,.5), rgba(255,255,255,0) 70%),
+      radial-gradient(circle 110px at 82% 18%, rgba(255,249,210,.45), rgba(255,249,210,0) 72%),
+      radial-gradient(circle 46px at 58% 56%, rgba(255,255,255,.42), rgba(255,255,255,0) 70%),
+      radial-gradient(circle 80px at 34% 78%, rgba(210,245,222,.5), rgba(210,245,222,0) 72%),
+      radial-gradient(circle 54px at 92% 64%, rgba(255,255,255,.36), rgba(255,255,255,0) 70%);}
   a{color:var(--green-dark)}
   :focus-visible{outline:3px solid var(--green-dark);outline-offset:2px;border-radius:6px}
 
   header.site{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;
     gap:1rem;padding:16px 24px;flex-wrap:wrap;max-width:1100px;margin:0 auto}
-  header.site .brand{display:flex;align-items:center;gap:9px;text-decoration:none}
-  header.site .brand .mark{width:30px;height:30px;border-radius:50%;background:var(--teal);
-    display:grid;place-items:center;box-shadow:0 0 0 4px rgba(159,225,203,.35)}
-  header.site .brand .mark::before{content:"";width:13px;height:13px;border-radius:50%;background:var(--green)}
-  header.site .brand b{font-weight:800;letter-spacing:1.5px;color:var(--green-dark);font-size:1.05rem}
-  .nav a{margin-right:18px;text-decoration:none;font-weight:600;color:var(--green-dark)}
+  header.site .brand{display:flex;align-items:center;text-decoration:none}
+  header.site .brand img{height:40px;width:auto;display:block}
+  .navwrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .nav a{text-decoration:none;font-weight:600;color:var(--green-dark)}
   .nav a:hover{color:var(--ink)}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+  .lang button{border:0;background:transparent;padding:6px 12px;font-weight:700;font-size:.85rem;cursor:pointer;
+    color:var(--muted);min-height:34px}
+  .lang button.on{background:var(--green-dark);color:#fff}
 
   .hero{position:relative;text-align:center;padding:14px 20px 8px;max-width:760px;margin:0 auto}
   .hero .eyebrow{display:inline-block;font-weight:800;letter-spacing:.5px;font-size:.82rem;
     color:var(--sun-ink);background:linear-gradient(90deg,var(--sun),var(--sun-deep));
-    padding:6px 16px;border-radius:999px;margin-bottom:14px;box-shadow:0 4px 14px rgba(255,158,44,.35)}
-  .hero h1{font-size:2.1rem;line-height:1.15;margin:0 auto .5rem;color:var(--ink);max-width:16ch}
+    padding:6px 16px;border-radius:999px;margin-bottom:14px;box-shadow:0 4px 14px rgba(242,179,60,.35)}
+  .hero h1{font-size:2.1rem;line-height:1.15;margin:0 auto .5rem;color:var(--ink);max-width:18ch}
   .hero h1 .hl{color:var(--green-dark)}
-  .hero p{font-size:1.12rem;color:var(--muted);max-width:540px;margin:.4rem auto 0}
+  .hero p{font-size:1.12rem;color:var(--muted);max-width:560px;margin:.4rem auto 0}
 
   main{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:18px}
   .card{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;
-    padding:28px 22px 22px;box-shadow:0 6px 24px rgba(15,23,42,.06);display:flex;flex-direction:column;
+    padding:26px 22px 22px;box-shadow:0 6px 24px rgba(15,23,42,.06);display:flex;flex-direction:column;
     transition:transform .14s,border-color .14s,box-shadow .14s}
   .card:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 12px 30px rgba(15,23,42,.10)}
-  .card.popular{border-color:var(--sun-deep);box-shadow:0 12px 34px rgba(255,158,44,.28)}
-  .card .tag{position:absolute;top:-12px;inset-inline-start:22px;
-    background:linear-gradient(90deg,var(--coral),var(--sun-deep));color:#fff;
-    font-size:.74rem;font-weight:800;padding:4px 13px;border-radius:999px;letter-spacing:.3px;
-    box-shadow:0 4px 12px rgba(255,126,95,.4)}
+  .card.popular{border-color:var(--green);box-shadow:0 14px 36px rgba(242,179,60,.30)}
   .card .bonus{display:inline-block;font-size:1.05rem;font-weight:800;color:var(--sun-ink);
     background:linear-gradient(90deg,var(--sun),var(--sun-deep));padding:5px 14px;border-radius:999px;
-    align-self:flex-start;box-shadow:0 3px 10px rgba(255,158,44,.3)}
+    align-self:flex-start;box-shadow:0 3px 10px rgba(242,179,60,.3)}
   .card .credit{margin:16px 0 0;font-size:2.4rem;font-weight:800;color:var(--green-dark);line-height:1}
   .card .credit .cur{font-size:1.2rem;font-weight:700;color:var(--muted)}
   .card .creditlbl{color:var(--muted);font-size:.9rem;margin-top:4px}
@@ -79,95 +82,191 @@
   .card.popular .cta a{background:var(--green)}
   .card.popular .cta a:hover{background:var(--green-dark)}
   .loading,.error{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px;
-    border:1px dashed var(--line);border-radius:14px;background:rgba(255,255,255,.5)}
+    border:1px dashed var(--line);border-radius:14px;background:rgba(255,255,255,.6)}
   .note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:16px}
 
   .how{margin-top:48px;text-align:center}
   .how h2{font-size:1.4rem;color:var(--ink);margin:0 0 22px}
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
-  .step{background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .step{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:14px;padding:20px}
   .step .n{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;
     display:grid;place-items:center;margin:0 auto 10px}
   .step h3{margin:0 0 4px;font-size:1.02rem;color:var(--green-dark)}
   .step p{margin:0;color:var(--muted);font-size:.92rem}
 
-  footer.site{border-top:1px solid var(--line);padding:24px 20px;color:var(--muted);font-size:.9rem;text-align:center}
-  footer.site a{margin:0 10px;color:var(--muted)}
+  footer.site{border-top:1px solid var(--line);padding:28px 20px;color:var(--muted);font-size:.9rem;text-align:center}
+  .contact{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .contact .lbl{font-weight:700;color:var(--ink)}
+  .contact a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:700;
+    padding:9px 16px;border-radius:10px;min-height:42px}
+  .contact a.wa{background:#25D366;color:#fff}
+  .contact a.wa:hover{background:#1da851}
+  .contact a.mail{background:#fff;border:1px solid var(--line);color:var(--green-dark)}
+  .contact a.mail:hover{border-color:var(--green)}
+  footer.site .copy a{color:var(--muted)}
+
+  .wa-fab{position:fixed;inset-block-end:18px;inset-inline-end:18px;z-index:50;width:56px;height:56px;
+    border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.22)}
+  .wa-fab:hover{background:#1da851}
+  .wa-fab svg{width:30px;height:30px;fill:#fff}
+
   @media (max-width:520px){.hero h1{font-size:1.7rem}}
 </style>
 </head>
 <body>
 <header class="site">
   <a class="brand" href="./" aria-label="Greems">
-    <span class="mark" aria-hidden="true"></span><b>GREEMS</b>
+    <img alt="Greems" src="data:image/png;base64,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">
   </a>
-  <nav class="nav" aria-label="ניווט">
-    <a href="#packages">החבילות</a>
-    <a href="#how">איך זה עובד</a>
-    <a href="https://greems.io">greems.io</a>
-  </nav>
+  <div class="navwrap">
+    <nav class="nav" aria-label="ניווט">
+      <a href="#packages" data-i18n="nav_packages">החבילות</a>
+      <a href="#how" data-i18n="nav_how">איך זה עובד</a>
+      <a href="#contact" data-i18n="nav_contact">צור קשר</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="he">ע</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
 </header>
 
 <section class="hero">
-  <span class="eyebrow">☀️ מבצע קיץ · בונוס טעינה</span>
-  <h1>טוענים מראש, <span class="hl">מקבלים בונוס</span></h1>
-  <p>טוענים את ארנק הטעינה מראש ומקבלים בונוס טעינה.<br>ככל שטוענים יותר - הבונוס גדל</p>
+  <span class="eyebrow" data-i18n="eyebrow">☀️ מבצע קיץ · בונוס טעינה</span>
+  <h1 data-i18n-html="h1">טוענים מראש, <span class="hl">מקבלים בונוס</span></h1>
+  <p data-i18n-html="sub">טוענים את ארנק הטעינה מראש ומקבלים בונוס טעינה.<br>ככל שטוענים יותר - הבונוס גדל</p>
 </section>
 
 <main>
   <section id="packages" aria-label="חבילות קרדיט">
-    <div class="cards" id="cards"><div class="loading">טוען חבילות…</div></div>
-    <p class="note">המחירים כוללים מע״מ. הקרדיט אינו פג תוקף וניתן לשימוש בכל עמדות Greems.</p>
+    <div class="cards" id="cards"><div class="loading" data-i18n="loading">טוען חבילות…</div></div>
+    <p class="note" data-i18n="note">המחירים כוללים מע״מ. הקרדיט אינו פג תוקף וניתן לשימוש בכל עמדות Greems.</p>
   </section>
 
   <section id="how" class="how">
-    <h2>איך זה עובד?</h2>
+    <h2 data-i18n="how_title">איך זה עובד?</h2>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>בוחרים סכום</h3><p>ככל שטוענים יותר — הבונוס גדל.</p></div>
-      <div class="step"><div class="n">2</div><h3>ממלאים פרטים</h3><p>שם, אימייל, טלפון ומספר רכב.</p></div>
-      <div class="step"><div class="n">3</div><h3>משלמים בבטחה</h3><p>תשלום מאובטח באמצעות Grow.</p></div>
-      <div class="step"><div class="n">4</div><h3>מקבלים קוד</h3><p>קוד הקרדיט נשלח למייל — מזינים באפליקציה וטוענים.</p></div>
+      <div class="step"><div class="n">1</div><h3 data-i18n="s1t">בוחרים סכום</h3><p data-i18n="s1d">ככל שטוענים יותר — הבונוס גדל.</p></div>
+      <div class="step"><div class="n">2</div><h3 data-i18n="s2t">ממלאים פרטים</h3><p data-i18n="s2d">שם, אימייל, טלפון ומספר רכב.</p></div>
+      <div class="step"><div class="n">3</div><h3 data-i18n="s3t">משלמים בבטחה</h3><p data-i18n="s3d">תשלום מאובטח באמצעות Grow.</p></div>
+      <div class="step"><div class="n">4</div><h3 data-i18n="s4t">מקבלים קוד</h3><p data-i18n="s4d">קוד הקרדיט נשלח למייל — מזינים באפליקציה וטוענים.</p></div>
     </div>
   </section>
 </main>
 
-<footer class="site">
-  <p><a href="https://greems.io">greems.io</a> · ניהול תחנות טעינה לרכב חשמלי</p>
-  <p>© Greems</p>
+<footer class="site" id="contact">
+  <div class="contact">
+    <span class="lbl" data-i18n="contact_lbl">צריכים עזרה?</span>
+    <a class="wa" href="https://wa.me/972779897660" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" aria-hidden="true"><path d="M20 11.9a8 8 0 0 1-11.9 7L4 20l1.2-4A8 8 0 1 1 20 11.9zM12 5.6A6.3 6.3 0 0 0 6.6 15l-.4 1.4 1.5-.4A6.3 6.3 0 1 0 12 5.6zm3.6 7.9c-.2-.1-1.2-.6-1.3-.6-.2-.1-.3-.1-.4.1l-.6.7c-.1.1-.2.1-.4 0a5.2 5.2 0 0 1-2.5-2.2c-.2-.3.2-.3.5-.9.1-.1 0-.2 0-.3l-.6-1.4c-.1-.4-.3-.3-.4-.3h-.4a.7.7 0 0 0-.5.3c-.2.2-.7.7-.7 1.6s.7 1.9.8 2c.1.1 1.4 2.2 3.4 3 .5.2.9.4 1.2.5.5.1 1 .1 1.3.1.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1z"/></svg>
+      +972 (0)77-989-7660</a>
+    <a class="mail" href="mailto:help@greems.io">help@greems.io</a>
+  </div>
+  <p class="copy"><a href="https://greems.io">greems.io</a> · © Greems</p>
 </footer>
+
+<a class="wa-fab" href="https://wa.me/972779897660" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.9a8 8 0 0 1-11.9 7L4 20l1.2-4A8 8 0 1 1 20 11.9zM12 5.6A6.3 6.3 0 0 0 6.6 15l-.4 1.4 1.5-.4A6.3 6.3 0 1 0 12 5.6zm3.6 7.9c-.2-.1-1.2-.6-1.3-.6-.2-.1-.3-.1-.4.1l-.6.7c-.1.1-.2.1-.4 0a5.2 5.2 0 0 1-2.5-2.2c-.2-.3.2-.3.5-.9.1-.1 0-.2 0-.3l-.6-1.4c-.1-.4-.3-.3-.4-.3h-.4a.7.7 0 0 0-.5.3c-.2.2-.7.7-.7 1.6s.7 1.9.8 2c.1.1 1.4 2.2 3.4 3 .5.2.9.4 1.2.5.5.1 1 .1 1.3.1.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1z"/></svg>
+</a>
 
 <script>
 (function(){
   "use strict";
-  // voltai backend (payment / coupon / email). Swap to charge.greems.io if mapped.
   var API = "https://voltai-30142674525.me-west1.run.app";
-  var fmt = function(n){ return Number(n).toLocaleString('he-IL'); };
-  var pct = function(n){ return (Number(n) % 1 === 0) ? n : Number(n).toFixed(1); };
-  var wrap = document.getElementById('cards');
 
-  function render(PACKAGES){
-    wrap.innerHTML = '';
+  var I18N = {
+    he: { dir:"rtl", locale:"he-IL",
+      nav_packages:"החבילות", nav_how:"איך זה עובד", nav_contact:"צור קשר",
+      eyebrow:"☀️ מבצע קיץ · בונוס טעינה",
+      h1:'טוענים מראש, <span class="hl">מקבלים בונוס</span>',
+      sub:"טוענים את ארנק הטעינה מראש ומקבלים בונוס טעינה.<br>ככל שטוענים יותר - הבונוס גדל",
+      loading:"טוען חבילות…",
+      note:"המחירים כוללים מע״מ. הקרדיט אינו פג תוקף וניתן לשימוש בכל עמדות Greems.",
+      how_title:"איך זה עובד?",
+      s1t:"בוחרים סכום", s1d:"ככל שטוענים יותר — הבונוס גדל.",
+      s2t:"ממלאים פרטים", s2d:"שם, אימייל, טלפון ומספר רכב.",
+      s3t:"משלמים בבטחה", s3d:"תשלום מאובטח באמצעות Grow.",
+      s4t:"מקבלים קוד", s4d:"קוד הקרדיט נשלח למייל — מזינים באפליקציה וטוענים.",
+      contact_lbl:"צריכים עזרה?",
+      c_bonus:"בונוס", c_credit:"קרדיט לטעינה", c_pay:"בתשלום",
+      c_extra_a:"כולל ", c_extra_b:" בונוס מתנה", c_cta:"רכישה",
+      err:"לא הצלחנו לטעון את החבילות כרגע. רעננו את הדף או נסו שוב בעוד רגע." },
+    en: { dir:"ltr", locale:"en-US",
+      nav_packages:"Packages", nav_how:"How it works", nav_contact:"Contact",
+      eyebrow:"☀️ Summer Sale · Charging Bonus",
+      h1:'Top up, <span class="hl">get a bonus</span>',
+      sub:"Load your charging wallet in advance and get bonus credit.<br>The more you load — the bigger the bonus.",
+      loading:"Loading packages…",
+      note:"Prices include VAT. Credit never expires and works at all Greems stations.",
+      how_title:"How it works",
+      s1t:"Choose an amount", s1d:"The more you load — the bigger the bonus.",
+      s2t:"Enter your details", s2d:"Name, email, phone and license plate.",
+      s3t:"Pay securely", s3d:"Secure payment via Grow.",
+      s4t:"Get your code", s4d:"Your credit code is emailed to you — enter it in the app and charge.",
+      contact_lbl:"Need help?",
+      c_bonus:"bonus", c_credit:"charging credit", c_pay:"Pay",
+      c_extra_a:"Includes ", c_extra_b:" bonus", c_cta:"Buy" }
+  };
+
+  var LANG = "he";
+  try { var s = localStorage.getItem("greems_lang"); if (s && I18N[s]) LANG = s; } catch(e){}
+  var qp = new URLSearchParams(location.search).get("lang");
+  if (qp && I18N[qp]) LANG = qp;
+
+  var PACKAGES = null;
+  function dict(){ return I18N[LANG]; }
+  function fmt(n){ return Number(n).toLocaleString(dict().locale); }
+  function pct(n){ return (Number(n) % 1 === 0) ? n : Number(n).toFixed(1); }
+
+  var wrap = document.getElementById("cards");
+  function renderCards(){
+    if (!PACKAGES) return;
+    var d = dict();
+    wrap.innerHTML = "";
     PACKAGES.forEach(function(p){
-      var el = document.createElement('div');
-      el.className = 'card' + (p.popular ? ' popular' : '');
+      var el = document.createElement("div");
+      el.className = "card" + (p.popular ? " popular" : "");
       el.innerHTML =
-        (p.popular ? '<span class="tag">☀️ הכי משתלם</span>' : '') +
-        '<span class="bonus">+'+pct(p.bonus_pct)+'% בונוס</span>' +
+        '<span class="bonus">+'+pct(p.bonus_pct)+'% '+d.c_bonus+'</span>' +
         '<div class="credit"><span class="cur">₪</span>'+fmt(p.credit_ils)+'</div>' +
-        '<div class="creditlbl">קרדיט לטעינה</div>' +
-        '<div class="pay">בתשלום <b>₪'+fmt(p.pay_ils)+'</b></div>' +
-        '<div class="extra">כולל ₪'+fmt(p.bonus_ils)+' בונוס מתנה</div>' +
-        '<div class="cta"><a href="checkout.html?pkg='+encodeURIComponent(p.id)+'">רכישה</a></div>';
+        '<div class="creditlbl">'+d.c_credit+'</div>' +
+        '<div class="pay">'+d.c_pay+' <b>₪'+fmt(p.pay_ils)+'</b></div>' +
+        '<div class="extra">'+d.c_extra_a+'₪'+fmt(p.bonus_ils)+d.c_extra_b+'</div>' +
+        '<div class="cta"><a href="checkout.html?pkg='+encodeURIComponent(p.id)+'&lang='+LANG+'">'+d.c_cta+'</a></div>';
       wrap.appendChild(el);
     });
   }
 
-  fetch(API + '/energy/packages.json', {cache:'no-cache'})
-    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
-    .then(render)
-    .catch(function(){
-      wrap.innerHTML = '<div class="error">לא הצלחנו לטעון את החבילות כרגע. רעננו את הדף או נסו שוב בעוד רגע.</div>';
+  function applyLang(){
+    var d = dict();
+    document.documentElement.lang = LANG;
+    document.documentElement.dir = d.dir;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var k = el.getAttribute("data-i18n"); if (d[k] != null) el.textContent = d[k];
     });
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){
+      var k = el.getAttribute("data-i18n-html"); if (d[k] != null) el.innerHTML = d[k];
+    });
+    document.querySelectorAll(".lang button").forEach(function(b){
+      b.classList.toggle("on", b.getAttribute("data-lang") === LANG);
+    });
+    renderCards();
+  }
+
+  document.querySelectorAll(".lang button").forEach(function(b){
+    b.addEventListener("click", function(){
+      LANG = b.getAttribute("data-lang");
+      try { localStorage.setItem("greems_lang", LANG); } catch(e){}
+      applyLang();
+    });
+  });
+
+  applyLang();
+
+  fetch(API + "/energy/packages.json", {cache:"no-cache"})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(list){ PACKAGES = list; renderCards(); })
+    .catch(function(){ wrap.innerHTML = '<div class="error">'+dict().err+'</div>'; });
 })();
 </script>
 </body>
