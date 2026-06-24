@@ -12,15 +12,10 @@
   html,body{margin:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);
     background:#e6f6ec;line-height:1.55}
-  body::before{content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
-    background:radial-gradient(32% 24% at 26% -4%, rgba(255,250,214,.95) 0%, rgba(255,250,214,0) 62%),
-      radial-gradient(58% 55% at 88% 14%, #bfe9d2 0%, rgba(191,233,210,0) 56%),
-      radial-gradient(58% 62% at 6% 70%, #a7ddc2 0%, rgba(167,221,194,0) 58%),
-      linear-gradient(180deg, #ecf8f0 0%, #def2e7 100%)}
-  body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.8;
-    background:linear-gradient(118deg, rgba(255,250,220,0) 32%, rgba(255,249,214,.24) 41%, rgba(255,250,220,0) 50%),
-      radial-gradient(circle 90px at 82% 20%, rgba(255,249,210,.4), rgba(255,249,210,0) 72%),
-      radial-gradient(circle 70px at 18% 60%, rgba(210,245,222,.45), rgba(210,245,222,0) 72%)}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:url("bg.jpg") center/cover no-repeat;}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg, rgba(247,252,249,.40) 0%, rgba(247,252,249,.58) 100%);}
   a{color:var(--green-dark)}
   :focus-visible{outline:3px solid var(--green-dark);outline-offset:2px;border-radius:6px}
   header.site{display:flex;align-items:center;justify-content:space-between;gap:1rem;
