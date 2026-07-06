@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guide — GREEMS ParkIQ Workplace Charging</title>
+<meta name="description" content="How workplace EV charging works with GREEMS ParkIQ — owner and employee guides.">
+<link rel="canonical" href="https://lp.greems.io/parkiq/guide/">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="../../icon.svg">
+<meta property="og:title" content="Guide — GREEMS ParkIQ Workplace Charging">
+<meta property="og:description" content="Owner and employee guides for GREEMS ParkIQ workplace charging.">
+<meta property="og:url" content="https://lp.greems.io/parkiq/guide/">
+<meta property="og:type" content="website">
+</head>
+<body>
+<div style="max-width:760px;margin:0 auto;padding:12px 18px 0"><a href="../" style="font:700 13px -apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1D9E75;text-decoration:none">&larr; ParkIQ workplace charging</a></div>
+<style>
+  :root{
+    --green:#1D9E75; --green-deep:#085041; --teal:#9FE1CB;
+    --ink:#0F172A; --muted:#5B6B78; --line:#E4EAE7;
+    --bg:#F4F8F6; --card:#FFFFFF; --soft:#EAF3EF;
+    --dc:#2563EB; --dc-soft:#DBEAFE; --ac-soft:#D1FAE5;
+    --fault:#DC2626; --fault-soft:#FEE2E2; --amber:#B45309; --amber-soft:#FEF3C7;
+    --shadow:0 1px 2px rgba(8,80,65,.05),0 8px 24px rgba(8,80,65,.06);
+    --radius:16px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ink:#EAF3EF; --muted:#95A8A2; --line:#25332E;
+      --bg:#0D1411; --card:#151F1B; --soft:#18241F;
+      --ac-soft:#0f3a2c; --dc-soft:#16294d; --fault-soft:#3a1b1b; --amber-soft:#3a2c10;
+      --amber:#FBBF24;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ink:#0F172A; --muted:#5B6B78; --line:#E4EAE7; --bg:#F4F8F6; --card:#FFFFFF; --soft:#EAF3EF;
+    --ac-soft:#D1FAE5; --dc-soft:#DBEAFE; --fault-soft:#FEE2E2; --amber:#B45309; --amber-soft:#FEF3C7;
+    --shadow:0 1px 2px rgba(8,80,65,.05),0 8px 24px rgba(8,80,65,.06);
+  }
+  :root[data-theme="dark"]{
+    --ink:#EAF3EF; --muted:#95A8A2; --line:#25332E; --bg:#0D1411; --card:#151F1B; --soft:#18241F;
+    --ac-soft:#0f3a2c; --dc-soft:#16294d; --fault-soft:#3a1b1b; --amber:#FBBF24; --amber-soft:#3a2c10;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  .pg{font-family:var(--sans);background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.55;margin:0;
+    padding:0 18px 64px;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto}
+
+  /* --- top bar --- */
+  .top{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
+  .mark{width:44px;height:44px;flex:0 0 auto}
+  .brand{display:flex;flex-direction:column;line-height:1.05}
+  .brand .eb{font-size:10px;letter-spacing:3px;color:var(--muted);font-weight:700}
+  .brand .wm{font-size:19px;font-weight:800;color:var(--ink)}
+  .brand .wm em{font-style:normal;color:var(--green)}
+  .loc{margin-left:auto;font-size:12px;font-weight:700;color:var(--green-deep);
+    background:var(--soft);border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+  @media (prefers-color-scheme:dark){.loc{color:var(--teal)}}
+  :root[data-theme="dark"] .loc{color:var(--teal)}
+  :root[data-theme="light"] .loc{color:var(--green-deep)}
+
+  /* --- audience toggle --- */
+  .toggle{position:sticky;top:0;z-index:10;display:flex;gap:6px;padding:12px 0;
+    background:linear-gradient(var(--bg) 70%,transparent);margin-bottom:6px}
+  .toggle button{flex:1;font-family:var(--sans);font-size:15px;font-weight:700;
+    padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);cursor:pointer;transition:.18s;display:flex;align-items:center;
+    justify-content:center;gap:8px}
+  .toggle button.on{background:var(--green);color:#fff;border-color:var(--green)}
+  .toggle button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+  .toggle svg{width:18px;height:18px}
+
+  /* --- hero --- */
+  .hero{padding:22px 4px 8px}
+  .hero .eb{font-size:11px;letter-spacing:3px;color:var(--green);font-weight:800;text-transform:uppercase}
+  .hero h1{font-size:clamp(28px,7vw,40px);font-weight:800;letter-spacing:-.02em;
+    margin:10px 0 6px;text-wrap:balance;line-height:1.08}
+  .hero p{font-size:17px;color:var(--muted);margin:0;max-width:52ch}
+
+  /* --- sections --- */
+  .sec{margin-top:22px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;margin:0 4px 4px}
+  .sec-h .ix{font-size:12px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+    background:var(--soft);border-radius:7px;padding:2px 8px;letter-spacing:.5px}
+  .sec-h h2{font-size:19px;font-weight:800;margin:0;letter-spacing:-.01em}
+  .sec>.lead{margin:2px 4px 12px;color:var(--muted);font-size:14.5px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;box-shadow:var(--shadow)}
+  .card + .card{margin-top:12px}
+
+  ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  ol.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+  ol.steps li::before{content:counter(s);flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+    background:var(--green);color:#fff;font-size:13px;font-weight:800;display:flex;
+    align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+  ol.steps li b{color:var(--ink)}
+  ol.steps li .st{font-size:15px}
+
+  ul.feat{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  ul.feat li{display:flex;gap:12px;align-items:flex-start}
+  ul.feat li .ic{flex:0 0 auto;width:34px;height:34px;border-radius:9px;background:var(--soft);
+    display:flex;align-items:center;justify-content:center;color:var(--green);font-size:17px}
+  ul.feat li .tx{font-size:14.5px}
+  ul.feat li .tx b{display:block;color:var(--ink);font-size:15px;margin-bottom:1px}
+  ul.feat li .tx span{color:var(--muted)}
+
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .stat{background:var(--soft);border-radius:12px;padding:14px 10px;text-align:center}
+  .stat .n{font-size:24px;font-weight:800;color:var(--green-deep);font-variant-numeric:tabular-nums}
+  @media (prefers-color-scheme:dark){.stat .n{color:var(--teal)}}
+  :root[data-theme="dark"] .stat .n{color:var(--teal)}
+  :root[data-theme="light"] .stat .n{color:var(--green-deep)}
+  .stat .l{font-size:11px;font-weight:700;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.4px}
+
+  /* legends */
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:2px}
+  .legend .it{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600}
+  .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+  .d-av{background:var(--green)} .d-ch{background:var(--dc)} .d-fa{background:var(--fault)}
+
+  .conn{display:flex;gap:12px;margin-top:4px}
+  .conn .c{flex:1;background:var(--soft);border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px}
+  .conn .cicon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .conn .cicon.ac{background:var(--ac-soft);color:#065F46}
+  .conn .cicon.dc{background:var(--dc-soft);color:#1E40AF}
+  @media (prefers-color-scheme:dark){.conn .cicon.ac{color:#6ee7b7}.conn .cicon.dc{color:#93c5fd}}
+  :root[data-theme="dark"] .conn .cicon.ac{color:#6ee7b7}
+  :root[data-theme="dark"] .conn .cicon.dc{color:#93c5fd}
+  .conn .cicon svg{width:24px;height:24px}
+  .conn .c b{font-size:14px;display:block}
+  .conn .c span{font-size:12px;color:var(--muted)}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;
+    padding:3px 9px;border-radius:999px;letter-spacing:.3px;vertical-align:middle}
+  .pill.demo{background:var(--amber-soft);color:var(--amber)}
+  .pill.live{background:var(--ac-soft);color:#065F46}
+  @media (prefers-color-scheme:dark){.pill.live{color:#6ee7b7}}
+  :root[data-theme="dark"] .pill.live{color:#6ee7b7}
+
+  .tip{display:flex;gap:10px;align-items:flex-start;background:var(--soft);
+    border-left:3px solid var(--green);border-radius:0 12px 12px 0;padding:12px 14px;
+    margin-top:10px;font-size:14px}
+  .tip b{color:var(--green-deep)}
+  @media (prefers-color-scheme:dark){.tip b{color:var(--teal)}}
+  :root[data-theme="dark"] .tip b{color:var(--teal)}
+
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+
+  /* facts */
+  .facts{width:100%;border-collapse:collapse;font-size:14px}
+  .facts td{padding:10px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+  .facts td:first-child{color:var(--muted);font-weight:700;width:38%}
+  .facts tr:last-child td{border-bottom:0}
+
+  .closing{text-align:center;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+  .closing .tag{font-size:20px;font-weight:800;letter-spacing:-.01em}
+  .closing .tag em{font-style:normal;color:var(--green)}
+  .closing p{color:var(--muted);font-size:13.5px;margin:8px 0 0}
+  .closing a{color:var(--green);font-weight:700;text-decoration:none}
+
+  /* sample bay grid */
+  .baygrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+  @media(min-width:520px){.baygrid{grid-template-columns:repeat(3,1fr)}}
+  .bay{position:relative;overflow:hidden;background:var(--soft);border:1px solid var(--line);
+    border-radius:12px;padding:12px 12px 12px 15px}
+  .bay::before{content:"";position:absolute;inset:0 auto 0 0;width:5px}
+  .bay.av::before{background:var(--green)} .bay.ch::before{background:var(--dc)} .bay.fa::before{background:var(--fault)}
+  .bay .bn{font-weight:800;font-size:13.5px}
+  .bay .bs{font-size:11px;font-weight:700;margin-top:3px}
+  .bay.av .bs{color:var(--green)} .bay.ch .bs{color:var(--dc)} .bay.fa .bs{color:var(--fault)}
+  .bay .bm{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:11.5px;color:var(--muted)}
+  .bay .bm .mi{width:26px;height:26px;border-radius:7px;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+  .bay .bm .mi.ac{background:var(--ac-soft);color:#065F46} .bay .bm .mi.dc{background:var(--dc-soft);color:#1E40AF}
+  @media(prefers-color-scheme:dark){.bay .bm .mi.ac{color:#6ee7b7}.bay .bm .mi.dc{color:#93c5fd}}
+  :root[data-theme="dark"] .bay .bm .mi.ac{color:#6ee7b7}
+  :root[data-theme="dark"] .bay .bm .mi.dc{color:#93c5fd}
+  .bay .bm svg{width:16px;height:16px}
+  .sample-cap{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
+    letter-spacing:.5px;margin:16px 0 0}
+
+  /* QR sign-in */
+  .qr{display:flex;gap:14px;align-items:center;background:var(--soft);border:1px solid var(--line);
+    border-radius:12px;padding:14px;margin-bottom:14px}
+  .qr .code{width:104px;height:104px;flex:0 0 auto;background:#fff;border-radius:10px;padding:7px;
+    box-shadow:0 1px 2px rgba(8,80,65,.12)}
+  .qr .code svg{width:100%;height:100%;display:block}
+  .qr .cap b{display:block;font-size:15px;color:var(--ink);margin-bottom:2px}
+  .qr .cap span{font-size:13px;color:var(--muted)}
+
+  .track{display:none}
+  .track.on{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.track.on{animation:none}}
+</style>
+
+<div class="pg"><div class="wrap">
+
+  <div class="top">
+    <svg class="mark" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="48" cy="48" r="40" fill="none" stroke="#9FE1CB" stroke-width="6"/>
+      <circle cx="48" cy="48" r="29" fill="#1D9E75"/>
+      <text x="48" y="60" font-family="Helvetica,Arial" font-size="34" fill="#fff" font-weight="700" text-anchor="middle">P</text>
+    </svg>
+    <div class="brand">
+      <span class="eb">GREEMS</span>
+      <span class="wm">Park<em>IQ</em></span>
+    </div>
+  </div>
+
+  <div class="toggle" role="tablist" aria-label="Choose guide">
+    <button id="tab-owner" class="on" role="tab" aria-selected="true" onclick="pick('owner')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h8V3H3zM13 21h8V3h-8zM3 21h8v-6H3z" stroke-linejoin="round"/></svg>
+      Owner guide
+    </button>
+    <button id="tab-driver" role="tab" aria-selected="false" onclick="pick('driver')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6z" stroke-linejoin="round"/></svg>
+      Driver guide
+    </button>
+  </div>
+
+  <!-- ============ OWNER ============ -->
+  <div class="track on" id="track-owner">
+    <div class="hero">
+      <div class="eb">Owner &amp; Manager</div>
+      <h1>Fair charging, for every employee.</h1>
+      <p>You own the chargers and your staff charge for free. With fewer bays than drivers, ParkIQ keeps them moving so everyone gets a fair turn.</p>
+    </div>
+
+    <div class="card" style="border-color:var(--green);background:var(--soft);margin-top:4px">
+      <ul class="feat">
+        <li><span class="ic">🔌</span><span class="tx"><b>Your chargers, free for staff</b><span>No payments, no billing — this is about access, not money.</span></span></li>
+        <li><span class="ic">⚖️</span><span class="tx"><b>Fair use of limited bays</b><span>Session limits and gentle nudges stop any one car from blocking a charger all day.</span></span></li>
+        <li><span class="ic">👀</span><span class="tx"><b>Oversight without hassle</b><span>ParkIQ watches the bays so you don’t have to.</span></span></li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">1</span><h2>Sign in</h2></div>
+      <div class="lead">Sign in with your work email — no password, no waiting.</div>
+      <div class="card">
+        <ol class="steps">
+          <li><span class="st">Open the manager portal on any device.</span></li>
+          <li><span class="st">Enter your <b>@corporate.com</b> email.</span></li>
+          <li><span class="st">You're in — approved emails sign in instantly. <span class="pill live">no email link</span></span></li>
+        </ol>
+        <div class="note"><b>You decide who gets in.</b> Approve a whole company domain, import a list of specific addresses, or both — and choose instant sign-in or a one-tap email link for extra verification.</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">2</span><h2>Dashboard</h2></div>
+      <div class="lead">Your month at a glance — active users and energy delivered, in one view.</div>
+      <div class="card">
+        <div class="stats">
+          <div class="stat"><div class="n">36</div><div class="l">End-users</div></div>
+          <div class="stat"><div class="n">147</div><div class="l">Sessions</div></div>
+          <div class="stat"><div class="n">3,671</div><div class="l">kWh</div></div>
+        </div>
+        <div class="note">Rolling last 30 days · <span class="pill live">sample figures</span></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">3</span><h2>Live bays</h2></div>
+      <div class="lead">See which chargers are free, busy, or need attention — updated in real time.</div>
+      <div class="card">
+        <div class="legend">
+          <span class="it"><span class="dot d-av"></span>Available</span>
+          <span class="it"><span class="dot d-ch"></span>Charging</span>
+          <span class="it"><span class="dot d-fa"></span>Fault</span>
+        </div>
+        <div class="sample-cap">Sample — live grid</div>
+        <div class="baygrid">
+          <div class="bay av"><div class="bn" dir="auto">Bay 01</div><div class="bs">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay ch"><div class="bn" dir="auto">Bay 02</div><div class="bs">Charging</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay av"><div class="bn" dir="auto">Bay 03</div><div class="bs">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay fa"><div class="bn" dir="auto">Bay 04</div><div class="bs">Fault</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay av"><div class="bn" dir="auto">Bay 05</div><div class="bs">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay ch"><div class="bn" dir="auto">Bay 06 · DC</div><div class="bs">Charging</div><div class="bm"><span class="mi dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><circle cx="9.7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="14.3" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18" r="3"/><circle cx="15.5" cy="18" r="3"/></svg></span>CCS2 · DC 150kW</div></div>
+        </div>
+        <div class="note">Chargers show their real name (e.g. “Bay 06”), never an internal ID. Grid auto-refreshes (~30s); a Refresh button forces it. Status is read-only/live.</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">4</span><h2>Scheduler</h2></div>
+      <div class="lead">Set fair session limits and reminders so no single car ties up a charger all day.</div>
+      <div class="card">
+        <ul class="feat">
+          <li><span class="ic">⏳</span><span class="tx"><b>Max session length</b><span>How long a charge is allowed, in minutes.</span></span></li>
+          <li><span class="ic">▶️</span><span class="tx"><b>Start / mid / end reminders</b><span>Toggle each; the mid reminder fires after N minutes with time left.</span></span></li>
+          <li><span class="ic">🛑</span><span class="tx"><b>Auto-stop at the limit</b><span>Locked off — no charge is ever stopped in this demo.</span></span></li>
+        </ul>
+        <div class="note">Adjust the values → <b>Save scheduler</b>. In this demo, settings are stored but the start/mid/end notifications aren’t actually sent (that needs the background worker).</div>
+      </div>
+      <div class="tip">💡 <span><b>Tip:</b> Set a session limit that matches your busiest hours to keep bays turning over.</span></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">5</span><h2>Time violations</h2></div>
+      <div class="lead">Know the moment a car overstays, so a bay never sits blocked and the next employee gets their turn.</div>
+      <div class="card">
+        <ul class="feat">
+          <li><span class="ic">➕</span><span class="tx"><b>Grace after limit</b><span>Extra minutes before an overstay counts as a violation.</span></span></li>
+          <li><span class="ic">✉️</span><span class="tx"><b>Manager email</b><span>Where the alert lands.</span></span></li>
+          <li><span class="ic">🚗</span><span class="tx"><b>Email the driver</b><span>Off by default — no real driver is emailed.</span></span></li>
+          <li><span class="ic">🧪</span><span class="tx"><b>Send test alert</b><span>Sends one sample alert to the manager so you can see the format.</span></span></li>
+        </ul>
+        <div class="note">A violation = a session past <b>max length + grace</b>. Live auto-detection isn’t running in this demo, and the test alert never emails a real driver.</div>
+      </div>
+      <div class="tip">💡 <span><b>Tip:</b> Add your email to violation alerts so overstays reach you first.</span></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">6</span><h2>Reports</h2></div>
+      <div class="lead">Export usage by date range — per session and per employee — whenever you need it.</div>
+      <div class="card">
+        <ul class="feat">
+          <li><span class="ic">📊</span><span class="tx"><b>Summary</b><span>Totals plus each employee’s sessions &amp; total energy, and a violation count.</span></span></li>
+          <li><span class="ic">🧾</span><span class="tx"><b>Records</b><span>One row per session — start, stop, duration, energy, cost, driver, charger.</span></span></li>
+          <li><span class="ic">⏱️</span><span class="tx"><b>Violations</b><span>Sessions that ran past max + grace, with over-by minutes.</span></span></li>
+        </ul>
+        <div class="note">Pick <b>From / To</b> → <b>Download Excel</b>. <span class="pill live">real data</span></div>
+      </div>
+      <div class="tip">💡 <span><b>Tip:</b> Pull a monthly report to see who’s charging and how much energy you’re delivering.</span></div>
+    </div>
+  </div>
+
+  <!-- ============ DRIVER ============ -->
+  <div class="track" id="track-driver">
+    <div class="hero">
+      <div class="eb">For employees</div>
+      <h1>Charge in three taps.</h1>
+      <p>Charging is free — just share fairly. Find a free charger, plug in, and free the bay when you’re done so the next person can charge.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">1</span><h2>Sign in</h2></div>
+      <div class="lead">See every bay and its status before you leave your desk.</div>
+      <div class="card">
+        <ol class="steps">
+          <li><span class="st">Scan the QR at the charger to open the <b>Charging Pool portal</b>.</span></li>
+          <li><span class="st">Enter your work email (<b>@corporate.com</b>).</span></li>
+          <li><span class="st">You're in — no password, no waiting. <span class="pill live">instant</span></span></li>
+        </ol>
+        <div class="note">Your manager approves who can charge. If email verification is switched on, you'll get a one-tap sign-in link instead.</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">2</span><h2>Find a charger</h2></div>
+      <div class="lead">Every charger, its status, and its plug — at a glance.</div>
+      <div class="card">
+        <div class="legend" style="margin-bottom:14px">
+          <span class="it"><span class="dot d-av"></span>Available</span>
+          <span class="it"><span class="dot d-ch"></span>In use</span>
+          <span class="it"><span class="dot d-fa"></span>Out of order</span>
+        </div>
+        <div class="conn">
+          <div class="c"><span class="cicon ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span><span><b>Type 2</b><span>AC · everyday top-up</span></span></div>
+          <div class="c"><span class="cicon dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><circle cx="9.7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="14.3" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18" r="3"/><circle cx="15.5" cy="18" r="3"/></svg></span><span><b>CCS2</b><span>DC · the fast one</span></span></div>
+        </div>
+        <div class="note">Just match the icon to your car. In-use chargers show a <b>“free by ~HH:MM”</b> estimate so you know when one opens up.</div>
+      </div>
+      <div class="tip">💡 <span><b>Tip:</b> Check the portal before walking down — grab a free charger without the wait.</span></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">3</span><h2>Start charging</h2></div>
+      <div class="lead">Pick a free charger and start with a single tap.</div>
+      <div class="card">
+        <ol class="steps">
+          <li><span class="st">Tap <b>Start</b> on any available (green) charger.</span></li>
+          <li><span class="st">Its card flips to your active session.</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">4</span><h2>While you charge</h2></div>
+      <div class="lead">Track your time and know exactly when to head back.</div>
+      <div class="card">
+        <ul class="feat">
+          <li><span class="ic">⏱️</span><span class="tx"><b>Live timer</b><span>Watch your elapsed charging time.</span></span></li>
+          <li><span class="ic">🕒</span><span class="tx"><b>Free by HH:MM</b><span>Your start time plus the pool’s max session length.</span></span></li>
+          <li><span class="ic">⏹️</span><span class="tx"><b>Stop charging</b><span>End your session when you’re done. One session at a time.</span></span></li>
+        </ul>
+        <div class="note">There are fewer chargers than drivers, so sessions have a time limit — when yours is up, please move your car so a colleague can charge.</div>
+      </div>
+      <div class="tip">💡 <span><b>Tip:</b> Watch for your “time’s almost up” reminder so you’re never the one blocking a bay.</span></div>
+    </div>
+  </div>
+
+  <!-- ============ SHARED ============ -->
+  <div class="sec">
+    <div class="sec-h"><h2>At a glance</h2></div>
+    <div class="card">
+      <table class="facts">
+        <tr><td>Pool</td><td>Adgar Park Afek</td></tr>
+        <tr><td>Chargers</td><td>6 total — 5× Type 2 (AC) + 1× CCS2 (DC)</td></tr>
+        <tr><td>Login</td><td>Approved work email — instant sign-in, or a one-tap email link if verification is on</td></tr>
+        <tr><td>Platform</td><td>Mobile-first web app — nothing to install</td></tr>
+        <tr><td>Purpose</td><td>Fair-access staff charging — owner’s own chargers, free for employees, no payments</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="closing">
+    <div class="tag">Every spot, <em>smarter.</em></div>
+    <p>Need a hand? Reach your facility manager or contact GREEMS support at <a href="mailto:help@greems.io">help@greems.io</a>.</p>
+  </div>
+
+</div></div>
+
+<script>
+  function pick(who){
+    var ow=who==='owner';
+    document.getElementById('track-owner').classList.toggle('on',ow);
+    document.getElementById('track-driver').classList.toggle('on',!ow);
+    var to=document.getElementById('tab-owner'), td=document.getElementById('tab-driver');
+    to.classList.toggle('on',ow); td.classList.toggle('on',!ow);
+    to.setAttribute('aria-selected',ow); td.setAttribute('aria-selected',!ow);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+</script>
+
+</body>
+</html>
