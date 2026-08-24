@@ -94,13 +94,14 @@
   /* ── header ── */
   header.site{position:sticky;top:0;z-index:40;background:rgba(248,250,252,.92);
     backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;gap:14px;padding:12px 0}
+  .bar{display:flex;align-items:center;gap:14px;padding-block:12px}
   .brand{display:flex;align-items:center}
   .brand img{height:38px;width:auto;display:block}
-  .bar .brand{margin-inline-end:auto}
-  .nav{display:none;align-items:center;gap:6px}
+  .bar .brand{flex:none}
+  .nav{display:none;align-items:center;justify-content:center;gap:4px;flex:1 1 auto;min-width:0}
   .nav a{font-weight:600;font-size:14.5px;color:var(--ink);padding:9px 12px;border-radius:10px}
   .nav a:hover{background:#eef2f6;color:var(--green-dark)}
+  .actions{display:flex;align-items:center;gap:10px;flex:none;margin-inline-start:auto}
   .lang{display:inline-flex;gap:2px;background:#fff;border:1px solid var(--line);
     border-radius:999px;padding:3px}
   .lang button{border:0;background:transparent;font:700 12.5px/1 var(--body);color:var(--muted);
@@ -116,7 +117,19 @@
   .btn.ghost{background:#fff;color:var(--ink);border-color:var(--line-strong)}
   .btn.ghost:hover{border-color:var(--green);color:var(--green-dark)}
   .btn.sm{min-height:40px;padding:9px 16px;font-size:14px}
-  @media(min-width:900px){ .nav{display:flex} }
+  /* Narrow phones: the logo + toggle + CTA row is 7-8px too wide for the
+     padded content box at 360px, which eats the inline padding. Shrink it. */
+  @media(max-width:420px){
+    .bar{gap:10px}
+    .brand img{height:32px}
+    .btn.sm{padding:9px 13px;font-size:13.5px}
+    .lang button{padding:0 9px}
+    .actions{gap:8px}
+  }
+  @media(min-width:900px){
+    .nav{display:flex}
+    .actions{margin-inline-start:0;padding-inline-start:16px;border-inline-start:1px solid var(--line)}
+  }
 
   /* ── hero ── */
   .hero{padding:44px 0 20px;text-align:center}
@@ -247,14 +260,14 @@
 
   /* ── footer ── */
   footer.site{background:var(--ink);color:#c8d3de;margin-top:12px}
-  footer.site .in{padding:44px 0 32px;display:grid;gap:26px}
+  footer.site .in{padding-block:44px 32px;display:grid;gap:26px}
   @media(min-width:760px){ footer.site .in{grid-template-columns:1.6fr 1fr;gap:40px} }
   footer.site img{height:34px;width:auto;display:block}
   footer.site p.desc{margin:14px 0 0;font-size:14.5px;max-width:44ch;color:#a9b6c4}
   footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
   footer.site a{color:#c8d3de;font-size:14.5px}
   footer.site a:hover{color:#fff}
-  footer.site .legal{border-top:1px solid rgba(255,255,255,.1);padding:18px 0 26px;
+  footer.site .legal{border-top:1px solid rgba(255,255,255,.1);padding-block:18px 26px;
     font-size:13px;color:#8b9aa9;display:flex;flex-wrap:wrap;gap:12px;
     align-items:center;justify-content:space-between}
 
@@ -280,11 +293,13 @@
       <a href="#who" data-i18n="nav_who_for">למי זה מתאים</a>
       <a href="#faq" data-i18n="nav_faq">שאלות ותשובות</a>
     </nav>
-    <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-l="he" lang="he">עברית</button>
-      <button type="button" data-l="en" lang="en">EN</button>
+    <div class="actions">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-l="he" lang="he">עברית</button>
+        <button type="button" data-l="en" lang="en">EN</button>
+      </div>
+      <a class="btn primary sm" href="#contact" data-i18n="nav_cta">דברו איתנו</a>
     </div>
-    <a class="btn primary sm" href="#contact" data-i18n="nav_cta">דברו איתנו</a>
   </div>
 </header>
 
