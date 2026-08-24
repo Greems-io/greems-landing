@@ -136,8 +136,11 @@
   .badge{display:inline-block;font-weight:800;font-size:13px;color:var(--sun-ink);
     background:linear-gradient(90deg,var(--sun),var(--sun-deep));padding:7px 16px;
     border-radius:999px;box-shadow:0 4px 14px rgba(242,179,60,.32)}
-  .hero h1{font-size:2.15rem;line-height:1.16;margin:16px auto 0;max-width:20ch}
-  .hero h1 .hl{color:var(--green-dark)}
+  .hero h1{font-size:2.15rem;line-height:1.16;margin:16px auto 0;max-width:24ch}
+  .hero h1 .hl{display:block;color:var(--green-dark)}
+  /* Hebrew's first sentence wraps at 2.15rem on a narrow phone, which would
+     put the headline on three lines. */
+  @media(max-width:400px){ .hero h1{font-size:1.85rem} }
   .hero p.sub{font-size:1.08rem;color:var(--muted);max-width:620px;margin:16px auto 0}
   .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
   .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
