@@ -181,16 +181,6 @@
   .list li{display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#334155}
   .list li svg{width:17px;height:17px;flex:none;margin-top:3px;color:var(--green)}
 
-  /* ── the asymmetry: our list vs yours ── */
-  .contrast{display:grid;gap:14px;margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
-  @media(min-width:620px){ .contrast{grid-template-columns:1fr 1fr} }
-  .cbox{display:flex;align-items:baseline;gap:12px}
-  .cnum{font-family:var(--disp);font-size:2.4rem;font-weight:800;line-height:1;
-    font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
-  .cbox.us .cnum{color:var(--green-dark)}
-  .cbox.you .cnum{color:var(--sun-deep)}
-  .cbox span.lbl{color:var(--muted);font-size:14.5px}
-
   .provide{background:var(--green-soft);border-radius:26px;padding:26px}
   @media(min-width:700px){ .provide{padding:38px} }
   .provide .pgrid{display:grid;gap:14px;margin-top:22px}
@@ -418,12 +408,6 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="handle_g4_item_6">העברת חלקכם בהכנסות, מסודר ומתועד</span></li>
             </ul>
           </div>
-        </div>
-
-        <!-- Both figures are counted from the two lists on this page, not claimed. -->
-        <div class="contrast">
-          <p class="cbox us"><span class="cnum">27</span><span class="lbl" data-i18n="contrast_us">משימות אצלנו</span></p>
-          <p class="cbox you"><span class="cnum">3</span><span class="lbl" data-i18n="contrast_you">דברים אצלכם</span></p>
         </div>
       </div>
     </div>
@@ -692,8 +676,6 @@ const I18N = {
   "handle_g4_item_5": {"he":"דוח שימוש והכנסות תקופתי","en":"Periodic usage and revenue report"},
   "handle_g4_item_6": {"he":"העברת חלקכם בהכנסות, מסודר ומתועד","en":"Paying out your share of the revenue, documented"},
 
-  "contrast_us": {"he":"משימות אצלנו","en":"tasks on us"},
-  "contrast_you": {"he":"דברים אצלכם","en":"things on you"},
 
   "provide_heading": {"he":"מה אתם נותנים","en":"What you provide"},
   "provide_framing": {"he":"זאת כל הרשימה. השוו אותה לרשימה שלמעלה.","en":"That is the entire list. Compare it to the list above."},
