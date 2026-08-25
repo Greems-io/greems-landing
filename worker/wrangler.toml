@@ -1,0 +1,6 @@
+name = "greems-lead"
+main = "pipedrive-lead.js"
+compatibility_date = "2026-08-01"
+
+# PIPEDRIVE_TOKEN is intentionally absent: set it as a secret, never in this file.
+#   wrangler secret put PIPEDRIVE_TOKEN
