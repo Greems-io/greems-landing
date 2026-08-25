@@ -371,6 +371,7 @@
   .form-alert{margin:0 0 18px;padding:13px 15px;border-radius:12px;font-size:14.5px;
     border:1px solid rgba(179,38,30,.3);background:#fdf6f5;color:#b3261e;display:none}
   .form-alert[data-show]{display:block}
+  .form-alert a{color:#b3261e;text-decoration:underline;font-weight:700}
   .form-done{display:none;text-align:center;padding:8px 0}
   .form-done[data-show]{display:block}
   .form-done .tick{width:56px;height:56px;border-radius:50%;background:rgba(29,158,117,.13);
@@ -894,8 +895,6 @@ const I18N = {
   "final_cta": {"he":"דברו איתנו","en":"Talk to us"},
   "final_reassurance": {"he":"בלי עלות, בלי התחייבות ובלי איש מכירות שחוזר אליכם שוב ושוב.","en":"No cost, no commitment, and no salesperson calling you again and again."},
 
-  "contact_mailto_subject": {"he":"פנייה להתקנת עמדת טעינה","en":"EV charging enquiry"},
-  "contact_mailto_body": {"he":"שלום Greems,\n\nאני מעוניין לבדוק התקנת עמדת טעינה בנכס שלי.\n\nסוג הנכס (צימר / קמפינג / מלון בוטיק / דירה להשכרה):\nמקום (יישוב או אזור):\nמספר מקומות חניה:\nטלפון ליצירת קשר:\n\nתודה","en":"Hello Greems,\n\nI would like to look into installing an EV charging station at my property.\n\nProperty type (cabin / campground / boutique hotel / short-term rental):\nLocation (town or region):\nNumber of parking spaces:\nContact phone:\n\nThanks"},
 
   "form_heading": {"he":"נבדוק אם הנכס שלכם מתאים","en":"Let's check if your property fits"},
   "form_sub": {"he":"משאירים פרטים ואנחנו חוזרים אליכם. אין כאן התחייבות.","en":"Leave your details and we'll get back to you. No commitment."},
@@ -917,7 +916,7 @@ const I18N = {
   "form_sending": {"he":"שולח…","en":"Sending…"},
   "form_ok_title": {"he":"קיבלנו. תודה.","en":"Got it. Thank you."},
   "form_ok_body": {"he":"נחזור אליכם בהקדם.","en":"We'll be in touch shortly."},
-  "form_error": {"he":"משהו נתקע ולא הצלחנו לשלוח. נסו שוב, או כתבו לנו ל-sales@greems.io","en":"Something went wrong and we couldn't send it. Try again, or email sales@greems.io"},
+  "form_error": {"he":"משהו נתקע ולא הצלחנו לשלוח. נסו שוב, או כתבו לנו ל<a href=\"mailto:sales@greems.io\" dir=\"ltr\">sales@greems.io</a>","en":"Something went wrong and we couldn't send it. Try again, or email <a href=\"mailto:sales@greems.io\">sales@greems.io</a>"},
   "form_consent": {"he":"בשליחת הטופס אתם מאשרים שנחזור אליכם בטלפון או במייל בנוגע להתקנת עמדת טעינה בנכס.","en":"By submitting, you agree that we may contact you by phone or email about installing a charging station at your property."},
   "footer_description": {"he":"Greems מפעילה רשת טעינה לרכב חשמלי — מתקינה, מתחזקת ומנהלת עמדות טעינה עבור בעלי נכסים.","en":"Greems operates an EV charging network — installing, maintaining and running charging stations on behalf of property owners."},
   "footer_link_1": {"he":"מה אנחנו עושים","en":"What we handle"},
@@ -927,7 +926,6 @@ const I18N = {
   "footer_legal": {"he":"‏© 2026 Greems. כל הזכויות שמורות.","en":"© 2026 Greems. All rights reserved."}
 };
 
-var MAILTO = "sales@greems.io";
 
 function setLang(l){
   LANG = l;
@@ -946,13 +944,6 @@ function setLang(l){
   var md = document.querySelector('meta[name="description"]');
   if (md && I18N.seo_description[l]) md.setAttribute('content', I18N.seo_description[l]);
 
-  // Rebuild the mailto with a localised subject and prefilled body.
-  var href = 'mailto:' + MAILTO
-    + '?subject=' + encodeURIComponent(I18N.contact_mailto_subject[l])
-    + '&body=' + encodeURIComponent(I18N.contact_mailto_body[l]);
-  document.querySelectorAll('[data-mailto]').forEach(function(el){
-    el.setAttribute('href', href);
-  });
 
   document.querySelectorAll('.lang button').forEach(function(b){
     var on = b.getAttribute('data-l') === l;
