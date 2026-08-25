@@ -386,7 +386,7 @@
         <button type="button" data-l="he" lang="he">עברית</button>
         <button type="button" data-l="en" lang="en">EN</button>
       </div>
-      <a class="btn primary sm" href="#contact" data-i18n="nav_cta">דברו איתנו</a>
+      <a class="btn primary sm" href="mailto:sales@greems.io" data-mailto data-i18n="nav_cta">דברו איתנו</a>
     </div>
   </div>
 </header>
@@ -399,7 +399,7 @@
     <h1 data-i18n="hero_h1">אנחנו עושים הכול. <span class="hl">אתם רק מקבלים את הכסף.</span></h1>
     <p class="sub" data-i18n="hero_sub">Greems מתקינה ומפעילה עמדת טעינה לרכב חשמלי בנכס שלכם — סקר חשמל, התקנה, תמיכה ללקוחות והתחשבנות.<br>אתם נותנים מקום חניה וגישה לחשמל, ומקבלים חלק מההכנסות.</p>
     <div class="ctas">
-      <a class="btn primary" href="#contact" data-i18n="hero_cta_primary">בדקו אם הנכס שלכם מתאים</a>
+      <a class="btn primary" href="mailto:sales@greems.io" data-mailto data-i18n="hero_cta_primary">בדקו אם הנכס שלכם מתאים</a>
       <a class="btn ghost" href="#handle" data-i18n="hero_cta_secondary">מה אנחנו עושים בפועל</a>
     </div>
     <div class="chips">
@@ -620,10 +620,10 @@
       <div class="final rv">
         <div class="in">
           <p class="eyebrow" data-i18n="final_eyebrow">הצעד הראשון</p>
-          <h2 data-i18n="final_heading">נבדוק אם הנכס שלכם מתאים</h2>
+          <h2 data-i18n="final_heading">בואו נבדוק אם הנכס שלכם מתאים</h2>
           <p data-i18n="final_body">שיחה קצרה, כמה שאלות על החניה ועל החשמל, ותשובה ישרה. אם זה לא מתאים, נגיד לכם.</p>
           <div class="ctas">
-            <a class="btn primary" href="#contact" data-i18n="final_cta">דברו איתנו</a>
+            <a class="btn primary" href="mailto:sales@greems.io" data-mailto data-i18n="final_cta">דברו איתנו</a>
           </div>
           <small data-i18n="final_reassurance">בלי עלות, בלי התחייבות ובלי איש מכירות שחוזר אליכם שוב ושוב.</small>
         </div>
@@ -631,15 +631,6 @@
     </div>
   </section>
 
-  <!-- ── contact ── -->
-  <section id="contact">
-    <div class="wrap contact">
-      <h2 data-i18n="contact_heading">מדברים איתנו במייל</h2>
-      <p style="color:var(--muted);margin-top:12px" data-i18n="contact_body">כתבו לנו כמה מילים על הנכס ונחזור אליכם עם תשובה ראשונית ועם השאלות שנשארו. אין כאן טופס — מייל אחד מספיק.</p>
-      <p class="mail"><a class="btn primary" id="mailto-btn" href="mailto:sales@greems.io"><span data-i18n="contact_mailto_label">שלחו מייל ל-sales@greems.io</span></a></p>
-      <p class="hint" data-i18n="contact_body_hint">ספרו לנו סוג נכס, מקום ומספר מקומות חניה. זה מספיק לשיחה ראשונה.</p>
-    </div>
-  </section>
 
 </main>
 
@@ -654,7 +645,7 @@
         <li><a href="#handle" data-i18n="footer_link_1">מה אנחנו עושים</a></li>
         <li><a href="#steps" data-i18n="footer_link_2">איך זה עובד</a></li>
         <li><a href="#faq" data-i18n="footer_link_3">שאלות ותשובות</a></li>
-        <li><a href="#contact" data-i18n="footer_link_4">צרו קשר</a></li>
+        <li><a href="mailto:sales@greems.io" data-mailto data-i18n="footer_link_4">צרו קשר</a></li>
       </ul>
     </nav>
   </div>
@@ -803,17 +794,13 @@ const I18N = {
   "faq_8_a": {"he":"הוא נשאר כמו שהוא. הטעינה נמדדת בנפרד ומחויבת אלינו, כך שהחשמל של האורחים לא נכנס לחשבון של הנכס.","en":"It stays as it is. Charging is metered separately and billed to us, so guest charging does not land on the property's bill."},
 
   "final_eyebrow": {"he":"הצעד הראשון","en":"The first step"},
-  "final_heading": {"he":"נבדוק אם הנכס שלכם מתאים","en":"Let's check if your property fits"},
+  "final_heading": {"he":"בואו נבדוק אם הנכס שלכם מתאים","en":"Let's check if your property fits"},
   "final_body": {"he":"שיחה קצרה, כמה שאלות על החניה ועל החשמל, ותשובה ישרה. אם זה לא מתאים, נגיד לכם.","en":"A short call, a few questions about the parking and the power, and a straight answer. If it is not a fit, we will tell you."},
   "final_cta": {"he":"דברו איתנו","en":"Talk to us"},
   "final_reassurance": {"he":"בלי עלות, בלי התחייבות ובלי איש מכירות שחוזר אליכם שוב ושוב.","en":"No cost, no commitment, and no salesperson calling you again and again."},
 
-  "contact_heading": {"he":"מדברים איתנו במייל","en":"Get in touch by email"},
-  "contact_body": {"he":"כתבו לנו כמה מילים על הנכס ונחזור אליכם עם תשובה ראשונית ועם השאלות שנשארו. אין כאן טופס — מייל אחד מספיק.","en":"Send us a few lines about the property and we will come back with a first answer and whatever questions remain. There is no form here — one email is enough."},
-  "contact_mailto_label": {"he":"שלחו מייל ל-sales@greems.io","en":"Email sales@greems.io"},
   "contact_mailto_subject": {"he":"פנייה להתקנת עמדת טעינה","en":"EV charging enquiry"},
   "contact_mailto_body": {"he":"שלום Greems,\n\nאני מעוניין לבדוק התקנת עמדת טעינה בנכס שלי.\n\nסוג הנכס (צימר / קמפינג / מלון בוטיק / דירה להשכרה):\nמקום (יישוב או אזור):\nמספר מקומות חניה:\nטלפון ליצירת קשר:\n\nתודה","en":"Hello Greems,\n\nI would like to look into installing an EV charging station at my property.\n\nProperty type (cabin / campground / boutique hotel / short-term rental):\nLocation (town or region):\nNumber of parking spaces:\nContact phone:\n\nThanks"},
-  "contact_body_hint": {"he":"ספרו לנו סוג נכס, מקום ומספר מקומות חניה. זה מספיק לשיחה ראשונה.","en":"Tell us the property type, the location and how many parking spaces. That is enough for a first conversation."},
 
   "footer_description": {"he":"Greems מפעילה רשת טעינה לרכב חשמלי — מתקינה, מתחזקת ומנהלת עמדות טעינה עבור בעלי נכסים.","en":"Greems operates an EV charging network — installing, maintaining and running charging stations on behalf of property owners."},
   "footer_link_1": {"he":"מה אנחנו עושים","en":"What we handle"},
@@ -845,8 +832,9 @@ function setLang(l){
   var href = 'mailto:' + MAILTO
     + '?subject=' + encodeURIComponent(I18N.contact_mailto_subject[l])
     + '&body=' + encodeURIComponent(I18N.contact_mailto_body[l]);
-  var mb = document.getElementById('mailto-btn');
-  if (mb) mb.setAttribute('href', href);
+  document.querySelectorAll('[data-mailto]').forEach(function(el){
+    el.setAttribute('href', href);
+  });
 
   document.querySelectorAll('.lang button').forEach(function(b){
     var on = b.getAttribute('data-l') === l;
