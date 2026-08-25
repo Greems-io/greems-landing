@@ -347,10 +347,6 @@
   .mono{direction:ltr;unicode-bidi:isolate}
 
   /* ── lead form ── */
-  .formwrap{max-width:560px;margin:0 auto}
-  .card-form{background:var(--panel);border:1px solid var(--line);border-radius:22px;
-    padding:26px 22px;box-shadow:0 6px 24px rgba(15,23,42,.06)}
-  @media(min-width:600px){ .card-form{padding:32px} }
   .fld{margin-bottom:18px}
   .fld:last-of-type{margin-bottom:0}
   .fld label{display:block;font-weight:700;font-size:14.5px;margin-bottom:7px;color:var(--ink)}
@@ -380,6 +376,23 @@
   .form-done h3{font-size:1.15rem;margin-bottom:8px}
   .form-done h3:focus-visible{outline:none}
   .form-done p{margin:0;color:var(--muted);font-size:15px}
+
+  /* ── lead dialog ── */
+  #lead-dialog{border:0;padding:0;background:transparent;max-width:min(540px,calc(100vw - 28px));
+    width:100%;max-height:calc(100dvh - 40px);overflow:visible}
+  #lead-dialog::backdrop{background:rgba(15,23,42,.55);backdrop-filter:blur(2px)}
+  .dlg-card{position:relative;background:var(--panel);border-radius:22px;padding:30px 22px 26px;
+    box-shadow:0 24px 60px rgba(15,23,42,.28);max-height:calc(100dvh - 40px);overflow-y:auto;
+    text-align:start}
+  @media(min-width:600px){ .dlg-card{padding:34px 32px 30px} }
+  .dlg-card h2{font-size:1.4rem;line-height:1.3;margin:0 0 8px;padding-inline-end:36px}
+  .dlg-sub{margin:0 0 22px;color:var(--muted);font-size:15px}
+  .dlg-close{position:absolute;inset-inline-end:12px;top:12px;width:40px;height:40px;
+    display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;
+    background:transparent;color:var(--dim);cursor:pointer;transition:background .15s,color .15s}
+  .dlg-close:hover{background:#eef2f6;color:var(--ink)}
+  .dlg-close svg{width:20px;height:20px}
+  html.dlg-open{overflow:hidden}
 
   /* ── footer ── */
   footer.site{background:var(--ink);color:#c8d3de;margin-top:12px}
@@ -421,7 +434,7 @@
         <button type="button" data-l="he" lang="he">עברית</button>
         <button type="button" data-l="en" lang="en">EN</button>
       </div>
-      <a class="btn primary sm" href="#contact" data-i18n="nav_cta">דברו איתנו</a>
+      <a class="btn primary sm" href="mailto:sales@greems.io" data-open-form data-i18n="nav_cta">דברו איתנו</a>
     </div>
   </div>
 </header>
@@ -434,7 +447,7 @@
     <h1 data-i18n="hero_h1">אנחנו עושים הכול. <span class="hl">אתם רק מקבלים את הכסף.</span></h1>
     <p class="sub" data-i18n="hero_sub">Greems מתקינה ומפעילה עמדת טעינה לרכב חשמלי בנכס שלכם — סקר חשמל, התקנה, תמיכה ללקוחות והתחשבנות.<br>אתם נותנים מקום חניה וגישה לחשמל, ומקבלים חלק מההכנסות.</p>
     <div class="ctas">
-      <a class="btn primary" href="#contact" data-i18n="hero_cta_primary">בדקו אם הנכס שלכם מתאים</a>
+      <a class="btn primary" href="mailto:sales@greems.io" data-open-form data-i18n="hero_cta_primary">בדקו אם הנכס שלכם מתאים</a>
       <a class="btn ghost" href="#handle" data-i18n="hero_cta_secondary">מה אנחנו עושים בפועל</a>
     </div>
     <div class="chips">
@@ -658,7 +671,7 @@
           <h2 data-i18n="final_heading">בואו נבדוק אם הנכס שלכם מתאים</h2>
           <p data-i18n="final_body">שיחה קצרה, כמה שאלות על החניה ועל החשמל, ותשובה ישרה. אם זה לא מתאים, נגיד לכם.</p>
           <div class="ctas">
-            <a class="btn primary" href="#contact" data-i18n="final_cta">דברו איתנו</a>
+            <a class="btn primary" href="mailto:sales@greems.io" data-open-form data-i18n="final_cta">דברו איתנו</a>
           </div>
           <small data-i18n="final_reassurance">בלי עלות, בלי התחייבות ובלי איש מכירות שחוזר אליכם שוב ושוב.</small>
         </div>
@@ -669,16 +682,19 @@
 
 </main>
 
-  <!-- ── lead form ── -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="shead rv">
-        <h2 data-i18n="form_heading">נבדוק אם הנכס שלכם מתאים</h2>
-        <p data-i18n="form_sub">משאירים פרטים ואנחנו חוזרים אליכם. אין כאן התחייבות.</p>
-      </div>
 
-      <div class="formwrap rv">
-        <div class="card-form">
+<!-- ── lead form, opened from any CTA ─────────────────────────────────────
+     Native <dialog> so focus trapping, Escape and focus restoration come
+     from the browser rather than hand-rolled JS. -->
+<dialog id="lead-dialog" aria-labelledby="lead-dialog-title">
+  <div class="dlg-card">
+    <button type="button" class="dlg-close" data-close-form>
+      <span class="sr" data-i18n="form_close">סגירה</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <h2 id="lead-dialog-title" data-i18n="form_heading">נבדוק אם הנכס שלכם מתאים</h2>
+    <p class="dlg-sub" data-i18n="form_sub">משאירים פרטים ואנחנו חוזרים אליכם. אין כאן התחייבות.</p>
+
           <div class="form-alert" id="form-alert" role="alert"><span data-i18n="form_error"></span></div>
 
           <form id="lead-form" novalidate>
@@ -724,11 +740,10 @@
             <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
             <h3 tabindex="-1" data-i18n="form_ok_title">קיבלנו. תודה.</h3>
             <p data-i18n="form_ok_body">נחזור אליכם בהקדם.</p>
+            <button type="button" class="btn ghost" style="margin-top:20px" data-close-form data-i18n="form_done_close">סגירה</button>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</dialog>
 
 <footer class="site">
   <div class="wrap in">
@@ -741,7 +756,7 @@
         <li><a href="#handle" data-i18n="footer_link_1">מה אנחנו עושים</a></li>
         <li><a href="#steps" data-i18n="footer_link_2">איך זה עובד</a></li>
         <li><a href="#faq" data-i18n="footer_link_3">שאלות ותשובות</a></li>
-        <li><a href="#contact" data-i18n="footer_link_4">צרו קשר</a></li>
+        <li><a href="mailto:sales@greems.io" data-open-form data-i18n="footer_link_4">צרו קשר</a></li>
       </ul>
     </nav>
   </div>
@@ -918,6 +933,8 @@ const I18N = {
   "form_ok_body": {"he":"נחזור אליכם בהקדם.","en":"We'll be in touch shortly."},
   "form_error": {"he":"משהו נתקע ולא הצלחנו לשלוח. נסו שוב, או כתבו לנו ל<a href=\"mailto:sales@greems.io\" dir=\"ltr\">sales@greems.io</a>","en":"Something went wrong and we couldn't send it. Try again, or email <a href=\"mailto:sales@greems.io\">sales@greems.io</a>"},
   "form_consent": {"he":"בשליחת הטופס אתם מאשרים שנחזור אליכם בטלפון או במייל בנוגע להתקנת עמדת טעינה בנכס.","en":"By submitting, you agree that we may contact you by phone or email about installing a charging station at your property."},
+  "form_close": {"he":"סגירה","en":"Close"},
+  "form_done_close": {"he":"סגירה","en":"Close"},
   "footer_description": {"he":"Greems מפעילה רשת טעינה לרכב חשמלי — מתקינה, מתחזקת ומנהלת עמדות טעינה עבור בעלי נכסים.","en":"Greems operates an EV charging network — installing, maintaining and running charging stations on behalf of property owners."},
   "footer_link_1": {"he":"מה אנחנו עושים","en":"What we handle"},
   "footer_link_2": {"he":"איך זה עובד","en":"How it works"},
@@ -984,6 +1001,68 @@ var LANG = 'he';
     el.style.transitionDelay = (Math.min(i, 6) * 40) + 'ms';
     io.observe(el);
   });
+})();
+
+/* ── dialog open/close ──────────────────────────────────────────────────
+   The CTAs are real mailto links, so they still work with JS disabled; when
+   JS is present we intercept and open the dialog instead. <dialog> handles
+   focus trapping, Escape and returning focus to the trigger itself. */
+(function(){
+  var dlg = document.getElementById('lead-dialog');
+  if (!dlg) return;
+
+  function open(e){
+    if (e) e.preventDefault();
+    if (typeof dlg.showModal !== 'function') return; // no support: let the mailto happen
+    resetForm();
+    dlg.showModal();
+    document.documentElement.classList.add('dlg-open');
+    var first = dlg.querySelector('#lf-name');
+    if (first) first.focus();
+  }
+
+  function unlock(){
+    document.documentElement.classList.remove('dlg-open');
+  }
+
+  function close(){
+    dlg.close();
+    // Release the scroll lock here rather than relying solely on the 'close'
+    // event: it does not fire in every engine, and a page stuck unscrollable
+    // is far worse than releasing twice.
+    unlock();
+  }
+
+  function resetForm(){
+    var form = document.getElementById('lead-form');
+    var done = document.getElementById('form-done');
+    var alertBox = document.getElementById('form-alert');
+    if (!form) return;
+    // A previous send leaves the success panel showing; start clean each time.
+    if (done && done.hasAttribute('data-show')) {
+      done.removeAttribute('data-show');
+      form.style.display = '';
+      form.reset();
+      dlg.querySelectorAll('.fld[data-invalid]').forEach(function(f){ f.removeAttribute('data-invalid'); });
+    }
+    if (alertBox) alertBox.removeAttribute('data-show');
+  }
+
+  document.querySelectorAll('[data-open-form]').forEach(function(el){
+    el.addEventListener('click', open);
+  });
+  document.querySelectorAll('[data-close-form]').forEach(function(el){
+    el.addEventListener('click', close);
+  });
+
+  // Clicking the backdrop closes it. The dialog element itself fills the
+  // backdrop area, so a click landing on it rather than the card is outside.
+  dlg.addEventListener('click', function(e){ if (e.target === dlg) close(); });
+
+  // Escape fires 'cancel' then 'close'; both are covered, and so is the
+  // programmatic path above.
+  dlg.addEventListener('cancel', unlock);
+  dlg.addEventListener('close', unlock);
 })();
 
 /* ── lead form → Pipedrive (via the Worker; the token never reaches the browser) ── */
