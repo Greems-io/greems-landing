@@ -1065,8 +1065,36 @@ var LANG = 'he';
   dlg.addEventListener('close', unlock);
 })();
 
-/* ── lead form → Pipedrive (via the Worker; the token never reaches the browser) ── */
-var LEAD_ENDPOINT = ""; /* TODO: paste the deployed Worker URL here */
+/* ── lead form → Pipedrive ───────────────────────────────────────────────
+   Called straight from the browser, so this token is PUBLIC: anyone viewing
+   the source of this page can read it and use it against the Pipedrive API.
+   It is deliberately shipped this way. If that ever needs fixing, move these
+   three calls behind a server (see lead-service/ in this repo) and the only
+   change here is swapping pd() for one fetch to that service. */
+var PIPEDRIVE_TOKEN = "e4b7174d94279159fc4e9ef096d6cfd175956e2f";
+var PIPEDRIVE_API = "https://api.pipedrive.com/v1/";
+
+/* English labels for the Lead title, independent of the visitor's language. */
+var PLACE_EN = {
+  camping: "Campground / glamping",
+  cabin: "Tzimmer / cabin",
+  hotel: "Boutique hotel / guesthouse",
+  airbnb: "Airbnb apartment",
+  other: "Other"
+};
+
+function pd(path, payload){
+  return fetch(PIPEDRIVE_API + path, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'x-api-token': PIPEDRIVE_TOKEN},
+    body: JSON.stringify(payload)
+  }).then(function(r){
+    return r.json().catch(function(){ return {}; }).then(function(b){
+      if (!r.ok || b.success === false) throw new Error(path + ' ' + r.status);
+      return b.data;
+    });
+  });
+}
 
 (function(){
   var form = document.getElementById('lead-form');
@@ -1114,28 +1142,39 @@ var LEAD_ENDPOINT = ""; /* TODO: paste the deployed Worker URL here */
     });
     if (firstBad) { firstBad.focus(); return; }
 
-    if (!LEAD_ENDPOINT) { alertBox.setAttribute('data-show',''); return; }
-
     busy = true;
     alertBox.removeAttribute('data-show');
     submit.disabled = true;
     submit.setAttribute('aria-busy','true');
     submit.textContent = I18N.form_sending[LANG] || 'שולח…';
 
-    fetch(LEAD_ENDPOINT, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        name: values.name.trim(),
-        phone: values.phone.trim(),
-        email: values.email.trim(),
-        place: values.place,
-        placeLabel: (I18N['form_place_' + values.place] || {})[LANG] || values.place,
-        locale: LANG,
-        company: form.elements.company.value /* honeypot */
-      })
-    })
-    .then(function(r){ if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+    var name  = values.name.trim();
+    var phone = values.phone.trim();
+    var email = values.email.trim();
+    var place = values.place;
+    var label = PLACE_EN[place] || place;
+
+    /* Honeypot: a bot filled a field no person can see. Show success so it
+       stops retrying, and send nothing. */
+    var isBot = form.elements.company.value.trim() !== '';
+
+    (isBot ? Promise.resolve() : pd('persons', {
+      name: name,
+      email: [{value: email, primary: true}],
+      phone: [{value: phone, primary: true}]
+    }).then(function(person){
+      return pd('leads', {title: name + ' — ' + label, person_id: person.id});
+    }).then(function(lead){
+      /* The lead already exists; a failed note should not fail the submission. */
+      return pd('notes', {
+        lead_id: lead.id,
+        content: '<b>Source:</b> lp.greems.io/host/<br>'
+               + '<b>Type of place:</b> ' + label + ' (' + place + ')<br>'
+               + '<b>Phone:</b> ' + phone + '<br>'
+               + '<b>Email:</b> ' + email + '<br>'
+               + '<b>Form language:</b> ' + LANG
+      }).catch(function(){ /* ignore */ });
+    }))
     .then(function(){
       form.style.display = 'none';
       done.setAttribute('data-show','');
