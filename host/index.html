@@ -409,6 +409,7 @@
   footer.site .legal{border-top:1px solid rgba(255,255,255,.1);padding-block:18px 26px;
     font-size:13px;color:#8b9aa9;display:flex;flex-wrap:wrap;gap:12px;
     align-items:center;justify-content:space-between}
+  footer.site .legal .lgroup{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
 
   /* scroll reveal — house pattern */
   .rv{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
@@ -762,7 +763,10 @@
     </nav>
   </div>
   <div class="wrap legal">
-    <span data-i18n="footer_legal">‏© 2026 Greems. כל הזכויות שמורות.</span>
+    <span class="lgroup">
+      <span data-i18n="footer_legal">‏© 2026 Greems. כל הזכויות שמורות.</span>
+      <span data-i18n="footer_privacy"><a href="https://www.greems.io/he/privacy-policy/">מדיניות פרטיות</a></span>
+    </span>
     <a href="https://greems.io" class="mono">greems.io</a>
   </div>
 </footer>
@@ -935,6 +939,7 @@ const I18N = {
   "form_close": {"he":"סגירה","en":"Close"},
   "form_done_close": {"he":"סגירה","en":"Close"},
   "footer_description": {"he":"Greems מפעילה רשת טעינה לרכב חשמלי — מתקינה, מתחזקת ומנהלת עמדות טעינה עבור בעלי נכסים.","en":"Greems operates an EV charging network — installing, maintaining and running charging stations on behalf of property owners."},
+  "footer_privacy": {"he":"<a href=\"https://www.greems.io/he/privacy-policy/\">מדיניות פרטיות</a>","en":"<a href=\"https://www.greems.io/privacy-policy/\">Privacy policy</a>"},
   "footer_link_1": {"he":"מה אנחנו עושים","en":"What we handle"},
   "footer_link_2": {"he":"איך זה עובד","en":"How it works"},
   "footer_link_3": {"he":"שאלות ותשובות","en":"FAQ"},
