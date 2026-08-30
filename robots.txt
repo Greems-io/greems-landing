@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /campaign/
 
 Sitemap: https://lp.greems.io/sitemap.xml
-
-Disallow: /campaign/
