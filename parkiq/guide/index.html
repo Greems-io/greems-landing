@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 </head>
 <body>
-<div style="max-width:760px;margin:0 auto;padding:12px 18px 0"><a href="../" style="font:700 13px -apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1D9E75;text-decoration:none">&larr; ParkIQ workplace charging</a></div>
+<div style="max-width:760px;margin:0 auto;padding:12px 18px 0"><a href="../" style="font:700 13px -apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1D9E75;text-decoration:none" data-i18n="g_back">&larr; ParkIQ workplace charging</a></div>
 <style>
   :root{
     --green:#1D9E75; --green-deep:#085041; --teal:#9FE1CB;
@@ -195,6 +195,11 @@
   .qr .cap b{display:block;font-size:15px;color:var(--ink);margin-bottom:2px}
   .qr .cap span{font-size:13px;color:var(--muted)}
 
+  .lang{display:flex;gap:2px;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px;margin-inline-start:auto}
+  .lang b{font:600 12px/1 var(--sans);color:var(--muted);padding:7px 11px;border-radius:999px;cursor:pointer;transition:.15s}
+  .lang b.on{background:var(--green);color:#05130D}
+  .lang b:hover:not(.on){color:var(--ink)}
+
   .track{display:none}
   .track.on{display:block;animation:fade .3s ease}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -213,246 +218,251 @@
       <span class="eb">GREEMS</span>
       <span class="wm">Park<em>IQ</em></span>
     </div>
+    <div class="lang" role="group" aria-label="Language">
+      <b data-l="en" class="on" onclick="setLang('en')">EN</b>
+      <b data-l="he" onclick="setLang('he')">עב</b>
+    </div>
   </div>
 
   <div class="toggle" role="tablist" aria-label="Choose guide">
     <button id="tab-owner" class="on" role="tab" aria-selected="true" onclick="pick('owner')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h8V3H3zM13 21h8V3h-8zM3 21h8v-6H3z" stroke-linejoin="round"/></svg>
-      Owner guide
+      <span data-i18n="g_tab_owner">Owner guide</span>
     </button>
     <button id="tab-driver" role="tab" aria-selected="false" onclick="pick('driver')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6z" stroke-linejoin="round"/></svg>
-      Driver guide
+      <span data-i18n="g_tab_driver">Driver guide</span>
     </button>
   </div>
 
   <!-- ============ OWNER ============ -->
   <div class="track on" id="track-owner">
     <div class="hero">
-      <div class="eb">Owner &amp; Manager</div>
-      <h1>Fair charging, for every employee.</h1>
-      <p>You own the chargers and your staff charge for free. With fewer bays than drivers, ParkIQ keeps them moving — live status, hands-on controls, advance booking and fair-use limits — so everyone gets a turn. The manager view is built for a laptop; the employee app is mobile-first.</p>
+      <div class="eb" data-i18n="g_ow_eb">Owner &amp; Manager</div>
+      <h1 data-i18n="g_ow_h1">Fair charging, for every employee.</h1>
+      <p data-i18n="g_ow_p">You own the chargers and your staff charge for free. With fewer bays than drivers, ParkIQ keeps them moving — live status, hands-on controls, advance booking and fair-use limits — so everyone gets a turn. The manager view is built for a laptop; the employee app is mobile-first.</p>
     </div>
 
     <div class="card" style="border-color:var(--green);background:var(--soft);margin-top:4px">
       <ul class="feat">
-        <li><span class="ic">🔌</span><span class="tx"><b>Your chargers, free for staff</b><span>No payments, no billing — this is about access, not money.</span></span></li>
-        <li><span class="ic">📅</span><span class="tx"><b>Book ahead, fair by design</b><span>Employees reserve a half-day slot, so a charger is waiting — no circling the car park.</span></span></li>
-        <li><span class="ic">🎛️</span><span class="tx"><b>Hands-on control</b><span>Start, stop or reset any charger, and see exactly who’s plugged in right now.</span></span></li>
+        <li><span class="ic">🔌</span><span class="tx"><b data-i18n="g_owf1_t">Your chargers, free for staff</b><span data-i18n="g_owf1_d">No payments, no billing — this is about access, not money.</span></span></li>
+        <li><span class="ic">📅</span><span class="tx"><b data-i18n="g_owf2_t">Book ahead, fair by design</b><span data-i18n="g_owf2_d">Employees reserve a half-day slot, so a charger is waiting — no circling the car park.</span></span></li>
+        <li><span class="ic">🎛️</span><span class="tx"><b data-i18n="g_owf3_t">Hands-on control</b><span data-i18n="g_owf3_d">Start, stop or restart any charger, and see exactly who’s plugged in right now.</span></span></li>
       </ul>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">1</span><h2>Sign in</h2></div>
-      <div class="lead">Sign in with your work email — no password, no waiting.</div>
+      <div class="sec-h"><span class="ix">1</span><h2 data-i18n="g_hd_signin">Sign in</h2></div>
+      <div class="lead" data-i18n="g_ow_s1_lead">Sign in with your work email — no password, no waiting.</div>
       <div class="card">
         <ol class="steps">
-          <li><span class="st">Open the manager portal on your laptop.</span></li>
-          <li><span class="st">Enter your <b>@corporate.com</b> email.</span></li>
-          <li><span class="st">You're in — approved emails sign in instantly. <span class="pill live">no email link</span></span></li>
+          <li><span class="st" data-i18n="g_ow_s1_step1">Open the manager portal on your laptop.</span></li>
+          <li><span class="st" data-i18n="g_ow_s1_step2">Enter your <b>@corporate.com</b> email.</span></li>
+          <li><span class="st" data-i18n="g_ow_s1_step3">You're in — approved emails sign in instantly.</span> <span class="pill live" data-i18n="g_pill_noemail">no email link</span></li>
         </ol>
-        <div class="note"><b>You decide who gets in.</b> Approve a whole company domain, import a list of specific addresses, or both — and choose instant sign-in or a one-tap email link for extra verification. A separate <b>Managers</b> list controls who can open this manager view; everyone else gets the employee app.</div>
+        <div class="note" data-i18n="g_ow_s1_note"><b>You decide who gets in.</b> Approve a whole company domain, import a list of specific addresses (or upload an .xlsx), or both — and choose instant sign-in or a one-tap email link for extra verification. A separate <b>Managers</b> list controls who can open this manager view; everyone else gets the employee app.</div>
+        <div class="note" data-i18n="g_ow_s1_note2">Or let employees sign in with their <b>Microsoft work account</b> (Entra ID / Azure AD) once your IT team sets it up. Managers always keep the email sign-in too, so a directory problem never locks you out — Microsoft proves who someone is, the pool still decides who's approved.</div>
       </div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">2</span><h2>Overview</h2></div>
-      <div class="lead">Your month at a glance — active users and energy delivered — right above the live bays.</div>
+      <div class="sec-h"><span class="ix">2</span><h2 data-i18n="g_hd_overview">Overview</h2></div>
+      <div class="lead" data-i18n="g_ow_s2_lead">Your month at a glance — active users and energy delivered — right above the live bays.</div>
       <div class="card">
         <div class="stats">
-          <div class="stat"><div class="n">36</div><div class="l">End-users</div></div>
-          <div class="stat"><div class="n">147</div><div class="l">Sessions</div></div>
+          <div class="stat"><div class="n">36</div><div class="l" data-i18n="g_lbl_endusers">End-users</div></div>
+          <div class="stat"><div class="n">147</div><div class="l" data-i18n="g_lbl_sessions">Sessions</div></div>
           <div class="stat"><div class="n">3,671</div><div class="l">kWh</div></div>
         </div>
-        <div class="note">Rolling last 30 days · <span class="pill live">example figures</span>. A left sidebar switches between Overview, Chargers, Booking, Scheduler, Time violations, Reports, Access and Managers.</div>
+        <div class="note"><span data-i18n="g_ow_s2_note1">Rolling last 30 days</span> · <span class="pill live" data-i18n="g_pill_example">example figures</span>. <span data-i18n="g_ow_s2_note2">A left sidebar switches between Overview, Chargers, Reports, Scheduler, Booking, Time violations, Access &amp; login and Managers.</span></div>
       </div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">3</span><h2>Live bays &amp; controls</h2></div>
-      <div class="lead">See which chargers are free, busy or need attention — and act on any of them in a tap.</div>
+      <div class="sec-h"><span class="ix">3</span><h2 data-i18n="g_hd_livebays">Live bays &amp; controls</h2></div>
+      <div class="lead" data-i18n="g_ow_s3_lead">See which chargers are free, busy or need attention — and act on any of them in a tap.</div>
       <div class="card">
         <div class="legend">
-          <span class="it"><span class="dot d-av"></span>Available</span>
-          <span class="it"><span class="dot d-ch"></span>Charging</span>
-          <span class="it"><span class="dot d-fa"></span>Fault</span>
+          <span class="it"><span class="dot d-av"></span><span data-i18n="g_leg_avail">Available</span></span>
+          <span class="it"><span class="dot d-ch"></span><span data-i18n="g_leg_charging">Charging</span></span>
+          <span class="it"><span class="dot d-fa"></span><span data-i18n="g_leg_fault">Fault</span></span>
         </div>
-        <div class="sample-cap">Example — live grid</div>
+        <div class="sample-cap" data-i18n="g_ow_s3_samplecap">Example — live grid</div>
         <div class="baygrid">
-          <div class="bay av"><div class="bn" dir="auto">Bay 01</div><div class="bs">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
-          <div class="bay ch"><div class="bn" dir="auto">Bay 02</div><div class="bs">Charging</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
-          <div class="bay av"><div class="bn" dir="auto">Bay 03</div><div class="bs">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
-          <div class="bay fa"><div class="bn" dir="auto">Bay 04</div><div class="bs">Fault</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
-          <div class="bay av"><div class="bn" dir="auto">Bay 05</div><div class="bs">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
-          <div class="bay ch"><div class="bn" dir="auto">Bay 06 · DC</div><div class="bs">Charging</div><div class="bm"><span class="mi dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><circle cx="9.7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="14.3" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18" r="3"/><circle cx="15.5" cy="18" r="3"/></svg></span>CCS2 · DC</div></div>
+          <div class="bay av"><div class="bn" dir="auto">Bay 01</div><div class="bs" data-i18n="g_leg_avail">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay ch"><div class="bn" dir="auto">Bay 02</div><div class="bs" data-i18n="g_leg_charging">Charging</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay av"><div class="bn" dir="auto">Bay 03</div><div class="bs" data-i18n="g_leg_avail">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay fa"><div class="bn" dir="auto">Bay 04</div><div class="bs" data-i18n="g_leg_fault">Fault</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay av"><div class="bn" dir="auto">Bay 05</div><div class="bs" data-i18n="g_leg_avail">Available</div><div class="bm"><span class="mi ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>Type 2 · AC 22kW</div></div>
+          <div class="bay ch"><div class="bn" dir="auto">Bay 06 · DC</div><div class="bs" data-i18n="g_leg_charging">Charging</div><div class="bm"><span class="mi dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><circle cx="9.7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="14.3" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18" r="3"/><circle cx="15.5" cy="18" r="3"/></svg></span>CCS2 · DC</div></div>
         </div>
         <ul class="feat" style="margin-top:16px">
-          <li><span class="ic">▶️</span><span class="tx"><b>Start</b><span>Kick off a charge on any free bay.</span></span></li>
-          <li><span class="ic">⏹️</span><span class="tx"><b>Stop</b><span>End whatever session is running on a bay — even a walk-up.</span></span></li>
-          <li><span class="ic">🔄</span><span class="tx"><b>Hard reset</b><span>Reboot a stuck charger (reboots the whole station — you’re warned before it fires).</span></span></li>
-          <li><span class="ic">👤</span><span class="tx"><b>Who’s charging</b><span>Tap a busy bay to see the driver, start time, kWh so far and current power.</span></span></li>
+          <li><span class="ic">▶️</span><span class="tx"><b data-i18n="g_owf4_t">Start</b><span data-i18n="g_owf4_d">Kick off a charge on any free bay.</span></span></li>
+          <li><span class="ic">⏹️</span><span class="tx"><b data-i18n="g_owf5_t">Stop</b><span data-i18n="g_owf5_d">End whatever session is running on a bay — even a walk-up.</span></span></li>
+          <li><span class="ic">🔄</span><span class="tx"><b data-i18n="g_owf6_t">Restart — soft or hard</b><span data-i18n="g_owf6_d">Soft reset first (recommended — try this before anything else); Hard reset (full power cycle) only if soft doesn't clear it — a hard reset reboots the whole station, so any other connector on it is interrupted too. You're asked which before it fires.</span></span></li>
+          <li><span class="ic">👤</span><span class="tx"><b data-i18n="g_owf7_t">Who’s charging</b><span data-i18n="g_owf7_d">Tap a busy bay to see the driver, start time, kWh so far and current power.</span></span></li>
         </ul>
-        <div class="note">Chargers show their real name (e.g. “Bay 06”) and speed (e.g. AC 22kW), never an internal ID. The grid auto-refreshes (~30s) and appears on both the Overview and Chargers screens.</div>
+        <div class="note" data-i18n="g_ow_s3_note">Chargers show their real name (e.g. “Bay 06”) and speed (e.g. AC 22kW), never an internal ID. The grid auto-refreshes (~30s) and appears on both the Overview and Chargers screens.</div>
       </div>
-      <div class="tip">💡 <span><b>Tip:</b> A charger stuck “in use” after someone unplugged? Open it and hit <b>Stop</b> — or <b>Hard reset</b> if it won’t clear.</span></div>
+      <div class="tip">💡 <span data-i18n="g_ow_s3_tip"><b>Tip:</b> A charger stuck “in use” after someone unplugged? Open it and hit <b>Stop</b> — or a <b>Soft reset</b>, then <b>Hard reset</b> if it still won’t clear.</span></div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">4</span><h2>Booking</h2></div>
-      <div class="lead">Let employees reserve a charger in advance, so a bay is guaranteed when they arrive — and no one hunts for a free spot.</div>
+      <div class="sec-h"><span class="ix">4</span><h2 data-i18n="g_hd_booking">Booking</h2></div>
+      <div class="lead" data-i18n="g_ow_s4_lead">Let employees reserve a charger in advance, so a bay is guaranteed when they arrive — and no one hunts for a free spot.</div>
       <div class="card">
         <ul class="feat">
-          <li><span class="ic">🗓️</span><span class="tx"><b>Half-day slots</b><span>Define <b>as many slots as you need</b> — e.g. Morning &amp; Afternoon, or four two-hour windows. Add, rename or remove them anytime.</span></span></li>
-          <li><span class="ic">📆</span><span class="tx"><b>How far ahead &amp; how many</b><span>Set the booking horizon (days/weeks), which weekdays are bookable, whether same-day is allowed, and how many bookings each employee gets per week.</span></span></li>
-          <li><span class="ic">🔔</span><span class="tx"><b>No-show reminder</b><span>If a booked charge hasn’t started N minutes into the slot, ParkIQ emails the booker “still coming?” with a one-tap <b>Cancel</b> link — freeing the bay for a colleague. Nothing is ever cancelled silently.</span></span></li>
+          <li><span class="ic">🗓️</span><span class="tx"><b data-i18n="g_owf8_t">Half-day slots</b><span data-i18n="g_owf8_d">Define <b>as many slots as you need</b> — e.g. Morning &amp; Afternoon, or four two-hour windows. Add, rename or remove them anytime.</span></span></li>
+          <li><span class="ic">📆</span><span class="tx"><b data-i18n="g_owf9_t">How far ahead &amp; how many</b><span data-i18n="g_owf9_d">Set the booking horizon (days/weeks), which weekdays are bookable, whether same-day is allowed, and how many bookings each employee gets per week.</span></span></li>
+          <li><span class="ic">🔔</span><span class="tx"><b data-i18n="g_owf10_t">No-show reminder</b><span data-i18n="g_owf10_d">If a booked charge hasn’t started N minutes into the slot, ParkIQ emails the booker “still coming?” with a one-tap <b>Cancel</b> link — freeing the bay for a colleague. Nothing is ever cancelled silently.</span></span></li>
         </ul>
-        <div class="note">Turn booking on with a master switch. Employees book from the app; only the person who booked can start that charger during their slot.</div>
+        <div class="note" data-i18n="g_ow_s4_note">Turn booking on with a master switch. Employees book from the app; only the person who booked can start that charger during their slot.</div>
       </div>
-      <div class="tip">💡 <span><b>Tip:</b> Start with two slots (Morning / Afternoon). Add more only if demand needs finer turns.</span></div>
+      <div class="tip">💡 <span data-i18n="g_ow_s4_tip"><b>Tip:</b> Start with two slots (Morning / Afternoon). Add more only if demand needs finer turns.</span></div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">5</span><h2>Scheduler</h2></div>
-      <div class="lead">Set fair session limits and reminders so no single car ties up a charger all day.</div>
+      <div class="sec-h"><span class="ix">5</span><h2 data-i18n="g_hd_scheduler">Scheduler</h2></div>
+      <div class="lead" data-i18n="g_ow_s5_lead">Set fair session limits and reminders so no single car ties up a charger all day.</div>
       <div class="card">
         <ul class="feat">
-          <li><span class="ic">⏳</span><span class="tx"><b>Max session length</b><span>How long a charge is allowed, in minutes.</span></span></li>
-          <li><span class="ic">▶️</span><span class="tx"><b>Start / mid / end reminders</b><span>Toggle each; the mid reminder fires after N minutes with the time left.</span></span></li>
-          <li><span class="ic">🛑</span><span class="tx"><b>Auto-stop at the limit</b><span>Optionally stop a charge automatically once it passes the limit.</span></span></li>
+          <li><span class="ic">⏳</span><span class="tx"><b data-i18n="g_owf11_t">Max session length</b><span data-i18n="g_owf11_d">How long a charge is allowed, in minutes.</span></span></li>
+          <li><span class="ic">▶️</span><span class="tx"><b data-i18n="g_owf12_t">Start / mid / end reminders</b><span data-i18n="g_owf12_d">Toggle each; the mid reminder fires after N minutes with the time left.</span></span></li>
+          <li><span class="ic">🛑</span><span class="tx"><b data-i18n="g_owf13_t">Auto-stop at the limit</b><span data-i18n="g_owf13_d">Optionally stop a charge automatically once it passes the limit.</span></span></li>
         </ul>
-        <div class="note">Adjust the values → <b>Save scheduler</b>.</div>
+        <div class="note" data-i18n="g_ow_s5_note">Adjust the values → <b>Save scheduler</b>.</div>
       </div>
-      <div class="tip">💡 <span><b>Tip:</b> Set a session limit that matches your busiest hours to keep bays turning over.</span></div>
+      <div class="tip">💡 <span data-i18n="g_ow_s5_tip"><b>Tip:</b> Set a session limit that matches your busiest hours to keep bays turning over.</span></div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">6</span><h2>Time violations</h2></div>
-      <div class="lead">Know the moment a car overstays, so a bay never sits blocked and the next employee gets their turn.</div>
+      <div class="sec-h"><span class="ix">6</span><h2 data-i18n="g_hd_violations">Time violations</h2></div>
+      <div class="lead" data-i18n="g_ow_s6_lead">Know the moment a car overstays, so a bay never sits blocked and the next employee gets their turn.</div>
       <div class="card">
         <ul class="feat">
-          <li><span class="ic">➕</span><span class="tx"><b>Grace after limit</b><span>Extra minutes before an overstay counts as a violation.</span></span></li>
-          <li><span class="ic">✉️</span><span class="tx"><b>Manager email</b><span>Where the alert lands.</span></span></li>
-          <li><span class="ic">🚗</span><span class="tx"><b>Email the driver</b><span>Optionally nudge the driver directly too.</span></span></li>
-          <li><span class="ic">🧪</span><span class="tx"><b>Send sample alert</b><span>Sends one sample alert to the manager so you can see the format.</span></span></li>
+          <li><span class="ic">➕</span><span class="tx"><b data-i18n="g_owf14_t">Grace after limit</b><span data-i18n="g_owf14_d">Extra minutes before an overstay counts as a violation.</span></span></li>
+          <li><span class="ic">✉️</span><span class="tx"><b data-i18n="g_owf15_t">Manager email</b><span data-i18n="g_owf15_d">Where the alert lands.</span></span></li>
+          <li><span class="ic">🚗</span><span class="tx"><b data-i18n="g_owf16_t">Email the driver</b><span data-i18n="g_owf16_d">Optionally nudge the driver directly too.</span></span></li>
+          <li><span class="ic">🧪</span><span class="tx"><b data-i18n="g_owf17_t">Send sample alert</b><span data-i18n="g_owf17_d">Sends one sample alert to the manager so you can see the format.</span></span></li>
         </ul>
-        <div class="note">A violation = a session past <b>max length + grace</b>.</div>
+        <div class="note" data-i18n="g_ow_s6_note">A violation = a session past <b>max length + grace</b>.</div>
       </div>
-      <div class="tip">💡 <span><b>Tip:</b> Add your email to violation alerts so overstays reach you first.</span></div>
+      <div class="tip">💡 <span data-i18n="g_ow_s6_tip"><b>Tip:</b> Add your email to violation alerts so overstays reach you first.</span></div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">7</span><h2>Reports</h2></div>
-      <div class="lead">Export usage by date range — per session and per employee — whenever you need it.</div>
+      <div class="sec-h"><span class="ix">7</span><h2 data-i18n="g_hd_reports">Reports</h2></div>
+      <div class="lead" data-i18n="g_ow_s7_lead">Export usage by date range — one Excel workbook, three sheets — whenever you need it.</div>
       <div class="card">
         <ul class="feat">
-          <li><span class="ic">📊</span><span class="tx"><b>Summary</b><span>Totals plus each employee’s sessions &amp; total energy, and a violation count.</span></span></li>
-          <li><span class="ic">🧾</span><span class="tx"><b>Records</b><span>One row per session — start, stop, duration, energy, cost, driver, charger.</span></span></li>
-          <li><span class="ic">⏱️</span><span class="tx"><b>Violations</b><span>Sessions that ran past max + grace, with over-by minutes.</span></span></li>
+          <li><span class="ic">📊</span><span class="tx"><b data-i18n="g_owf18_t">Summary</b><span data-i18n="g_owf18_d">Totals plus each employee’s sessions &amp; total energy.</span></span></li>
+          <li><span class="ic">🧾</span><span class="tx"><b data-i18n="g_owf19_t">Records</b><span data-i18n="g_owf19_d">One row per session — start, stop, duration, energy, cost, driver, charger.</span></span></li>
+          <li><span class="ic">⏱️</span><span class="tx"><b data-i18n="g_owf20_t">Violations</b><span data-i18n="g_owf20_d">Sessions that ran past max + grace, with over-by minutes.</span></span></li>
         </ul>
-        <div class="note">Pick <b>From / To</b> → <b>Download Excel</b>. <span class="pill live">real data</span></div>
+        <div class="note"><span data-i18n="g_ow_s7_note">Pick <b>From / To</b> → <b>Download Excel</b>.</span> <span class="pill live" data-i18n="g_pill_realdata">real data</span></div>
       </div>
-      <div class="tip">💡 <span><b>Tip:</b> Pull a monthly report to see who’s charging and how much energy you’re delivering.</span></div>
+      <div class="tip">💡 <span data-i18n="g_ow_s7_tip"><b>Tip:</b> Pull a monthly report to see who’s charging and how much energy you’re delivering.</span></div>
     </div>
   </div>
 
   <!-- ============ DRIVER ============ -->
   <div class="track" id="track-driver">
     <div class="hero">
-      <div class="eb">For employees</div>
-      <h1>Book it, charge it, done.</h1>
-      <p>Charging is free — just share fairly. Reserve a charger for a half-day, activate it when you arrive, and free the bay when you’re done so the next person can charge.</p>
+      <div class="eb" data-i18n="g_dr_eb">For employees</div>
+      <h1 data-i18n="g_dr_h1">Book it, charge it, done.</h1>
+      <p data-i18n="g_dr_p">Charging is free — just share fairly. Reserve a charger for a half-day, activate it when you arrive, and free the bay when you’re done so the next person can charge.</p>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">1</span><h2>Sign in</h2></div>
-      <div class="lead">Open the app on your phone — nothing to install.</div>
+      <div class="sec-h"><span class="ix">1</span><h2 data-i18n="g_hd_signin">Sign in</h2></div>
+      <div class="lead" data-i18n="g_dr_s1_lead">Open the app on your phone — nothing to install.</div>
       <div class="card">
         <ol class="steps">
-          <li><span class="st">Scan the QR at the charger to open the <b>Charging Pool portal</b>.</span></li>
-          <li><span class="st">Enter your work email (<b>@corporate.com</b>).</span></li>
-          <li><span class="st">You're in — no password, no waiting. <span class="pill live">instant</span></span></li>
+          <li><span class="st" data-i18n="g_dr_s1_step1">Scan the QR at the charger to open the <b>Charging Pool portal</b>.</span></li>
+          <li><span class="st" data-i18n="g_dr_s1_step2">Enter your work email (<b>@corporate.com</b>) — or tap <b>Sign in with Microsoft</b> if your company uses it.</span></li>
+          <li><span class="st" data-i18n="g_dr_s1_step3">You're in — no password, no waiting.</span> <span class="pill live" data-i18n="g_pill_instant">instant</span></li>
         </ol>
-        <div class="note">Your manager approves who can charge. If email verification is switched on, you'll get a one-tap sign-in link instead.</div>
+        <div class="note" data-i18n="g_dr_s1_note">Your manager approves who can charge. If email verification is switched on, you'll get a one-tap sign-in link instead.</div>
       </div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">2</span><h2>Book a charger</h2></div>
-      <div class="lead">Reserve a charger for a half-day slot, so it’s waiting for you — no circling the car park.</div>
+      <div class="sec-h"><span class="ix">2</span><h2 data-i18n="g_hd_bookcharger">Book a charger</h2></div>
+      <div class="lead" data-i18n="g_dr_s2_lead">Reserve a charger for a half-day slot, so it’s waiting for you — no circling the car park.</div>
       <div class="card">
         <ol class="steps">
-          <li><span class="st">In the <b>Booking</b> tab, pick a day and a slot (e.g. <b>Morning</b> or <b>Afternoon</b>).</span></li>
-          <li><span class="st">Choose a free charger and tap <b>Book</b>.</span></li>
-          <li><span class="st">It shows up under <b>My booking</b>. <span class="pill live">reserved</span></span></li>
+          <li><span class="st" data-i18n="g_dr_s2_step1">In the <b>Booking</b> tab, pick a day and a slot (e.g. <b>Morning</b> or <b>Afternoon</b>).</span></li>
+          <li><span class="st" data-i18n="g_dr_s2_step2">Choose a free charger and tap <b>Book</b>.</span></li>
+          <li><span class="st" data-i18n="g_dr_s2_step3">It shows up under <b>My booking</b>.</span> <span class="pill live" data-i18n="g_pill_reserved">reserved</span></li>
         </ol>
-        <div class="note">Each charger holds one booking per slot, and you get a set number of bookings per week (your manager decides how many, how far ahead, and which days).</div>
+        <div class="note" data-i18n="g_dr_s2_note">Each charger holds one booking per slot, and you get a set number of bookings per week (your manager decides how many, how far ahead, and which days).</div>
       </div>
-      <div class="tip">💡 <span><b>Tip:</b> Book the day before for a busy morning — you’ll have a guaranteed bay when you arrive.</span></div>
+      <div class="tip">💡 <span data-i18n="g_dr_s2_tip"><b>Tip:</b> Book the day before for a busy morning — you’ll have a guaranteed bay when you arrive.</span></div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">3</span><h2>Find a charger</h2></div>
-      <div class="lead">Every charger, its status, its plug and its speed — at a glance.</div>
+      <div class="sec-h"><span class="ix">3</span><h2 data-i18n="g_hd_findcharger">Find a charger</h2></div>
+      <div class="lead" data-i18n="g_dr_s3_lead">Every charger, its status, its plug and its speed — at a glance.</div>
       <div class="card">
         <div class="legend" style="margin-bottom:14px">
-          <span class="it"><span class="dot d-av"></span>Available</span>
-          <span class="it"><span class="dot d-ch"></span>In use</span>
-          <span class="it"><span class="dot d-fa"></span>Out of order</span>
+          <span class="it"><span class="dot d-av"></span><span data-i18n="g_leg_avail">Available</span></span>
+          <span class="it"><span class="dot d-ch"></span><span data-i18n="g_leg_inuse">In use</span></span>
+          <span class="it"><span class="dot d-fa"></span><span data-i18n="g_leg_outoforder">Out of order</span></span>
         </div>
         <div class="conn">
-          <div class="c"><span class="cicon ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span><span><b>Type 2</b><span>AC · everyday top-up</span></span></div>
-          <div class="c"><span class="cicon dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><circle cx="9.7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="14.3" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18" r="3"/><circle cx="15.5" cy="18" r="3"/></svg></span><span><b>CCS2</b><span>DC · the fast one</span></span></div>
+          <div class="c"><span class="cicon ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span><span><b data-i18n="g_conn_t2_t">Type 2</b><span data-i18n="g_conn_t2_d">AC · everyday top-up</span></span></div>
+          <div class="c"><span class="cicon dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><circle cx="9.7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="14.3" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18" r="3"/><circle cx="15.5" cy="18" r="3"/></svg></span><span><b data-i18n="g_conn_ccs2_t">CCS2</b><span data-i18n="g_conn_ccs2_d">DC · the fast one</span></span></div>
         </div>
-        <div class="note">Match the icon to your car, and each bay shows its max speed (e.g. <b>up to 22 kW</b>). In-use chargers show a <b>“free by ~HH:MM”</b> estimate so you know when one opens up.</div>
+        <div class="note" data-i18n="g_dr_s3_note">Match the icon to your car, and each bay shows its max speed (e.g. <b>up to 22 kW</b>). In-use chargers show a <b>“free by ~HH:MM”</b> estimate so you know when one opens up.</div>
       </div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">4</span><h2>Start charging</h2></div>
-      <div class="lead">Activate your booked charger the moment your slot begins.</div>
+      <div class="sec-h"><span class="ix">4</span><h2 data-i18n="g_hd_startcharging">Start charging</h2></div>
+      <div class="lead" data-i18n="g_dr_s4_lead">Activate your booked charger the moment your slot begins.</div>
       <div class="card">
         <ol class="steps">
-          <li><span class="st">When your slot is live, open <b>My booking</b> and tap <b>Activate charging</b>.</span></li>
-          <li><span class="st">Only you can start the charger you booked, during your slot — no one can jump your bay.</span></li>
-          <li><span class="st">The card flips to your active session.</span></li>
+          <li><span class="st" data-i18n="g_dr_s4_step1">When your slot is live, open <b>My booking</b> and tap <b>Activate charging</b>.</span></li>
+          <li><span class="st" data-i18n="g_dr_s4_step2">Only you can start the charger you booked, during your slot — no one can jump your bay.</span></li>
+          <li><span class="st" data-i18n="g_dr_s4_step3">The card flips to your active session.</span></li>
         </ol>
       </div>
     </div>
 
     <div class="sec">
-      <div class="sec-h"><span class="ix">5</span><h2>While you charge</h2></div>
-      <div class="lead">Track your time and know exactly when to head back.</div>
+      <div class="sec-h"><span class="ix">5</span><h2 data-i18n="g_hd_whilecharge">While you charge</h2></div>
+      <div class="lead" data-i18n="g_dr_s5_lead">Track your time and know exactly when to head back.</div>
       <div class="card">
         <ul class="feat">
-          <li><span class="ic">⏱️</span><span class="tx"><b>Live timer</b><span>Watch your elapsed charging time.</span></span></li>
-          <li><span class="ic">🕒</span><span class="tx"><b>Free by HH:MM</b><span>Your start time plus the pool’s max session length.</span></span></li>
-          <li><span class="ic">⏹️</span><span class="tx"><b>Stop charging</b><span>End your session when you’re done. One session at a time.</span></span></li>
-          <li><span class="ic">🔔</span><span class="tx"><b>Running late?</b><span>If you don’t activate your booking, we’ll email to ask if you’re still coming — tap <b>Cancel</b> to free it for a colleague.</span></span></li>
+          <li><span class="ic">⏱️</span><span class="tx"><b data-i18n="g_drf1_t">Live timer</b><span data-i18n="g_drf1_d">Watch your elapsed charging time.</span></span></li>
+          <li><span class="ic">🕒</span><span class="tx"><b data-i18n="g_drf2_t">Free by HH:MM</b><span data-i18n="g_drf2_d">Your start time plus the pool’s max session length.</span></span></li>
+          <li><span class="ic">⏹️</span><span class="tx"><b data-i18n="g_drf3_t">Stop charging</b><span data-i18n="g_drf3_d">End your session when you’re done. One session at a time.</span></span></li>
+          <li><span class="ic">🔔</span><span class="tx"><b data-i18n="g_drf4_t">Running late?</b><span data-i18n="g_drf4_d">If you don’t activate your booking, we’ll email to ask if you’re still coming — tap <b>Cancel</b> to free it for a colleague.</span></span></li>
         </ul>
-        <div class="note">There are fewer chargers than drivers, so sessions have a time limit — when yours is up, please move your car so a colleague can charge.</div>
+        <div class="note" data-i18n="g_dr_s5_note">There are fewer chargers than drivers, so sessions have a time limit — when yours is up, please move your car so a colleague can charge.</div>
       </div>
-      <div class="tip">💡 <span><b>Tip:</b> Watch for your “time’s almost up” reminder so you’re never the one blocking a bay.</span></div>
+      <div class="tip">💡 <span data-i18n="g_dr_s5_tip"><b>Tip:</b> Watch for your “time’s almost up” reminder so you’re never the one blocking a bay.</span></div>
     </div>
   </div>
 
   <!-- ============ SHARED ============ -->
   <div class="sec">
-    <div class="sec-h"><h2>At a glance</h2></div>
+    <div class="sec-h"><h2 data-i18n="g_hd_glance">At a glance</h2></div>
     <div class="card">
       <table class="facts">
-        <tr><td>Pool</td><td>Adgar Park Afek</td></tr>
-        <tr><td>Chargers</td><td>10 total — 9× Type 2 (AC 22kW) + 1× CCS2 (DC)</td></tr>
-        <tr><td>Booking</td><td>Reserve a half-day slot in advance — one per slot, a set number per week</td></tr>
-        <tr><td>Login</td><td>Approved work email — instant sign-in, or a one-tap email link if verification is on</td></tr>
-        <tr><td>Platform</td><td>Manager view on laptop · employee app is mobile-first — nothing to install</td></tr>
-        <tr><td>Purpose</td><td>Fair-access staff charging — owner’s own chargers, free for employees, no payments</td></tr>
+        <tr><td data-i18n="g_fact_pool_l">Pool</td><td>Adgar Park Afek</td></tr>
+        <tr><td data-i18n="g_fact_chargers_l">Chargers</td><td data-i18n="g_fact_chargers_v">10 total — 9× Type 2 (AC 22kW) + 1× CCS2 (DC)</td></tr>
+        <tr><td data-i18n="g_fact_booking_l">Booking</td><td data-i18n="g_fact_booking_v">Reserve a half-day slot in advance — one per slot, a set number per week</td></tr>
+        <tr><td data-i18n="g_fact_login_l">Login</td><td data-i18n="g_fact_login_v">Approved work email or Microsoft work account — instant sign-in, or a one-tap email link if verification is on</td></tr>
+        <tr><td data-i18n="g_fact_platform_l">Platform</td><td data-i18n="g_fact_platform_v">Manager view on laptop · employee app is mobile-first — nothing to install</td></tr>
+        <tr><td data-i18n="g_fact_purpose_l">Purpose</td><td data-i18n="g_fact_purpose_v">Fair-access staff charging — owner’s own chargers, free for employees, no payments</td></tr>
       </table>
     </div>
   </div>
 
   <div class="closing">
-    <div class="tag">Every spot, <em>smarter.</em></div>
-    <p>Need a hand? Reach your facility manager or contact GREEMS support at <a href="mailto:help@greems.io">help@greems.io</a>.</p>
+    <div class="tag" data-i18n="g_close_tag">Every spot, <em>smarter.</em></div>
+    <p data-i18n="g_close_note">Need a hand? Reach your facility manager or contact GREEMS support at <a href="mailto:help@greems.io">help@greems.io</a>.</p>
   </div>
 
 </div></div>
@@ -467,6 +477,23 @@
     to.setAttribute('aria-selected',ow); td.setAttribute('aria-selected',!ow);
     window.scrollTo({top:0,behavior:'smooth'});
   }
+  const I18N={"g_back": {"en": "&larr; ParkIQ workplace charging", "he": "&larr; טעינת עובדים ParkIQ"}, "g_tab_owner": {"en": "Owner guide", "he": "מדריך למנהל"}, "g_tab_driver": {"en": "Driver guide", "he": "מדריך לעובד"}, "g_ow_eb": {"en": "Owner &amp; Manager", "he": "בעלים ומנהל"}, "g_ow_h1": {"en": "Fair charging, for every employee.", "he": "טעינה הוגנת, לכל עובד."}, "g_ow_p": {"en": "You own the chargers and your staff charge for free. With fewer bays than drivers, ParkIQ keeps them moving — live status, hands-on controls, advance booking and fair-use limits — so everyone gets a turn. The manager view is built for a laptop; the employee app is mobile-first.", "he": "העמדות שלכם, והצוות טוען בחינם. כשיש פחות עמדות מנהגים, ParkIQ דואג שהן יתפנו בתורן — סטטוס בזמן אמת, שליטה ישירה, הזמנה מראש ומגבלות שימוש הוגן — כך שכולם מקבלים תור. תצוגת המנהל בנויה למחשב נייד; אפליקציית העובד מותאמת-מובייל."}, "g_owf1_t": {"en": "Your chargers, free for staff", "he": "העמדות שלכם, חינם לצוות"}, "g_owf1_d": {"en": "No payments, no billing — this is about access, not money.", "he": "בלי תשלומים, בלי חיוב — העניין הוא נגישות, לא כסף."}, "g_owf2_t": {"en": "Book ahead, fair by design", "he": "הזמנה מראש, הוגנת מטבעה"}, "g_owf2_d": {"en": "Employees reserve a half-day slot, so a charger is waiting — no circling the car park.", "he": "עובדים משריינים משבצת של חצי יום, כך שעמדה מחכה להם — בלי להסתובב בחניון."}, "g_owf3_t": {"en": "Hands-on control", "he": "שליטה ישירה"}, "g_owf3_d": {"en": "Start, stop or restart any charger, and see exactly who’s plugged in right now.", "he": "מתחילים, עוצרים או מפעילים מחדש כל עמדה, ורואים בדיוק מי מחובר כרגע."}, "g_hd_signin": {"en": "Sign in", "he": "התחברות"}, "g_ow_s1_lead": {"en": "Sign in with your work email — no password, no waiting.", "he": "מתחברים עם דוא\"ל העבודה — בלי סיסמה, בלי המתנה."}, "g_ow_s1_step1": {"en": "Open the manager portal on your laptop.", "he": "פותחים את פורטל הניהול במחשב הנייד."}, "g_ow_s1_step2": {"en": "Enter your <b>@corporate.com</b> email.", "he": "מזינים את כתובת הדוא\"ל <b>@corporate.com</b>."}, "g_ow_s1_step3": {"en": "You're in — approved emails sign in instantly.", "he": "נכנסתם — כתובות מאושרות נכנסות מיד."}, "g_pill_noemail": {"en": "no email link", "he": "בלי קישור בדוא\"ל"}, "g_ow_s1_note": {"en": "<b>You decide who gets in.</b> Approve a whole company domain, import a list of specific addresses (or upload an .xlsx), or both — and choose instant sign-in or a one-tap email link for extra verification. A separate <b>Managers</b> list controls who can open this manager view; everyone else gets the employee app.", "he": "<b>אתם קובעים מי נכנס.</b> מאשרים דומיין שלם של החברה, מייבאים רשימת כתובות ספציפיות (או מעלים קובץ .xlsx), או את שניהם — ובוחרים בין כניסה מיידית לקישור חד-פעמי בדוא\"ל לאימות נוסף. רשימת <b>מנהלים</b> נפרדת קובעת מי יכול לפתוח את תצוגת הניהול הזו; כל השאר מקבלים את אפליקציית העובד."}, "g_ow_s1_note2": {"en": "Or let employees sign in with their <b>Microsoft work account</b> (Entra ID / Azure AD) once your IT team sets it up. Managers always keep the email sign-in too, so a directory problem never locks you out — Microsoft proves who someone is, the pool still decides who's approved.", "he": "לחלופין, אפשרו לעובדים להתחבר עם <b>חשבון העבודה של מיקרוסופט</b> (Entra ID / Azure AD) לאחר שצוות ה-IT יגדיר זאת. מנהלים תמיד שומרים גם על כניסה בדוא\"ל, כך שתקלה בדירקטורי לעולם לא תנעל אתכם בחוץ — מיקרוסופט מוכיחה מי האדם, אך המערכת עדיין קובעת מי מאושר."}, "g_hd_overview": {"en": "Overview", "he": "סקירה כללית"}, "g_ow_s2_lead": {"en": "Your month at a glance — active users and energy delivered — right above the live bays.", "he": "החודש שלכם במבט אחד — משתמשים פעילים ואנרגיה שסופקה — מעל לעמדות החיות."}, "g_lbl_endusers": {"en": "End-users", "he": "משתמשים"}, "g_lbl_sessions": {"en": "Sessions", "he": "טעינות"}, "g_ow_s2_note1": {"en": "Rolling last 30 days", "he": "30 הימים האחרונים"}, "g_pill_example": {"en": "example figures", "he": "נתונים לדוגמה"}, "g_ow_s2_note2": {"en": "A left sidebar switches between Overview, Chargers, Reports, Scheduler, Booking, Time violations, Access &amp; login and Managers.", "he": "סרגל צד שמאלי עובר בין סקירה כללית, עמדות, דוחות, מתזמן, הזמנות, חריגות זמן, גישה והתחברות, ומנהלים."}, "g_hd_livebays": {"en": "Live bays &amp; controls", "he": "עמדות חיות ובקרות"}, "g_ow_s3_lead": {"en": "See which chargers are free, busy or need attention — and act on any of them in a tap.", "he": "רואים אילו עמדות פנויות, עסוקות או דורשות תשומת לב — ופועלים על כל אחת בהקשה."}, "g_leg_avail": {"en": "Available", "he": "פנויה"}, "g_leg_charging": {"en": "Charging", "he": "בטעינה"}, "g_leg_fault": {"en": "Fault", "he": "תקלה"}, "g_ow_s3_samplecap": {"en": "Example — live grid", "he": "דוגמה — תצוגה חיה"}, "g_owf4_t": {"en": "Start", "he": "התחלה"}, "g_owf4_d": {"en": "Kick off a charge on any free bay.", "he": "מתחילים טעינה בכל עמדה פנויה."}, "g_owf5_t": {"en": "Stop", "he": "עצירה"}, "g_owf5_d": {"en": "End whatever session is running on a bay — even a walk-up.", "he": "מסיימים כל טעינה שרצה בעמדה — גם כזו שהתחילה בלי הזמנה."}, "g_owf6_t": {"en": "Restart — soft or hard", "he": "הפעלה מחדש — רכה או קשיחה"}, "g_owf6_d": {"en": "Soft reset first (recommended — try this before anything else); Hard reset (full power cycle) only if soft doesn't clear it — a hard reset reboots the whole station, so any other connector on it is interrupted too. You're asked which before it fires.", "he": "קודם איפוס רך (מומלץ — לנסות לפני כל דבר אחר); איפוס קשיח (ניתוק מלא) רק אם הרך לא פותר — איפוס קשיח מפעיל מחדש את כל העמדה, כך שכל מחבר אחר עליה מתנתק גם הוא. תישאלו איזה סוג רגע לפני שהוא מופעל."}, "g_owf7_t": {"en": "Who’s charging", "he": "מי טוען"}, "g_owf7_d": {"en": "Tap a busy bay to see the driver, start time, kWh so far and current power.", "he": "מקישים על עמדה עסוקה כדי לראות את הנהג, שעת ההתחלה, קוט\"ש עד כה וההספק הנוכחי."}, "g_ow_s3_note": {"en": "Chargers show their real name (e.g. “Bay 06”) and speed (e.g. AC 22kW), never an internal ID. The grid auto-refreshes (~30s) and appears on both the Overview and Chargers screens.", "he": "העמדות מציגות את שמן האמיתי (למשל “עמדה 06”) ואת המהירות שלהן (למשל AC 22kW), לעולם לא מזהה פנימי. הרשת מתעדכנת אוטומטית (כ-30 שניות) ומופיעה גם במסך הסקירה וגם במסך העמדות."}, "g_ow_s3_tip": {"en": "<b>Tip:</b> A charger stuck “in use” after someone unplugged? Open it and hit <b>Stop</b> — or a <b>Soft reset</b>, then <b>Hard reset</b> if it still won’t clear.", "he": "<b>טיפ:</b> עמדה תקועה על “בשימוש” אחרי שמישהו ניתק? פותחים אותה ולוחצים <b>עצירה</b> — או <b>איפוס רך</b>, ואם זה לא עוזר — <b>איפוס קשיח</b>."}, "g_hd_booking": {"en": "Booking", "he": "הזמנות"}, "g_ow_s4_lead": {"en": "Let employees reserve a charger in advance, so a bay is guaranteed when they arrive — and no one hunts for a free spot.", "he": "עובדים משריינים עמדה מראש, כך שעמדה מובטחת בהגעתם — ואף אחד לא מחפש מקום פנוי."}, "g_owf8_t": {"en": "Half-day slots", "he": "משבצות של חצי יום"}, "g_owf8_d": {"en": "Define <b>as many slots as you need</b> — e.g. Morning &amp; Afternoon, or four two-hour windows. Add, rename or remove them anytime.", "he": "מגדירים <b>כמה משבצות שרוצים</b> — למשל בוקר וצהריים, או ארבעה חלונות של שעתיים. אפשר להוסיף, לשנות שם או להסיר בכל עת."}, "g_owf9_t": {"en": "How far ahead &amp; how many", "he": "כמה זמן מראש וכמה"}, "g_owf9_d": {"en": "Set the booking horizon (days/weeks), which weekdays are bookable, whether same-day is allowed, and how many bookings each employee gets per week.", "he": "קובעים טווח הזמנה (ימים/שבועות), אילו ימים ניתנים להזמנה, האם מותרת הזמנה באותו היום, וכמה הזמנות מקבל כל עובד בשבוע."}, "g_owf10_t": {"en": "No-show reminder", "he": "תזכורת לאי-הגעה"}, "g_owf10_d": {"en": "If a booked charge hasn’t started N minutes into the slot, ParkIQ emails the booker “still coming?” with a one-tap <b>Cancel</b> link — freeing the bay for a colleague. Nothing is ever cancelled silently.", "he": "אם טעינה שהוזמנה לא התחילה N דקות לתוך המשבצת, ParkIQ שולח למזמין דוא\"ל “עדיין מגיעים?” עם קישור <b>ביטול</b> בהקשה אחת — כדי לפנות את העמדה לעמית. שום דבר לא מבוטל בשקט."}, "g_ow_s4_note": {"en": "Turn booking on with a master switch. Employees book from the app; only the person who booked can start that charger during their slot.", "he": "מפעילים הזמנות עם מתג ראשי. עובדים מזמינים דרך האפליקציה; רק מי שהזמין יכול להתחיל את העמדה במשבצת שלו."}, "g_ow_s4_tip": {"en": "<b>Tip:</b> Start with two slots (Morning / Afternoon). Add more only if demand needs finer turns.", "he": "<b>טיפ:</b> מתחילים עם שתי משבצות (בוקר/צהריים). מוסיפים עוד רק אם הביקוש דורש חלוקה עדינה יותר."}, "g_hd_scheduler": {"en": "Scheduler", "he": "מתזמן"}, "g_ow_s5_lead": {"en": "Set fair session limits and reminders so no single car ties up a charger all day.", "he": "קובעים מגבלות זמן הוגנות ותזכורות כדי שרכב בודד לא יתפוס עמדה כל היום."}, "g_owf11_t": {"en": "Max session length", "he": "אורך טעינה מרבי"}, "g_owf11_d": {"en": "How long a charge is allowed, in minutes.", "he": "כמה זמן מותר לטעינה, בדקות."}, "g_owf12_t": {"en": "Start / mid / end reminders", "he": "תזכורות בתחילה / באמצע / בסוף"}, "g_owf12_d": {"en": "Toggle each; the mid reminder fires after N minutes with the time left.", "he": "מפעילים כל אחת בנפרד; התזכורת האמצעית נשלחת אחרי N דקות עם הזמן שנותר."}, "g_owf13_t": {"en": "Auto-stop at the limit", "he": "עצירה אוטומטית במגבלה"}, "g_owf13_d": {"en": "Optionally stop a charge automatically once it passes the limit.", "he": "אפשרות לעצור טעינה אוטומטית ברגע שהיא עוברת את המגבלה."}, "g_ow_s5_note": {"en": "Adjust the values → <b>Save scheduler</b>.", "he": "משנים את הערכים ← <b>שמירת מתזמן</b>."}, "g_ow_s5_tip": {"en": "<b>Tip:</b> Set a session limit that matches your busiest hours to keep bays turning over.", "he": "<b>טיפ:</b> קובעים מגבלת זמן שמתאימה לשעות העמוסות ביותר כדי שהעמדות יתפנו בקצב."}, "g_hd_violations": {"en": "Time violations", "he": "חריגות זמן"}, "g_ow_s6_lead": {"en": "Know the moment a car overstays, so a bay never sits blocked and the next employee gets their turn.", "he": "יודעים ברגע שרכב חורג מהזמן, כך שעמדה אף פעם לא נשארת חסומה והעובד הבא מקבל את תורו."}, "g_owf14_t": {"en": "Grace after limit", "he": "חסד אחרי המגבלה"}, "g_owf14_d": {"en": "Extra minutes before an overstay counts as a violation.", "he": "דקות נוספות לפני שחריגה נחשבת להפרה."}, "g_owf15_t": {"en": "Manager email", "he": "דוא\"ל מנהל"}, "g_owf15_d": {"en": "Where the alert lands.", "he": "לאן ההתראה מגיעה."}, "g_owf16_t": {"en": "Email the driver", "he": "שליחת דוא\"ל לנהג"}, "g_owf16_d": {"en": "Optionally nudge the driver directly too.", "he": "אפשרות לשלוח תזכורת גם ישירות לנהג."}, "g_owf17_t": {"en": "Send sample alert", "he": "שליחת התראת דוגמה"}, "g_owf17_d": {"en": "Sends one sample alert to the manager so you can see the format.", "he": "שולח התראת דוגמה אחת למנהל כדי לראות את הפורמט."}, "g_ow_s6_note": {"en": "A violation = a session past <b>max length + grace</b>.", "he": "הפרה = טעינה שעברה את <b>האורך המרבי + זמן החסד</b>."}, "g_ow_s6_tip": {"en": "<b>Tip:</b> Add your email to violation alerts so overstays reach you first.", "he": "<b>טיפ:</b> מוסיפים את הדוא\"ל שלכם להתראות הפרה כך שחריגות יגיעו אליכם קודם."}, "g_hd_reports": {"en": "Reports", "he": "דוחות"}, "g_ow_s7_lead": {"en": "Export usage by date range — one Excel workbook, three sheets — whenever you need it.", "he": "מייצאים שימוש לפי טווח תאריכים — קובץ Excel אחד, שלושה גיליונות — בכל עת שצריך."}, "g_owf18_t": {"en": "Summary", "he": "סיכום"}, "g_owf18_d": {"en": "Totals plus each employee’s sessions &amp; total energy.", "he": "סה\"כ בתוספת מספר הטעינות והאנרגיה הכוללת של כל עובד."}, "g_owf19_t": {"en": "Records", "he": "רשומות"}, "g_owf19_d": {"en": "One row per session — start, stop, duration, energy, cost, driver, charger.", "he": "שורה אחת לכל טעינה — התחלה, סיום, משך, אנרגיה, עלות, נהג, עמדה."}, "g_owf20_t": {"en": "Violations", "he": "הפרות"}, "g_owf20_d": {"en": "Sessions that ran past max + grace, with over-by minutes.", "he": "טעינות שחרגו מהמגבלה + זמן החסד, עם דקות החריגה."}, "g_ow_s7_note": {"en": "Pick <b>From / To</b> → <b>Download Excel</b>.", "he": "בוחרים <b>מתאריך / עד תאריך</b> ← <b>הורדת Excel</b>."}, "g_pill_realdata": {"en": "real data", "he": "נתונים אמיתיים"}, "g_ow_s7_tip": {"en": "<b>Tip:</b> Pull a monthly report to see who’s charging and how much energy you’re delivering.", "he": "<b>טיפ:</b> מפיקים דוח חודשי כדי לראות מי טוען וכמה אנרגיה סופקה."}, "g_dr_eb": {"en": "For employees", "he": "לעובדים"}, "g_dr_h1": {"en": "Book it, charge it, done.", "he": "מזמינים, טוענים, סיימתם."}, "g_dr_p": {"en": "Charging is free — just share fairly. Reserve a charger for a half-day, activate it when you arrive, and free the bay when you’re done so the next person can charge.", "he": "הטעינה חינם — פשוט לחלוק בהוגנות. משריינים עמדה לחצי יום, מפעילים אותה בהגעה, ומפנים אותה בסיום כדי שהעובד הבא יוכל לטעון."}, "g_dr_s1_lead": {"en": "Open the app on your phone — nothing to install.", "he": "פותחים את האפליקציה בטלפון — בלי להתקין כלום."}, "g_dr_s1_step1": {"en": "Scan the QR at the charger to open the <b>Charging Pool portal</b>.", "he": "סורקים את קוד ה-QR בעמדה כדי לפתוח את <b>פורטל בריכת הטעינה</b>."}, "g_dr_s1_step2": {"en": "Enter your work email (<b>@corporate.com</b>) — or tap <b>Sign in with Microsoft</b> if your company uses it.", "he": "מזינים את דוא\"ל העבודה (<b>@corporate.com</b>) — או מקישים על <b>התחברות עם מיקרוסופט</b> אם החברה משתמשת בכך."}, "g_dr_s1_step3": {"en": "You're in — no password, no waiting.", "he": "נכנסתם — בלי סיסמה, בלי המתנה."}, "g_pill_instant": {"en": "instant", "he": "מיידי"}, "g_dr_s1_note": {"en": "Your manager approves who can charge. If email verification is switched on, you'll get a one-tap sign-in link instead.", "he": "המנהל שלכם מאשר מי יכול לטעון. אם אימות בדוא\"ל מופעל, תקבלו במקום זאת קישור כניסה בהקשה אחת."}, "g_hd_bookcharger": {"en": "Book a charger", "he": "הזמנת עמדה"}, "g_dr_s2_lead": {"en": "Reserve a charger for a half-day slot, so it’s waiting for you — no circling the car park.", "he": "משריינים עמדה למשבצת של חצי יום, כך שהיא מחכה לכם — בלי להסתובב בחניון."}, "g_dr_s2_step1": {"en": "In the <b>Booking</b> tab, pick a day and a slot (e.g. <b>Morning</b> or <b>Afternoon</b>).", "he": "בלשונית <b>הזמנות</b>, בוחרים יום ומשבצת (למשל <b>בוקר</b> או <b>צהריים</b>)."}, "g_dr_s2_step2": {"en": "Choose a free charger and tap <b>Book</b>.", "he": "בוחרים עמדה פנויה ומקישים <b>הזמנה</b>."}, "g_dr_s2_step3": {"en": "It shows up under <b>My booking</b>.", "he": "היא מופיעה תחת <b>ההזמנות שלי</b>."}, "g_pill_reserved": {"en": "reserved", "he": "משוריין"}, "g_dr_s2_note": {"en": "Each charger holds one booking per slot, and you get a set number of bookings per week (your manager decides how many, how far ahead, and which days).", "he": "לכל עמדה יש הזמנה אחת למשבצת, ומקבלים מספר קבוע של הזמנות בשבוע (המנהל קובע כמה, כמה זמן מראש, ואילו ימים)."}, "g_dr_s2_tip": {"en": "<b>Tip:</b> Book the day before for a busy morning — you’ll have a guaranteed bay when you arrive.", "he": "<b>טיפ:</b> מזמינים יום לפני עבור בוקר עמוס — תהיה לכם עמדה מובטחת בהגעה."}, "g_hd_findcharger": {"en": "Find a charger", "he": "איתור עמדה"}, "g_dr_s3_lead": {"en": "Every charger, its status, its plug and its speed — at a glance.", "he": "כל עמדה, הסטטוס שלה, המחבר והמהירות — במבט אחד."}, "g_leg_inuse": {"en": "In use", "he": "בשימוש"}, "g_leg_outoforder": {"en": "Out of order", "he": "מושבתת"}, "g_conn_t2_t": {"en": "Type 2", "he": "Type 2"}, "g_conn_t2_d": {"en": "AC · everyday top-up", "he": "AC · טעינה יומיומית"}, "g_conn_ccs2_t": {"en": "CCS2", "he": "CCS2"}, "g_conn_ccs2_d": {"en": "DC · the fast one", "he": "DC · המהירה"}, "g_dr_s3_note": {"en": "Match the icon to your car, and each bay shows its max speed (e.g. <b>up to 22 kW</b>). In-use chargers show a <b>“free by ~HH:MM”</b> estimate so you know when one opens up.", "he": "מתאימים את הסמל לרכב, וכל עמדה מציגה את המהירות המרבית שלה (למשל <b>עד 22 קילוואט</b>). עמדות בשימוש מציגות הערכת <b>“מתפנה בסביבות HH:MM”</b> כדי שתדעו מתי אחת מתפנה."}, "g_hd_startcharging": {"en": "Start charging", "he": "התחלת טעינה"}, "g_dr_s4_lead": {"en": "Activate your booked charger the moment your slot begins.", "he": "מפעילים את העמדה שהזמנתם ברגע שהמשבצת שלכם מתחילה."}, "g_dr_s4_step1": {"en": "When your slot is live, open <b>My booking</b> and tap <b>Activate charging</b>.", "he": "כשהמשבצת שלכם פעילה, פותחים את <b>ההזמנות שלי</b> ומקישים <b>הפעלת טעינה</b>."}, "g_dr_s4_step2": {"en": "Only you can start the charger you booked, during your slot — no one can jump your bay.", "he": "רק אתם יכולים להתחיל את העמדה שהזמנתם, במשבצת שלכם — אף אחד לא יכול לתפוס אותה."}, "g_dr_s4_step3": {"en": "The card flips to your active session.", "he": "הכרטיס עובר לתצוגת הטעינה הפעילה שלכם."}, "g_hd_whilecharge": {"en": "While you charge", "he": "בזמן הטעינה"}, "g_dr_s5_lead": {"en": "Track your time and know exactly when to head back.", "he": "עוקבים אחר הזמן ויודעים בדיוק מתי לחזור."}, "g_drf1_t": {"en": "Live timer", "he": "טיימר חי"}, "g_drf1_d": {"en": "Watch your elapsed charging time.", "he": "עוקבים אחר משך הטעינה שחלף."}, "g_drf2_t": {"en": "Free by HH:MM", "he": "מתפנה בשעה HH:MM"}, "g_drf2_d": {"en": "Your start time plus the pool’s max session length.", "he": "שעת ההתחלה שלכם בתוספת אורך הטעינה המרבי של הבריכה."}, "g_drf3_t": {"en": "Stop charging", "he": "עצירת טעינה"}, "g_drf3_d": {"en": "End your session when you’re done. One session at a time.", "he": "מסיימים את הטעינה כשסיימתם. טעינה אחת בכל פעם."}, "g_drf4_t": {"en": "Running late?", "he": "מתעכבים?"}, "g_drf4_d": {"en": "If you don’t activate your booking, we’ll email to ask if you’re still coming — tap <b>Cancel</b> to free it for a colleague.", "he": "אם לא מפעילים את ההזמנה, נשלח דוא\"ל לשאול אם עדיין מגיעים — מקישים <b>ביטול</b> כדי לפנות אותה לעמית."}, "g_dr_s5_note": {"en": "There are fewer chargers than drivers, so sessions have a time limit — when yours is up, please move your car so a colleague can charge.", "he": "יש פחות עמדות מנהגים, ולכן לטעינות יש מגבלת זמן — כשהזמן שלכם נגמר, נא לפנות את הרכב כדי שעמית יוכל לטעון."}, "g_dr_s5_tip": {"en": "<b>Tip:</b> Watch for your “time’s almost up” reminder so you’re never the one blocking a bay.", "he": "<b>טיפ:</b> שימו לב לתזכורת “הזמן כמעט נגמר” כדי שלעולם לא תהיו אלה שחוסמים עמדה."}, "g_hd_glance": {"en": "At a glance", "he": "במבט אחד"}, "g_fact_pool_l": {"en": "Pool", "he": "בריכה"}, "g_fact_chargers_l": {"en": "Chargers", "he": "עמדות"}, "g_fact_chargers_v": {"en": "10 total — 9× Type 2 (AC 22kW) + 1× CCS2 (DC)", "he": "10 בסך הכול — 9× Type 2 (AC 22kW) + 1× CCS2 (DC)"}, "g_fact_booking_l": {"en": "Booking", "he": "הזמנות"}, "g_fact_booking_v": {"en": "Reserve a half-day slot in advance — one per slot, a set number per week", "he": "משריינים משבצת של חצי יום מראש — אחת לכל משבצת, מספר קבוע בשבוע"}, "g_fact_login_l": {"en": "Login", "he": "התחברות"}, "g_fact_login_v": {"en": "Approved work email or Microsoft work account — instant sign-in, or a one-tap email link if verification is on", "he": "דוא\"ל עבודה מאושר או חשבון עבודה של מיקרוסופט — כניסה מיידית, או קישור בדוא\"ל בהקשה אחת אם האימות מופעל"}, "g_fact_platform_l": {"en": "Platform", "he": "פלטפורמה"}, "g_fact_platform_v": {"en": "Manager view on laptop · employee app is mobile-first — nothing to install", "he": "תצוגת מנהל במחשב נייד · אפליקציית עובד מותאמת-מובייל — בלי להתקין כלום"}, "g_fact_purpose_l": {"en": "Purpose", "he": "מטרה"}, "g_fact_purpose_v": {"en": "Fair-access staff charging — owner’s own chargers, free for employees, no payments", "he": "טעינה הוגנת לצוות — העמדות של הבעלים, חינם לעובדים, בלי תשלומים"}, "g_close_tag": {"en": "Every spot, <em>smarter.</em>", "he": "כל חנייה — <em>חכמה יותר.</em>"}, "g_close_note": {"en": "Need a hand? Reach your facility manager or contact GREEMS support at <a href=\"mailto:help@greems.io\">help@greems.io</a>.", "he": "צריכים עזרה? פנו למנהל המתקן שלכם או צרו קשר עם תמיכת GREEMS בכתובת <a href=\"mailto:help@greems.io\">help@greems.io</a>."}};
+  function setLang(l){
+    const h=document.documentElement;
+    h.lang=l; h.dir = l==='he' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k=el.getAttribute('data-i18n'); const v=I18N[k]&&I18N[k][l];
+      if(v!=null) el.innerHTML=v;
+    });
+    document.querySelectorAll('.lang b').forEach(b=>b.classList.toggle('on', b.dataset.l===l));
+    try{localStorage.setItem('parkiq_lang',l);}catch(e){}
+  }
+  (function(){
+    let l='en';
+    try{ l=localStorage.getItem('parkiq_lang') || ((navigator.language||'').slice(0,2)); }catch(e){}
+    if(!['en','he'].includes(l)) l='en';
+    setLang(l);
+  })();
 </script>
 
 </body>
