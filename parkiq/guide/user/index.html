@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Employee Guide — GREEMS ParkIQ Workplace Charging</title>
+<meta name="description" content="How to book and use workplace EV charging with GREEMS ParkIQ — the employee guide.">
+<link rel="canonical" href="https://lp.greems.io/parkiq/guide/user/">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="../../icon.svg">
+<meta property="og:title" content="Employee Guide — GREEMS ParkIQ Workplace Charging">
+<meta property="og:description" content="How to book and use workplace EV charging with GREEMS ParkIQ — the employee guide.">
+<meta property="og:url" content="https://lp.greems.io/parkiq/guide/user/">
+<meta property="og:type" content="website">
+</head>
+<body>
+<style>
+  :root{
+    --green:#1D9E75; --green-deep:#085041; --teal:#9FE1CB;
+    --ink:#0F172A; --muted:#5B6B78; --line:#E4EAE7;
+    --bg:#F4F8F6; --card:#FFFFFF; --soft:#EAF3EF;
+    --dc:#2563EB; --dc-soft:#DBEAFE; --ac-soft:#D1FAE5;
+    --fault:#DC2626; --fault-soft:#FEE2E2; --amber:#B45309; --amber-soft:#FEF3C7;
+    --shadow:0 1px 2px rgba(8,80,65,.05),0 8px 24px rgba(8,80,65,.06);
+    --radius:16px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ink:#EAF3EF; --muted:#95A8A2; --line:#25332E;
+      --bg:#0D1411; --card:#151F1B; --soft:#18241F;
+      --ac-soft:#0f3a2c; --dc-soft:#16294d; --fault-soft:#3a1b1b; --amber-soft:#3a2c10;
+      --amber:#FBBF24;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ink:#0F172A; --muted:#5B6B78; --line:#E4EAE7; --bg:#F4F8F6; --card:#FFFFFF; --soft:#EAF3EF;
+    --ac-soft:#D1FAE5; --dc-soft:#DBEAFE; --fault-soft:#FEE2E2; --amber:#B45309; --amber-soft:#FEF3C7;
+    --shadow:0 1px 2px rgba(8,80,65,.05),0 8px 24px rgba(8,80,65,.06);
+  }
+  :root[data-theme="dark"]{
+    --ink:#EAF3EF; --muted:#95A8A2; --line:#25332E; --bg:#0D1411; --card:#151F1B; --soft:#18241F;
+    --ac-soft:#0f3a2c; --dc-soft:#16294d; --fault-soft:#3a1b1b; --amber:#FBBF24; --amber-soft:#3a2c10;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  .pg{font-family:var(--sans);background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.55;margin:0;
+    padding:0 18px 64px;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto}
+
+  /* --- top bar --- */
+  .top{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
+  .mark{width:44px;height:44px;flex:0 0 auto}
+  .brand{display:flex;flex-direction:column;line-height:1.05}
+  .brand .eb{font-size:10px;letter-spacing:3px;color:var(--muted);font-weight:700}
+  .brand .wm{font-size:19px;font-weight:800;color:var(--ink)}
+  .brand .wm em{font-style:normal;color:var(--green)}
+  .loc{margin-left:auto;font-size:12px;font-weight:700;color:var(--green-deep);
+    background:var(--soft);border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+  @media (prefers-color-scheme:dark){.loc{color:var(--teal)}}
+  :root[data-theme="dark"] .loc{color:var(--teal)}
+  :root[data-theme="light"] .loc{color:var(--green-deep)}
+
+  /* --- audience toggle --- */
+  .toggle{position:sticky;top:0;z-index:10;display:flex;gap:6px;padding:12px 0;
+    background:linear-gradient(var(--bg) 70%,transparent);margin-bottom:6px}
+  .toggle button{flex:1;font-family:var(--sans);font-size:15px;font-weight:700;
+    padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);cursor:pointer;transition:.18s;display:flex;align-items:center;
+    justify-content:center;gap:8px}
+  .toggle button.on{background:var(--green);color:#fff;border-color:var(--green)}
+  .toggle button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+  .toggle svg{width:18px;height:18px}
+
+  /* --- hero --- */
+  .hero{padding:22px 4px 8px}
+  .hero .eb{font-size:11px;letter-spacing:3px;color:var(--green);font-weight:800;text-transform:uppercase}
+  .hero h1{font-size:clamp(28px,7vw,40px);font-weight:800;letter-spacing:-.02em;
+    margin:10px 0 6px;text-wrap:balance;line-height:1.08}
+  .hero p{font-size:17px;color:var(--muted);margin:0;max-width:52ch}
+
+  /* --- sections --- */
+  .sec{margin-top:22px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;margin:0 4px 4px}
+  .sec-h .ix{font-size:12px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+    background:var(--soft);border-radius:7px;padding:2px 8px;letter-spacing:.5px}
+  .sec-h h2{font-size:19px;font-weight:800;margin:0;letter-spacing:-.01em}
+  .sec>.lead{margin:2px 4px 12px;color:var(--muted);font-size:14.5px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;box-shadow:var(--shadow)}
+  .card + .card{margin-top:12px}
+
+  ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  ol.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+  ol.steps li::before{content:counter(s);flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+    background:var(--green);color:#fff;font-size:13px;font-weight:800;display:flex;
+    align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+  ol.steps li b{color:var(--ink)}
+  ol.steps li .st{font-size:15px}
+
+  ul.feat{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  ul.feat li{display:flex;gap:12px;align-items:flex-start}
+  ul.feat li .ic{flex:0 0 auto;width:34px;height:34px;border-radius:9px;background:var(--soft);
+    display:flex;align-items:center;justify-content:center;color:var(--green);font-size:17px}
+  ul.feat li .tx{font-size:14.5px}
+  ul.feat li .tx b{display:block;color:var(--ink);font-size:15px;margin-bottom:1px}
+  ul.feat li .tx span{color:var(--muted)}
+
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .stat{background:var(--soft);border-radius:12px;padding:14px 10px;text-align:center}
+  .stat .n{font-size:24px;font-weight:800;color:var(--green-deep);font-variant-numeric:tabular-nums}
+  @media (prefers-color-scheme:dark){.stat .n{color:var(--teal)}}
+  :root[data-theme="dark"] .stat .n{color:var(--teal)}
+  :root[data-theme="light"] .stat .n{color:var(--green-deep)}
+  .stat .l{font-size:11px;font-weight:700;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.4px}
+
+  /* legends */
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:2px}
+  .legend .it{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600}
+  .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+  .d-av{background:var(--green)} .d-ch{background:var(--dc)} .d-fa{background:var(--fault)}
+
+  .conn{display:flex;gap:12px;margin-top:4px}
+  .conn .c{flex:1;background:var(--soft);border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px}
+  .conn .cicon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .conn .cicon.ac{background:var(--ac-soft);color:#065F46}
+  .conn .cicon.dc{background:var(--dc-soft);color:#1E40AF}
+  @media (prefers-color-scheme:dark){.conn .cicon.ac{color:#6ee7b7}.conn .cicon.dc{color:#93c5fd}}
+  :root[data-theme="dark"] .conn .cicon.ac{color:#6ee7b7}
+  :root[data-theme="dark"] .conn .cicon.dc{color:#93c5fd}
+  .conn .cicon svg{width:24px;height:24px}
+  .conn .c b{font-size:14px;display:block}
+  .conn .c span{font-size:12px;color:var(--muted)}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;
+    padding:3px 9px;border-radius:999px;letter-spacing:.3px;vertical-align:middle}
+  .pill.demo{background:var(--amber-soft);color:var(--amber)}
+  .pill.live{background:var(--ac-soft);color:#065F46}
+  @media (prefers-color-scheme:dark){.pill.live{color:#6ee7b7}}
+  :root[data-theme="dark"] .pill.live{color:#6ee7b7}
+
+  .shot{max-width:100%;display:block;margin:14px 0 0;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .shot-cap{font-size:11.5px;color:var(--muted);margin-top:6px}
+
+  .tip{display:flex;gap:10px;align-items:flex-start;background:var(--soft);
+    border-left:3px solid var(--green);border-radius:0 12px 12px 0;padding:12px 14px;
+    margin-top:10px;font-size:14px}
+  .tip b{color:var(--green-deep)}
+  @media (prefers-color-scheme:dark){.tip b{color:var(--teal)}}
+  :root[data-theme="dark"] .tip b{color:var(--teal)}
+
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+
+  /* facts */
+  .facts{width:100%;border-collapse:collapse;font-size:14px}
+  .facts td{padding:10px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+  .facts td:first-child{color:var(--muted);font-weight:700;width:38%}
+  .facts tr:last-child td{border-bottom:0}
+
+  .closing{text-align:center;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+  .closing .tag{font-size:20px;font-weight:800;letter-spacing:-.01em}
+  .closing .tag em{font-style:normal;color:var(--green)}
+  .closing p{color:var(--muted);font-size:13.5px;margin:8px 0 0}
+  .closing a{color:var(--green);font-weight:700;text-decoration:none}
+
+  /* sample bay grid */
+  .baygrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+  @media(min-width:520px){.baygrid{grid-template-columns:repeat(3,1fr)}}
+  .bay{position:relative;overflow:hidden;background:var(--soft);border:1px solid var(--line);
+    border-radius:12px;padding:12px 12px 12px 15px}
+  .bay::before{content:"";position:absolute;inset:0 auto 0 0;width:5px}
+  .bay.av::before{background:var(--green)} .bay.ch::before{background:var(--dc)} .bay.fa::before{background:var(--fault)}
+  .bay .bn{font-weight:800;font-size:13.5px}
+  .bay .bs{font-size:11px;font-weight:700;margin-top:3px}
+  .bay.av .bs{color:var(--green)} .bay.ch .bs{color:var(--dc)} .bay.fa .bs{color:var(--fault)}
+  .bay .bm{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:11.5px;color:var(--muted)}
+  .bay .bm .mi{width:26px;height:26px;border-radius:7px;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+  .bay .bm .mi.ac{background:var(--ac-soft);color:#065F46} .bay .bm .mi.dc{background:var(--dc-soft);color:#1E40AF}
+  @media(prefers-color-scheme:dark){.bay .bm .mi.ac{color:#6ee7b7}.bay .bm .mi.dc{color:#93c5fd}}
+  :root[data-theme="dark"] .bay .bm .mi.ac{color:#6ee7b7}
+  :root[data-theme="dark"] .bay .bm .mi.dc{color:#93c5fd}
+  .bay .bm svg{width:16px;height:16px}
+  .sample-cap{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
+    letter-spacing:.5px;margin:16px 0 0}
+
+  /* QR sign-in */
+  .qr{display:flex;gap:14px;align-items:center;background:var(--soft);border:1px solid var(--line);
+    border-radius:12px;padding:14px;margin-bottom:14px}
+  .qr .code{width:104px;height:104px;flex:0 0 auto;background:#fff;border-radius:10px;padding:7px;
+    box-shadow:0 1px 2px rgba(8,80,65,.12)}
+  .qr .code svg{width:100%;height:100%;display:block}
+  .qr .cap b{display:block;font-size:15px;color:var(--ink);margin-bottom:2px}
+  .qr .cap span{font-size:13px;color:var(--muted)}
+
+  .lang{display:flex;gap:2px;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px;margin-inline-start:auto}
+  .lang b{font:600 12px/1 var(--sans);color:var(--muted);padding:7px 11px;border-radius:999px;cursor:pointer;transition:.15s}
+  .lang b.on{background:var(--green);color:#05130D}
+  .lang b:hover:not(.on){color:var(--ink)}
+
+  .track{display:none}
+  .track.on{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.track.on{animation:none}}
+</style>
+
+<div class="pg"><div class="wrap">
+
+  <div class="top">
+    <svg class="mark" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="48" cy="48" r="40" fill="none" stroke="#9FE1CB" stroke-width="6"/>
+      <circle cx="48" cy="48" r="29" fill="#1D9E75"/>
+      <text x="48" y="60" font-family="Helvetica,Arial" font-size="34" fill="#fff" font-weight="700" text-anchor="middle">P</text>
+    </svg>
+    <div class="brand">
+      <span class="eb">GREEMS</span>
+      <span class="wm">Park<em>IQ</em></span>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <b data-l="en" class="on" onclick="setLang('en')">EN</b>
+      <b data-l="he" onclick="setLang('he')">עב</b>
+    </div>
+  </div>
+
+  <div class="track on" id="track-main">
+    <div class="hero">
+      <div class="eb" data-i18n="g_dr_eb">For employees</div>
+      <h1 data-i18n="g_dr_h1">Book it, charge it, done.</h1>
+      <p data-i18n="g_dr_p">Reserve a charger according to the schedule your company sets, activate it when you arrive, and free the bay when you’re done so the next person can charge.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">1</span><h2 data-i18n="g_hd_signin">Sign in</h2></div>
+      <div class="lead" data-i18n="g_dr_s1_lead">No app to install — scan the QR or open the link, then sign in.</div>
+      <div class="card">
+        <ol class="steps">
+          <li><span class="st" data-i18n="g_dr_s1_step1">Scan the QR at the charger — or open the link your manager shared — to open the booking page.</span></li>
+          <li><span class="st" data-i18n="g_dr_s1_step2">Enter your work email (<b>@corporate.com</b>) — or tap <b>Sign in with Microsoft</b> if your company uses it.</span></li>
+          <li><span class="st" data-i18n="g_dr_s1_step3">You're in — no password, no waiting.</span> <span class="pill live" data-i18n="g_pill_instant">instant</span></li>
+        </ol>
+        <div class="note" data-i18n="g_dr_s1_note">Any email on your company's approved domain works. If your company also turned on email verification, you'll get a one-tap sign-in link instead of signing in instantly.</div>
+        <img class="shot" src="../img/signin.png" alt="ParkIQ sign-in screen" loading="lazy">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">2</span><h2 data-i18n="g_hd_bookcharger">Book a charger</h2></div>
+      <div class="lead" data-i18n="g_dr_s2_lead">Reserve a charger for a time slot, so it’s waiting for you — no circling the car park.</div>
+      <div class="card">
+        <ol class="steps">
+          <li><span class="st" data-i18n="g_dr_s2_step1">In the <b>Booking</b> tab, pick a day and a slot (e.g. <b>Morning</b>, <b>Noon</b>, <b>After Noon</b> or <b>Night</b>).</span></li>
+          <li><span class="st" data-i18n="g_dr_s2_step2">Choose a free charger and tap <b>Book</b>.</span></li>
+          <li><span class="st" data-i18n="g_dr_s2_step3">It shows up under <b>My booking</b>.</span> <span class="pill live" data-i18n="g_pill_reserved">reserved</span></li>
+        </ol>
+        <div class="note" data-i18n="g_dr_s2_note">Each charger holds one booking per slot, and you get a set number of bookings per week (your manager decides how many, how far ahead, and which days).</div>
+      </div>
+      <div class="tip">💡 <span data-i18n="g_dr_s2_tip"><b>Tip:</b> Book the day before for a busy morning — you’ll have a guaranteed bay when you arrive.</span></div>
+      <img class="shot" src="img/booking.png" alt="ParkIQ employee booking screen on a phone" loading="lazy">
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">3</span><h2 data-i18n="g_hd_findcharger">Find a charger</h2></div>
+      <div class="lead" data-i18n="g_dr_s3_lead">Every charger, its status, its plug and its speed — at a glance.</div>
+      <div class="card">
+        <div class="legend" style="margin-bottom:14px">
+          <span class="it"><span class="dot d-av"></span><span data-i18n="g_leg_avail">Available</span></span>
+          <span class="it"><span class="dot d-ch"></span><span data-i18n="g_leg_inuse">In use</span></span>
+          <span class="it"><span class="dot d-fa"></span><span data-i18n="g_leg_outoforder">Out of order</span></span>
+        </div>
+        <div class="conn">
+          <div class="c"><span class="cicon ac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></span><span><b data-i18n="g_conn_t2_t">Type 2</b><span data-i18n="g_conn_t2_d">AC · everyday top-up</span></span></div>
+          <div class="c"><span class="cicon dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><circle cx="9.7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="14.3" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18" r="3"/><circle cx="15.5" cy="18" r="3"/></svg></span><span><b data-i18n="g_conn_ccs2_t">CCS2</b><span data-i18n="g_conn_ccs2_d">DC · the fast one</span></span></div>
+        </div>
+        <div class="note" data-i18n="g_dr_s3_note">Match the icon to your car, and each bay shows its max speed (e.g. <b>up to 22 kW</b>). In-use chargers show a <b>“free by ~HH:MM”</b> estimate so you know when one opens up.</div>
+        <img class="shot" src="img/booking.png" alt="ParkIQ charger list with status, connector and speed" loading="lazy">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">4</span><h2 data-i18n="g_hd_startcharging">Start charging</h2></div>
+      <div class="lead" data-i18n="g_dr_s4_lead">Activate your booked charger the moment your slot begins.</div>
+      <div class="card">
+        <ol class="steps">
+          <li><span class="st" data-i18n="g_dr_s4_step1">When your slot is live, open <b>My booking</b> and tap <b>Activate charging</b>.</span></li>
+          <li><span class="st" data-i18n="g_dr_s4_step2">Only you can start the charger you booked, during your slot — no one can jump your bay.</span></li>
+          <li><span class="st" data-i18n="g_dr_s4_step3">The page updates to show your active session.</span></li>
+        </ol>
+        <img class="shot" src="img/mybooking.png" alt="ParkIQ My booking screen with Activate charging button" loading="lazy">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><span class="ix">5</span><h2 data-i18n="g_hd_whilecharge">While you charge</h2></div>
+      <div class="lead" data-i18n="g_dr_s5_lead">Track your time and know exactly when to head back.</div>
+      <div class="card">
+        <ul class="feat">
+          <li><span class="ic">⏱️</span><span class="tx"><b data-i18n="g_drf1_t">Live timer</b><span data-i18n="g_drf1_d">Watch your elapsed charging time.</span></span></li>
+          <li><span class="ic">🕒</span><span class="tx"><b data-i18n="g_drf2_t">Free by HH:MM</b><span data-i18n="g_drf2_d">Your start time plus the pool’s max session length.</span></span></li>
+          <li><span class="ic">⏹️</span><span class="tx"><b data-i18n="g_drf3_t">Stop charging</b><span data-i18n="g_drf3_d">End your session when you’re done. One session at a time.</span></span></li>
+          <li><span class="ic">🔔</span><span class="tx"><b data-i18n="g_drf4_t">Running late?</b><span data-i18n="g_drf4_d">If you don’t activate your booking, we’ll email to ask if you’re still coming — tap <b>Cancel</b> to free it for a colleague.</span></span></li>
+        </ul>
+        <div class="note" data-i18n="g_dr_s5_note">There are fewer chargers than drivers, so sessions have a time limit — when yours is up, please move your car so a colleague can charge.</div>
+      </div>
+      <div class="tip">💡 <span data-i18n="g_dr_s5_tip"><b>Tip:</b> Watch for your “time’s almost up” reminder so you’re never the one blocking a bay.</span></div>
+      <img class="shot" src="img/charging.png" alt="ParkIQ live charging session with timer and Stop charging" loading="lazy">
+    </div>
+  </div>
+
+  <div class="closing">
+    <div class="tag" data-i18n="g_close_tag">Every spot, <em>smarter.</em></div>
+    <p data-i18n="g_close_note">Need a hand? Reach your facility manager or contact GREEMS support at <a href="mailto:help@greems.io">help@greems.io</a>.</p>
+  </div>
+
+</div></div>
+
+<script>
+  const I18N={"g_hd_signin": {"en": "Sign in", "he": "התחברות"}, "g_leg_avail": {"en": "Available", "he": "פנויה"}, "g_dr_eb": {"en": "For employees", "he": "לעובדים"}, "g_dr_h1": {"en": "Book it, charge it, done.", "he": "מזמינים, טוענים, סיימתם."}, "g_dr_p": {"en": "Reserve a charger according to the schedule your company sets, activate it when you arrive, and free the bay when you’re done so the next person can charge.", "he": "משריינים עמדה לפי לוחות הזמנים שנקבעו ע״י החברה, מפעילים אותה בהגעה, ומפנים אותה בסיום כדי שהעובד הבא יוכל לטעון."}, "g_dr_s1_lead": {"en": "No app to install — scan the QR or open the link, then sign in.", "he": "בלי אפליקציה להתקין — סורקים את קוד ה-QR או פותחים את הקישור, ואז מתחברים."}, "g_dr_s1_step1": {"en": "Scan the QR at the charger — or open the link your manager shared — to open the booking page.", "he": "סורקים את קוד ה-QR בעמדה — או פותחים את הקישור שקיבלתם מהמנהל — כדי לפתוח את עמוד ההזמנות."}, "g_dr_s1_step2": {"en": "Enter your work email (<b>@corporate.com</b>) — or tap <b>Sign in with Microsoft</b> if your company uses it.", "he": "מזינים את דוא\"ל העבודה (<b>@corporate.com</b>) — או מקישים על <b>התחברות עם מיקרוסופט</b> אם החברה משתמשת בכך."}, "g_dr_s1_step3": {"en": "You're in — no password, no waiting.", "he": "נכנסתם — בלי סיסמה, בלי המתנה."}, "g_pill_instant": {"en": "instant", "he": "מיידי"}, "g_dr_s1_note": {"en": "Any email on your company's approved domain works. If your company also turned on email verification, you'll get a one-tap sign-in link instead of signing in instantly.", "he": "כל כתובת דוא\"ל בדומיין המאושר של החברה עובדת. אם החברה הפעילה גם אימות בדוא\"ל, תקבלו במקום זאת קישור כניסה בהקשה אחת."}, "g_hd_bookcharger": {"en": "Book a charger", "he": "הזמנת עמדה"}, "g_dr_s2_lead": {"en": "Reserve a charger for a time slot, so it’s waiting for you — no circling the car park.", "he": "משריינים עמדה למשבצת זמן, כך שהיא מחכה לכם — בלי להסתובב בחניון."}, "g_dr_s2_step1": {"en": "In the <b>Booking</b> tab, pick a day and a slot (e.g. <b>Morning</b>, <b>Noon</b>, <b>After Noon</b> or <b>Night</b>).", "he": "בלשונית <b>הזמנות</b>, בוחרים יום ומשבצת (למשל <b>בוקר</b>, <b>צהריים</b>, <b>אחר הצהריים</b> או <b>ערב</b>)."}, "g_dr_s2_step2": {"en": "Choose a free charger and tap <b>Book</b>.", "he": "בוחרים עמדה פנויה ומקישים <b>הזמנה</b>."}, "g_dr_s2_step3": {"en": "It shows up under <b>My booking</b>.", "he": "היא מופיעה תחת <b>ההזמנות שלי</b>."}, "g_pill_reserved": {"en": "reserved", "he": "משוריין"}, "g_dr_s2_note": {"en": "Each charger holds one booking per slot, and you get a set number of bookings per week (your manager decides how many, how far ahead, and which days).", "he": "לכל עמדה יש הזמנה אחת למשבצת, ומקבלים מספר קבוע של הזמנות בשבוע (המנהל קובע כמה, כמה זמן מראש, ואילו ימים)."}, "g_dr_s2_tip": {"en": "<b>Tip:</b> Book the day before for a busy morning — you’ll have a guaranteed bay when you arrive.", "he": "<b>טיפ:</b> מזמינים יום לפני עבור בוקר עמוס — תהיה לכם עמדה מובטחת בהגעה."}, "g_hd_findcharger": {"en": "Find a charger", "he": "איתור עמדה"}, "g_dr_s3_lead": {"en": "Every charger, its status, its plug and its speed — at a glance.", "he": "כל עמדה, הסטטוס שלה, המחבר והמהירות — במבט אחד."}, "g_leg_inuse": {"en": "In use", "he": "בשימוש"}, "g_leg_outoforder": {"en": "Out of order", "he": "מושבתת"}, "g_conn_t2_t": {"en": "Type 2", "he": "Type 2"}, "g_conn_t2_d": {"en": "AC · everyday top-up", "he": "AC · טעינה יומיומית"}, "g_conn_ccs2_t": {"en": "CCS2", "he": "CCS2"}, "g_conn_ccs2_d": {"en": "DC · the fast one", "he": "DC · המהירה"}, "g_dr_s3_note": {"en": "Match the icon to your car, and each bay shows its max speed (e.g. <b>up to 22 kW</b>). In-use chargers show a <b>“free by ~HH:MM”</b> estimate so you know when one opens up.", "he": "מתאימים את הסמל לרכב, וכל עמדה מציגה את המהירות המרבית שלה (למשל <b>עד 22 קילוואט</b>). עמדות בשימוש מציגות הערכת <b>“מתפנה בסביבות HH:MM”</b> כדי שתדעו מתי אחת מתפנה."}, "g_hd_startcharging": {"en": "Start charging", "he": "התחלת טעינה"}, "g_dr_s4_lead": {"en": "Activate your booked charger the moment your slot begins.", "he": "מפעילים את העמדה שהזמנתם ברגע שהמשבצת שלכם מתחילה."}, "g_dr_s4_step1": {"en": "When your slot is live, open <b>My booking</b> and tap <b>Activate charging</b>.", "he": "כשהמשבצת שלכם פעילה, פותחים את <b>ההזמנות שלי</b> ומקישים <b>הפעלת טעינה</b>."}, "g_dr_s4_step2": {"en": "Only you can start the charger you booked, during your slot — no one can jump your bay.", "he": "רק אתם יכולים להתחיל את העמדה שהזמנתם, במשבצת שלכם — אף אחד לא יכול לתפוס אותה."}, "g_dr_s4_step3": {"en": "The page updates to show your active session.", "he": "הדף מתעדכן לתצוגת הטעינה הפעילה שלכם."}, "g_hd_whilecharge": {"en": "While you charge", "he": "בזמן הטעינה"}, "g_dr_s5_lead": {"en": "Track your time and know exactly when to head back.", "he": "עוקבים אחר הזמן ויודעים בדיוק מתי לחזור."}, "g_drf1_t": {"en": "Live timer", "he": "טיימר חי"}, "g_drf1_d": {"en": "Watch your elapsed charging time.", "he": "עוקבים אחר משך הטעינה שחלף."}, "g_drf2_t": {"en": "Free by HH:MM", "he": "מתפנה בשעה HH:MM"}, "g_drf2_d": {"en": "Your start time plus the pool’s max session length.", "he": "שעת ההתחלה שלכם בתוספת אורך הטעינה המרבי של מתחם הטעינה."}, "g_drf3_t": {"en": "Stop charging", "he": "עצירת טעינה"}, "g_drf3_d": {"en": "End your session when you’re done. One session at a time.", "he": "מסיימים את הטעינה כשסיימתם. טעינה אחת בכל פעם."}, "g_drf4_t": {"en": "Running late?", "he": "מתעכבים?"}, "g_drf4_d": {"en": "If you don’t activate your booking, we’ll email to ask if you’re still coming — tap <b>Cancel</b> to free it for a colleague.", "he": "אם לא מפעילים את ההזמנה, נשלח דוא\"ל לשאול אם עדיין מגיעים — מקישים <b>ביטול</b> כדי לפנות אותה לעמית."}, "g_dr_s5_note": {"en": "There are fewer chargers than drivers, so sessions have a time limit — when yours is up, please move your car so a colleague can charge.", "he": "יש פחות עמדות מנהגים, ולכן לטעינות יש מגבלת זמן — כשהזמן שלכם נגמר, נא לפנות את הרכב כדי שעמית יוכל לטעון."}, "g_dr_s5_tip": {"en": "<b>Tip:</b> Watch for your “time’s almost up” reminder so you’re never the one blocking a bay.", "he": "<b>טיפ:</b> שימו לב לתזכורת “הזמן כמעט נגמר” כדי שלעולם לא תהיו אלה שחוסמים עמדה."}, "g_close_tag": {"en": "Every spot, <em>smarter.</em>", "he": "כל חנייה — <em>חכמה יותר.</em>"}, "g_close_note": {"en": "Need a hand? Reach your facility manager or contact GREEMS support at <a href=\"mailto:help@greems.io\">help@greems.io</a>.", "he": "צריכים עזרה? פנו למנהל המתקן שלכם או צרו קשר עם תמיכת GREEMS בכתובת <a href=\"mailto:help@greems.io\">help@greems.io</a>."}};
+  function setLang(l){
+    const h=document.documentElement;
+    h.lang=l; h.dir = l==='he' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k=el.getAttribute('data-i18n'); const v=I18N[k]&&I18N[k][l];
+      if(v!=null) el.innerHTML=v;
+    });
+    document.querySelectorAll('.lang b').forEach(b=>b.classList.toggle('on', b.dataset.l===l));
+    try{localStorage.setItem('parkiq_lang',l);}catch(e){}
+  }
+  (function(){
+    let l='en';
+    try{ l=localStorage.getItem('parkiq_lang') || ((navigator.language||'').slice(0,2)); }catch(e){}
+    if(!['en','he'].includes(l)) l='en';
+    setLang(l);
+  })();
+</script>
+
+</body>
+</html>
