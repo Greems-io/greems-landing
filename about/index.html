@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Greems — EV Charging Infrastructure, End to End</title>
+<meta name="description" content="Greems designs, installs, and operates EV charging — public networks, hospitality properties, and workplaces — so partners never have to think about hardware, software, or support.">
+<link rel="canonical" href="https://lp.greems.io/about/">
+<meta property="og:title" content="Greems — EV Charging Infrastructure, End to End">
+<meta property="og:description" content="One company behind every charging moment: public networks, hospitality, and workplace charging — built and run end to end.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lp.greems.io/about/">
+<meta property="og:site_name" content="Greems">
+<meta property="og:image" content="https://lp.greems.io/icon.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f8fafc; --panel:#ffffff; --panel2:#f1f5f9; --line:#e2e8f0;
+    --ink:#0f172a; --muted:#475569; --dim:#94a3b8;
+    --green:#1D9E75; --green-dark:#0d5c43; --teal:#9FE1CB; --soft:#E6F6EC;
+    --dk-bg:#070f0c; --dk-bg2:#0b1713; --dk-panel:#101e19; --dk-panel2:#142620; --dk-line:#1e2e28;
+    --dk-ink:#eaf3ef; --dk-muted:#93a89f;
+    --glow-green:rgba(29,158,117,.45); --glow-teal:rgba(159,225,203,.30);
+    --radius:18px; --maxw:1040px;
+    --disp:"Space Grotesk",system-ui,sans-serif;
+    --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  html[dir="rtl"]{ --disp:"Heebo",system-ui,sans-serif; --body:"Heebo",system-ui,sans-serif; }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:var(--green-dark);text-decoration:none}
+  :focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:8px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;margin:0}
+  html[dir="rtl"] h1,html[dir="rtl"] h2{font-weight:800}
+  html[dir="rtl"] h3{font-weight:700}
+
+  /* header */
+  header{position:sticky;top:0;z-index:40;backdrop-filter:blur(12px);
+    background:rgba(248,250,252,.82);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:14px;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand img{width:36px;height:36px;display:block}
+  .brand .eb{font-size:9px;letter-spacing:3px;color:var(--muted);font-weight:700;font-family:var(--body)}
+  .brand .wm{font-family:var(--disp);font-size:18px;font-weight:700;line-height:1;color:var(--ink)}
+  .spacer{margin-inline-start:auto}
+  .lang{display:flex;gap:2px;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px}
+  .lang b{font:600 12px/1 var(--body);color:var(--muted);padding:7px 11px;border-radius:999px;cursor:pointer;transition:.15s}
+  .lang b.on{background:var(--green);color:#fff}
+  .lang b:hover:not(.on){color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--body);
+    font-weight:700;font-size:15px;border-radius:12px;padding:12px 22px;cursor:pointer;border:1px solid transparent;transition:.15s;white-space:nowrap}
+  .btn.primary{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;box-shadow:0 6px 20px rgba(29,158,117,.3)}
+  .btn.primary:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(29,158,117,.4)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn.ghost:hover{border-color:var(--green);color:var(--green-dark)}
+  .btn.ghost.on-dark{color:var(--dk-ink);border-color:var(--dk-line)}
+  .btn.ghost.on-dark:hover{border-color:var(--teal);color:var(--teal)}
+  header .btn{padding:9px 16px;font-size:14px}
+
+  /* dark bleed sections (hero + cta) */
+  .dark{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--dk-bg2),var(--dk-bg));color:var(--dk-ink)}
+  .dark .muted{color:var(--dk-muted)}
+  .dark::before{content:"";position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;
+    background-image:linear-gradient(var(--dk-line) 1px,transparent 1px),linear-gradient(90deg,var(--dk-line) 1px,transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(70% 60% at 50% 0%,#000,transparent 75%);
+            mask-image:radial-gradient(70% 60% at 50% 0%,#000,transparent 75%)}
+  .blob{position:absolute;z-index:0;border-radius:50%;filter:blur(90px);opacity:.6;pointer-events:none}
+  .blob.a{width:460px;height:460px;background:radial-gradient(circle,var(--glow-green),transparent 68%);top:-140px;inset-inline-start:-100px;animation:drift1 22s ease-in-out infinite}
+  .blob.b{width:420px;height:420px;background:radial-gradient(circle,var(--glow-teal),transparent 66%);top:160px;inset-inline-end:-120px;animation:drift2 26s ease-in-out infinite}
+  @keyframes drift1{50%{transform:translate(50px,40px) scale(1.1)}}
+  @keyframes drift2{50%{transform:translate(-40px,30px) scale(1.08)}}
+  .dark .wrap{position:relative;z-index:1}
+
+  /* hero */
+  .hero{text-align:center;padding:clamp(64px,10vw,124px) 0 clamp(56px,8vw,96px)}
+  .hero .mark{width:clamp(64px,8vw,100px);height:auto;margin-bottom:22px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;color:var(--teal);
+    background:rgba(159,225,203,.08);border:1px solid rgba(159,225,203,.22);border-radius:999px;padding:7px 15px}
+  .chip .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 var(--glow-green);animation:beacon 2.2s infinite}
+  @keyframes beacon{0%{box-shadow:0 0 0 0 rgba(29,158,117,.6)}70%{box-shadow:0 0 0 10px rgba(29,158,117,0)}100%{box-shadow:0 0 0 0 rgba(29,158,117,0)}}
+  .hero h1{font-size:clamp(34px,7vw,66px);font-weight:700;line-height:1.08;margin:22px auto 18px;max-width:18ch;text-wrap:balance}
+  .hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--green),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{font-size:clamp(16px,2.1vw,19px);color:var(--dk-muted);max-width:56ch;margin:0 auto 30px}
+  .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+  .rv.in{opacity:1;transform:none}
+
+  section{padding:56px 0}
+  .eyebrow{font-family:var(--body);font-size:12px;letter-spacing:3px;color:var(--green-dark);font-weight:700;text-transform:uppercase;text-align:center}
+  .dark .eyebrow{color:var(--teal)}
+  .h2{font-size:clamp(26px,4.2vw,42px);font-weight:700;text-align:center;margin:10px 0 0;text-wrap:balance}
+  .sub{text-align:center;color:var(--muted);max-width:62ch;margin:14px auto 0;font-size:16.5px}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:880px;margin:36px auto 0;padding:0}
+  .stat{text-align:center;padding:0 14px;border-inline-start:1px solid var(--line)}
+  .stat:first-child{border-inline-start:none}
+  .stat .n{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.5vw,42px);color:var(--green-dark);letter-spacing:-.02em}
+  .stat .l{color:var(--muted);font-size:13.5px;margin-top:6px;line-height:1.4}
+  .founded{text-align:center;color:var(--dim);font-size:12.5px;margin-top:26px}
+  @media(max-width:700px){.stats{grid-template-columns:1fr;gap:18px}.stat{border-inline-start:none;border-top:1px solid var(--line);padding-top:14px}.stat:first-child{border-top:none;padding-top:0}}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);transition:border-color .2s,transform .2s,box-shadow .2s}
+  .card:hover{border-color:rgba(29,158,117,.4);transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,23,42,.06)}
+
+  /* pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  .pillar{padding:28px}
+  .pillar .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.5px;color:var(--green-dark);
+    background:var(--soft);border-radius:999px;padding:5px 12px;margin-bottom:16px}
+  .pillar .pi{width:46px;height:46px;border-radius:13px;background:var(--soft);border:1px solid rgba(29,158,117,.25);
+    display:flex;align-items:center;justify-content:center;color:var(--green-dark);margin-bottom:14px}
+  .pillar .pi svg{width:24px;height:24px}
+  .pillar h3{font-size:20px;margin-bottom:8px}
+  .pillar p{margin:0;color:var(--muted);font-size:15px}
+  @media(max-width:860px){.pillars{grid-template-columns:1fr}}
+
+  /* why */
+  .whyband{background:var(--panel2)}
+  .why{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+  .why .w{padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+  .why .wi{width:38px;height:38px;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--green-dark);margin-bottom:12px}
+  .why .wi svg{width:19px;height:19px}
+  .why h3{font-size:15.5px;margin-bottom:5px;font-family:var(--body);font-weight:700}
+  .why p{margin:0;color:var(--muted);font-size:13.8px}
+  @media(max-width:860px){.why{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.why{grid-template-columns:1fr}}
+
+  /* cta band */
+  .cta-band{text-align:center;padding:clamp(56px,9vw,96px) 0}
+  .cta-band h2{font-size:clamp(26px,4.4vw,40px);font-weight:700;margin-bottom:12px;text-wrap:balance}
+  .cta-band p{color:var(--dk-muted);font-size:17px;margin:0 auto 26px;max-width:46ch}
+  .cta-band .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  footer{border-top:1px solid var(--line);text-align:center;padding:36px 0 48px}
+  footer .tag{font-family:var(--disp);font-weight:700;font-size:18px}
+  footer .tag em{font-style:normal;color:var(--green-dark)}
+  footer .line{color:var(--dim);font-size:13px;margin-top:8px}
+
+  @media print{
+    header,.dark,.blob,.chip .pulse{display:none !important}
+    body{background:#fff;color:#000}
+    section{padding:18px 0}
+    .card{box-shadow:none;break-inside:avoid}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .blob,.chip .pulse{animation:none}
+    .rv{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="./" aria-label="Greems">
+      <img src="../icon.svg" alt="" aria-hidden="true">
+      <span><span class="eb">GREEMS</span><br><span class="wm" data-i18n="brand_wm">About</span></span>
+    </a>
+    <span class="spacer"></span>
+    <div class="lang" role="group" aria-label="Language">
+      <b data-l="en" class="on" onclick="setLang('en')">EN</b>
+      <b data-l="he" onclick="setLang('he')">עב</b>
+    </div>
+    <a class="btn primary" href="#talk" data-i18n="nav_talk">Talk to us</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero dark">
+    <div class="blob a"></div><div class="blob b"></div>
+    <div class="wrap">
+      <img class="mark" src="../icon.svg" alt="Greems">
+      <span class="chip"><span class="pulse"></span><span data-i18n="hero_eyebrow">Effortless EV charging, smartly managed</span></span>
+      <h1 data-i18n="hero_h1">Charging infrastructure, <em>built and run end to end.</em></h1>
+      <p data-i18n="hero_sub">Greems designs, installs, and operates EV charging — for public networks, hospitality properties, and workplaces — so our partners never have to think about hardware, software, or support.</p>
+      <div class="cta">
+        <a class="btn primary" href="#talk" data-i18n="hero_cta1">Talk to us</a>
+        <a class="btn ghost on-dark" href="#pillars" data-i18n="hero_cta2">See what we do</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="eyebrow rv" data-i18n="what_eyebrow">What we do</div>
+    <h2 class="h2 rv" data-i18n="what_h2">One team behind every charging moment</h2>
+    <p class="sub rv" data-i18n="what_p">From public charging stations to a hotel driveway to an office car park, Greems owns the full stack — hardware installation, network operations, driver support, billing, and the software that keeps it all fair and reliable. Partners get a finished experience; we handle what's underneath.</p>
+    <div class="stats rv">
+      <div class="stat"><div class="n">150,000+</div><div class="l" data-i18n="stat1_l">Charging sessions delivered</div></div>
+      <div class="stat"><div class="n">900+</div><div class="l" data-i18n="stat2_l">Charging stations under management</div></div>
+      <div class="stat"><div class="n">4</div><div class="l" data-i18n="stat3_l">Countries we operate in — Israel, Canada, Poland, Belgium</div></div>
+    </div>
+    <div class="founded rv" data-i18n="founded_line">Founded 2022 · backed by Adgar Investment &amp; Development, part of the Tzur Shamir group.</div>
+  </section>
+
+  <section class="wrap" id="pillars">
+    <div class="pillars">
+      <div class="pillar card rv">
+        <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div>
+        <div class="tag" data-i18n="p1_tag">Across Canada, Poland &amp; Belgium</div>
+        <h3 data-i18n="p1_t">Public Network</h3>
+        <p data-i18n="p1_d">A public EV charging network, live in the Greater Toronto Area and expanding across Poland and Belgium. Drivers find a station, plug in, and go — no subscription required to start.</p>
+      </div>
+      <div class="pillar card rv">
+        <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg></div>
+        <div class="tag" data-i18n="p2_tag">For hospitality properties</div>
+        <h3 data-i18n="p2_t">Host</h3>
+        <p data-i18n="p2_d">A zero-cost charger for cabins, campsites, boutique hotels, and short-term rentals. Greems covers hardware, installation, maintenance, and support — hosts just provide a parking spot and share in the revenue. Research shows 60% of vacationers prefer destinations with EV charging on site — turning a charger into a booking advantage, not just an amenity.</p>
+      </div>
+      <div class="pillar card rv">
+        <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M9 14l2 2 4-4"/></svg></div>
+        <div class="tag" data-i18n="p3_tag">For workplaces</div>
+        <h3 data-i18n="p3_t">ParkIQ</h3>
+        <p data-i18n="p3_d">Workplace charging, managed. Staff book a bay in advance, charge for free, and a fairness engine keeps a handful of chargers moving — no scrum for the plug.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="whyband">
+    <div class="wrap">
+      <div class="eyebrow rv" data-i18n="why_eyebrow">Why Greems</div>
+      <h2 class="h2 rv" data-i18n="why_h2">The same team, every setting</h2>
+      <div class="why">
+        <div class="w rv"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div><h3 data-i18n="w1_t">Full-service, not just hardware</h3><p data-i18n="w1_d">We install, maintain, bill, and support every charger we deploy.</p></div>
+        <div class="w rv"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="15" width="7" height="7" rx="1.5"/><rect x="14" y="15" width="7" height="7" rx="1.5"/></svg></div><h3 data-i18n="w2_t">One platform, many settings</h3><p data-i18n="w2_d">Network, Host, and ParkIQ all run on the same Greems CPO platform — one billing, monitoring, and operations layer underneath.</p></div>
+        <div class="w rv"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3 data-i18n="w3_t">AI-powered operations</h3><p data-i18n="w3_d">Our Co-Pilot layer watches every charger 24/7, catching faults early and keeping stations online.</p></div>
+        <div class="w rv"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10M12 2v10l7 7"/></svg></div><h3 data-i18n="w4_t">Multi-market from day one</h3><p data-i18n="w4_d">Live and delivering charging across Israel, Canada, Poland, and Belgium.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark cta-band" id="talk">
+    <div class="blob a"></div><div class="blob b"></div>
+    <div class="wrap">
+      <h2 data-i18n="cta_h2">Let's talk about your site</h2>
+      <p data-i18n="cta_p">Tell us what you're building and we'll show you how Greems fits.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:sales@greems.io?subject=Let%27s%20talk%20about%20Greems" data-i18n="cta_b1">Talk to us</a>
+        <a class="btn ghost on-dark" href="https://greems.io" target="_blank" rel="noopener" data-i18n="cta_b2">Visit greems.io</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="tag" data-i18n="foot_tag">Infrastructure you don't have to <em>think about.</em></div>
+  <div class="line"><span data-i18n="foot_line">Greems · EV charging infrastructure</span> · <a href="https://greems.io">greems.io</a></div>
+</footer>
+
+<script>
+const I18N={
+  "brand_wm": {"en":"About","he":"אודות"},
+  "nav_talk": {"en":"Talk to us","he":"דברו איתנו"},
+  "hero_eyebrow": {"en":"Effortless EV charging, smartly managed","he":"טעינה חשמלית פשוטה, מנוהלת בחכמה"},
+  "hero_h1": {"en":"Charging infrastructure, <em>built and run end to end.</em>","he":"תשתית טעינה, <em>בנויה ומופעלת מקצה לקצה.</em>"},
+  "hero_sub": {"en":"Greems designs, installs, and operates EV charging — for public networks, hospitality properties, and workplaces — so our partners never have to think about hardware, software, or support.","he":"גרימס מתכננת, מתקינה ומפעילה טעינה לרכבים חשמליים — ברשתות ציבוריות, בנכסי אירוח ובמקומות עבודה — כך שהשותפים שלנו לא צריכים לחשוב על חומרה, תוכנה או תמיכה."},
+  "hero_cta1": {"en":"Talk to us","he":"דברו איתנו"},
+  "hero_cta2": {"en":"See what we do","he":"ראו מה אנחנו עושים"},
+  "what_eyebrow": {"en":"What we do","he":"מה אנחנו עושים"},
+  "what_h2": {"en":"One team behind every charging moment","he":"צוות אחד מאחורי כל רגע טעינה"},
+  "what_p": {"en":"From public charging stations to a hotel driveway to an office car park, Greems owns the full stack — hardware installation, network operations, driver support, billing, and the software that keeps it all fair and reliable. Partners get a finished experience; we handle what's underneath.","he":"מעמדות טעינה ציבוריות, דרך הכניסה לבית מלון ועד חניון משרדים — גרימס מחזיקה את כל השרשרת: התקנת חומרה, תפעול הרשת, תמיכת נהגים, חיוב, והתוכנה ששומרת על הכול הוגן ואמין. השותפים שלנו מקבלים חוויה גמורה; אנחנו דואגים למה שמתחת לפני השטח."},
+  "stat1_l": {"en":"Charging sessions delivered","he":"טעינות שסופקו"},
+  "stat2_l": {"en":"Charging stations under management","he":"עמדות טעינה בניהול"},
+  "stat3_l": {"en":"Countries we operate in — Israel, Canada, Poland, Belgium","he":"מדינות פעילות — ישראל, קנדה, פולין, בלגיה"},
+  "founded_line": {"en":"Founded 2022 · backed by Adgar Investment &amp; Development, part of the Tzur Shamir group.","he":"נוסדה ב-2022 על ידי צוות היזמות של אדגר השקעות ופיתוח, מקבוצת צור שמיר."},
+  "p1_tag": {"en":"Across Canada, Poland &amp; Belgium","he":"בקנדה, פולין ובלגיה"},
+  "p1_t": {"en":"Public Network","he":"הרשת הציבורית"},
+  "p1_d": {"en":"A public EV charging network, live in the Greater Toronto Area and expanding across Poland and Belgium. Drivers find a station, plug in, and go — no subscription required to start.","he":"רשת טעינה ציבורית לרכבים חשמליים, פעילה באזור טורונטו הגדולה ומתרחבת לפולין ולבלגיה. נהגים מוצאים עמדה, מתחברים ויוצאים לדרך — בלי צורך במנוי כדי להתחיל."},
+  "p2_tag": {"en":"For hospitality properties","he":"לנכסי אירוח"},
+  "p2_t": {"en":"Host","he":"Host — אירוח"},
+  "p2_d": {"en":"A zero-cost charger for cabins, campsites, boutique hotels, and short-term rentals. Greems covers hardware, installation, maintenance, and support — hosts just provide a parking spot and share in the revenue. Research shows 60% of vacationers prefer destinations with EV charging on site — turning a charger into a booking advantage, not just an amenity.","he":"עמדת טעינה ללא עלות לצימרים, קמפינגים, בתי מלון בוטיק והשכרות לטווח קצר. גרימס מכסה חומרה, התקנה, תחזוקה ותמיכה — בעלי הנכס רק מספקים מקום חניה ומקבלים חלק מההכנסות. מחקר מראה ש-60% מהנופשים מעדיפים יעדים עם עמדת טעינה באתר — מה שהופך את העמדה ליתרון הזמנות, לא רק לשירות נלווה."},
+  "p3_tag": {"en":"For workplaces","he":"למקומות עבודה"},
+  "p3_t": {"en":"ParkIQ","he":"ParkIQ"},
+  "p3_d": {"en":"Workplace charging, managed. Staff book a bay in advance, charge for free, and a fairness engine keeps a handful of chargers moving — no scrum for the plug.","he":"טעינה במקום העבודה, מנוהלת. עובדים מזמינים עמדה מראש, טוענים בחינם, ומנגנון הוגנות שומר על כך שעמדות מעטות יישארו בתנועה — בלי מרוץ אחרי השקע."},
+  "why_eyebrow": {"en":"Why Greems","he":"למה גרימס"},
+  "why_h2": {"en":"The same team, every setting","he":"אותו צוות, בכל זירה"},
+  "w1_t": {"en":"Full-service, not just hardware","he":"שירות מלא, לא רק חומרה"},
+  "w1_d": {"en":"We install, maintain, bill, and support every charger we deploy.","he":"אנחנו מתקינים, מתחזקים, מחייבים ותומכים בכל עמדה שאנחנו פורסים."},
+  "w2_t": {"en":"One platform, many settings","he":"פלטפורמה אחת, הרבה זירות"},
+  "w2_d": {"en":"Network, Host, and ParkIQ all run on the same Greems CPO platform — one billing, monitoring, and operations layer underneath.","he":"הרשת, Host ו-ParkIQ פועלים כולם על אותה פלטפורמת Greems CPO — שכבת חיוב, ניטור ותפעול אחת מתחת לכולם."},
+  "w3_t": {"en":"AI-powered operations","he":"תפעול מבוסס בינה מלאכותית"},
+  "w3_d": {"en":"Our Co-Pilot layer watches every charger 24/7, catching faults early and keeping stations online.","he":"שכבת ה-Co-Pilot שלנו עוקבת אחרי כל עמדה 24/7, מזהה תקלות מוקדם ושומרת על זמינות."},
+  "w4_t": {"en":"Multi-market from day one","he":"נוכחות רב-לאומית מהיום הראשון"},
+  "w4_d": {"en":"Live and delivering charging across Israel, Canada, Poland, and Belgium.","he":"פעילים ומספקים טעינה בישראל, קנדה, פולין ובלגיה."},
+  "cta_h2": {"en":"Let's talk about your site","he":"בואו נדבר על האתר שלכם"},
+  "cta_p": {"en":"Tell us what you're building and we'll show you how Greems fits.","he":"ספרו לנו מה אתם בונים, ונראה לכם איך גרימס משתלבת."},
+  "cta_b1": {"en":"Talk to us","he":"דברו איתנו"},
+  "cta_b2": {"en":"Visit greems.io","he":"לאתר greems.io"},
+  "foot_tag": {"en":"Infrastructure you don't have to <em>think about.</em>","he":"תשתית שלא צריך <em>לחשוב עליה.</em>"},
+  "foot_line": {"en":"Greems · EV charging infrastructure","he":"גרימס · תשתית טעינה לרכבים חשמליים"}
+};
+function setLang(l){
+  const h=document.documentElement;
+  h.lang=l; h.dir = l==='he' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n'); const v=I18N[k]&&I18N[k][l];
+    if(v!=null) el.innerHTML=v;
+  });
+  document.querySelectorAll('.lang b').forEach(b=>b.classList.toggle('on', b.dataset.l===l));
+  try{localStorage.setItem('greems_about_lang',l);}catch(e){}
+}
+(function(){
+  let l='en';
+  try{ l=localStorage.getItem('greems_about_lang') || ((navigator.language||'').slice(0,2)); }catch(e){}
+  if(!['en','he'].includes(l)) l='en';
+  setLang(l);
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*40)+'ms';io.observe(el);});
+})();
+</script>
+</body>
+</html>
