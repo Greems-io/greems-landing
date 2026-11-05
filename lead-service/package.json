@@ -1,6 +1,0 @@
-{
-  "name": "greems-lead",
-  "private": true,
-  "type": "module",
-  "engines": { "node": ">=18" }
-}
